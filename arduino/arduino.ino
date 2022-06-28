@@ -22,5 +22,5 @@ void loop() {
 //se imprimen los dos datos
   Serial << tempC << " " << luz;
   Serial.println();
-  delay(1000);
+  delay(5000);
 }
