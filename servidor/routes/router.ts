@@ -16,7 +16,7 @@ router.post('/grafica', (request, response)=>{
     const valor = Number(request.body.valor);
     grafica.incrementarValor(mes,valor);
     const server = Servidorcito.instance;
-    execute("INSERT INTO dispositivo (data) VALUES ('"+valor+"');",[]);
+    //execute("INSERT INTO dispositivo (data) VALUES ('"+valor+"');",[]);
     server.io.emit('cambio-grafica', grafica.getGraficaData());
     response.json(grafica.getGraficaData());
 });

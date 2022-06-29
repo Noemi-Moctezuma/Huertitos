@@ -1,23 +1,49 @@
+import datetime
+from types import MethodDescriptorType
 import urllib3
+import urllib
+import mysql.connector
 import serial
 import json
 import re
 
+mydb = mysql.connector.connect(
+host="localhost",
+user="root",
+password="",
+database="full"
+)
+mycursor = mydb.cursor()
+
 http = urllib3.PoolManager()
 arduino = serial.Serial("COM3", baudrate= 9600, timeout= 1.0)
 arduino.flushInput()
-URL = 'http://localhost/sistemasAbiertos/components/ser_py.php'
+URL = 'http://localhost:4003/grafica'
 while True:
     row = arduino.readline()
     clean_row = row.decode()
     
     values = clean_row.split(" ")
-    value_1 = values[0]
-    value_2 = values[1]
-    value_2_no_spaces = re.sub("\r\n", '', value_2)
-   
+    temp = values[0]
+    sun = values[1]
+    sun = re.sub("\r\n", '', sun)
+    tiempo_actual= datetime.now(datetime.timezone.utc)
+    sql="INSERT INTO tbl_sun (valor, tiempo) VALUES (%s, %s)"
+    valores =(sun, tiempo_actual)
+
+    mycursor.execute(sql, valores)
+
+    sql2="INSERT INTO tbl_temp (valor, tiempo) VALUES (%s, %s)"
+    valores2 =(sun, tiempo_actual)
+
+    mycursor.execute(sql2, valores2)
+    mydb.commit()
+    
+    print(mycursor.rowcount, "Insert OK")
+    
     if clean_row:
-        response = http.request('POST', URL, fields={'dato_1': value_1, 'dato_2': value_2_no_spaces})
-        resJson = response.data.decode('UTF-8')
-        data = json.loads(resJson)
-        print(data)
+
+        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+        data =  urllib.parse.urlencode({'temp': temp,'tiempo': tiempo_actual, 'sun': sun})
+        response = http.request('POST', URL, headers=headers, body=data)
+        print(response)

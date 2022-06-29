@@ -6,6 +6,8 @@ export class GraficaData{
 
     getGraficaData(){
         return [
+            {data:this.valores, label:this.meses},
+            
             {data:this.valores, label:this.meses}
         ];
     }
