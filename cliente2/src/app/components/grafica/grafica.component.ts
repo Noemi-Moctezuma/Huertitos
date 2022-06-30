@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
 import { WebsocketService } from 'src/app/services/websocket.service';
 
 @Component({

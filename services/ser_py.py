@@ -16,7 +16,8 @@ database="db_invernadero"
 mycursor = mydb.cursor()
 
 http = urllib3.PoolManager()
-arduino = serial.Serial("COM10", baudrate= 9600)
+#arduino = serial.Serial("COM10", baudrate= 9600)
+arduino = serial.Serial("COM3", baudrate= 9600)
 arduino.flushInput()
 URL = 'http://localhost:4003/grafica'
 while True:
