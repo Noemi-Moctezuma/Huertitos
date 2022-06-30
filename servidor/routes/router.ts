@@ -13,7 +13,8 @@ router.get('/grafica', (request, response)=>{
 
 var contador: number=0
 router.post('/grafica', (request, response)=>{
-
+    
+    console.log(request.body)
     //const mes = request.body.mes;
     //const valor = Number(request.body.valor);
     //grafica.incrementarValor(mes,valor);
@@ -25,12 +26,16 @@ router.post('/grafica', (request, response)=>{
 if(contador=0){
      primer=true
 }
-    var mes:any = tiempo.getMonth()
+    var mes:any = tiempo.toLocaleString("es-MX", { month: "long" })
+    
     grafica.obtenerPromedio(temp, mes, sun, primer);
+    
     const server = Servidorcito.instance;
     //execute("INSERT INTO dispositivo (data) VALUES ('"+valor+"');",[]);
     server.io.emit('cambio-grafica', grafica.getGraficaData());
     response.json(grafica.getGraficaData());
+    
+
     contador ++
 });
 

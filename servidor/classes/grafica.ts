@@ -9,10 +9,14 @@ export class GraficaData{
 
     getGraficaData(){
         return [
-            {data:this.temp_promedio, label:this.mes},
-            {data:this.sun_promedio, label:this.mes},
-            {tempereatura:this.temp, sol:this.sun}
+            {temp_promedio:this.temp_promedio, 
+                mes:this.mes, 
+                sun_promedio: this.sun_promedio,
+                temp:this.temp,
+                sun:this.sun,
+              },
         ];
+        
     }
 
     obtenerPromedio(temp:number, mes:string, sun:number , primer:boolean){

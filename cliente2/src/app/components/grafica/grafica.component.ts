@@ -29,7 +29,8 @@ export class GraficaComponent implements OnInit {
   getData(){
     this.http.get('http://localhost:4003/grafica').subscribe(
       (data:any)=>{
-        this.lineChartData = data;
+        console.log(data)
+        //this.lineChartData = data;
       }
     );
   }
