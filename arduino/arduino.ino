@@ -20,7 +20,7 @@ void loop() {
   luz = analogRead(0);
 
 //se imprimen los dos datos
-  Serial << tempC << " " << luz;
+  Serial << 1 << " " << 2;
   Serial.println();
   delay(5000);
 }
