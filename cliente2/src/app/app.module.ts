@@ -6,6 +6,7 @@ import { GraficaComponent } from './components/grafica/grafica.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const config: SocketIoConfig={
   url:'http://localhost:4003',
@@ -21,6 +22,7 @@ const config: SocketIoConfig={
     SocketIoModule.forRoot(config),
     NgChartsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
