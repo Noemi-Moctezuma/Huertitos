@@ -1,4 +1,5 @@
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +24,7 @@ const config: SocketIoConfig={
     NgChartsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
