@@ -1,13 +1,37 @@
-<h1>Gráfica</h1>
+<br>
+Temperatura: {{temperatura}}
+<br>
+Nivel de sol: {{sol}}
+<br>
+
+<h1> Gráfica de promedio de temperatura y nivel de luz por mes</h1>
 <br>
 <div style="display:block; height: 500px; width: 500px;">
     <canvas
     baseChart
     width="400" 
     height="400"
-    [datasets]="lineChartData"
-    [labels]="lineChartLabels"
+    [datasets]="lineChartPromedio"
+    [labels]="labelsPromedio"
     type="line"
     ></canvas>
    
 </div>
+
+<div style="justify-content: center; text-align: center;">
+    Gráfica de temperaturas por minuto
+    <br>
+        <div style="display:block; height: 500px; width: 500px; "  >
+            <canvas
+            baseChart
+            width="400" 
+            height="400"
+            [datasets]="lineChartxMin"
+            [labels]="labelsxMin"
+            type="line"
+            ></canvas>
+        </div> 
+</div> 
+
+
+

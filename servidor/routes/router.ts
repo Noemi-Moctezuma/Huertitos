@@ -26,8 +26,8 @@ router.post('/grafica', (request, response)=>{
         primer=true
     }
     var mes:any = tiempo.toLocaleString("es-MX", { month: "long" })
-
-    grafica.obtenerPromedio(temp, mes, sun, primer);
+  grafica.obtenerPromedio(temp, mes, sun, primer);
+  grafica.agregarDato(temp, tiempo, sun);
     
     const server = Servidorcito.instance;
     //execute("INSERT INTO dispositivo (data) VALUES ('"+valor+"');",[]);
