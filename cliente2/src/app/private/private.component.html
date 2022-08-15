@@ -1,94 +1,74 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <!-- HEADER -->
-<!--      <app-header [titulo]="titulo" ></app-header>
- -->     <mat-sidenav-container  class="example-sidenav-container"
-                            [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-       <mat-sidenav 
-       class="border-0"
-       opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                    [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-         <mat-nav-list>
-           <!-- profile info -->
-           <div class="flex justify-center pt-4">
-             <img
-                 src="assets/img/ivana-square.jpg"
-                 class="rounded-full  h-16 w-16"
-                 alt="PTS"
-             />
-           </div>
- 
-           <div class="flex justify-center pt-4">
-             <p class="font-bold text-slate-800">Ivana Roth</p>
-           </div>
-           <div class="flex justify-center">
-             <p class="text-slate-500">Developer UX</p>
-           </div>
-           <div class="flex justify-center ">
-            <mat-icon class="text-lg">face</mat-icon>
-            <mat-icon class="text-lg text-blue-500">dashboard</mat-icon>
-           </div>
-           <div
-           class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full pt-4"
-         >
-           <ul class="text-slate-800 pt-4 flex flex-col">
-             <li class="mt-0.5 w-full">
-                 <h4 class="uppercase pl-2 font-semibold">
-                     Navigation
-                 </h4>
-             </li>
-             <li class="pl-4 pt-8">
-                 <button 
-                 routerLinkActive
-                 #dashboard = "routerLinkActive"
-                 routerLink="/dashboard"
-                 [ngClass]="dashboard.isActive? 'text-blue-700':''"
-                 class=" flex items-center  rounded-lg   text-slate-700 ">
-                     <div>
-                         <mat-icon [ngClass]="dashboard.isActive? 'text-blue-700':'text-slate-500'" class="text-lg ">dashboard</mat-icon>
-                     </div> 
-                     <div [ngClass]="dashboard.isActive? 'text-blue-700':''">Dashboard</div>
-                 </button>
-             </li>
-             <li class="pl-4 pt-4">
-                 <button 
-                 routerLinkActive
-                 #perfil = "routerLinkActive"
-                 routerLink="/perfil"
-                
-                 class="flex items-center rounded-lg   text-slate-700 ">
-                     <div>
-                         <mat-icon [ngClass]="perfil.isActive? 'text-blue-700':'text-slate-500'" class="text-lg ">face</mat-icon>
-                     </div> 
-                     <div  [ngClass]="perfil.isActive? 'text-blue-700':''">Perfil</div>
-                 </button>
-             </li>
-             <li class="mt-0.5 w-full pt-4">
-               <h4 class="uppercase pl-2 font-semibold">
-                   App
-               </h4>
-           </li>
-           </ul>
-           </div>
-          
-           <!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
-         </mat-nav-list>
-       </mat-sidenav>
-   
-       <mat-sidenav-content class="bg-gray-300" >
-         <!-- <p *ngFor="let content of fillerContent">{{content}}</p> -->
-       <div class="bg-gray-600 text-yellow-400 dark:bg-black dark:text-white">
-         <router-outlet></router-outlet>
-       </div>
-       </mat-sidenav-content>
- 
-     </mat-sidenav-container>
-   </div>
-   
-  
-   
-   
-   <!-- Copyright 2022 Google LLC. All Rights Reserved.
+	<!-- HEADER -->
+	<!--      <app-header [titulo]="titulo" ></app-header>
+ -->
+	<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+		<mat-sidenav class="border-0" opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+			[fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+			<mat-nav-list>
+				<!-- profile info -->
+				<div class="flex justify-center pt-4">
+					<img src="assets/img/ivana-square.jpg" class="rounded-full  h-16 w-16" alt="PTS" />
+				</div>
+
+				<div class="flex justify-center pt-4">
+					<p class="font-bold text-slate-800">Ivana Roth</p>
+				</div>
+				<div class="flex justify-center">
+					<p class="text-slate-500">Developer UX</p>
+				</div>
+				<div class="flex justify-center ">
+					<mat-icon class="text-lg">face</mat-icon>
+					<mat-icon class="text-lg text-blue-500">dashboard</mat-icon>
+				</div>
+				<div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full pt-4">
+					<ul class="text-slate-800 pt-4 flex flex-col">
+						<li class="mt-0.5 w-full">
+							<h4 class="uppercase pl-2 font-semibold">
+								Navigation
+							</h4>
+						</li>
+						<li class="pl-4 pt-8">
+							<button routerLinkActive #dashboard="routerLinkActive" routerLink="/dashboard"
+								[ngClass]="dashboard.isActive? 'text-blue-700':''"
+								class=" flex items-center  rounded-lg   text-slate-700 ">
+								<div>
+									<mat-icon [ngClass]="dashboard.isActive? 'text-blue-700':'text-slate-500'"
+										class="text-lg ">dashboard</mat-icon>
+								</div>
+								<div [ngClass]="dashboard.isActive? 'text-blue-700':''">Dashboard</div>
+							</button>
+						</li>
+						<li class="pl-4 pt-4">
+							<button routerLinkActive #perfil="routerLinkActive" routerLink="/perfil"
+								class="flex items-center rounded-lg   text-slate-700 ">
+								<div>
+									<mat-icon [ngClass]="perfil.isActive? 'text-blue-700':'text-slate-500'"
+										class="text-lg ">face</mat-icon>
+								</div>
+								<div [ngClass]="perfil.isActive? 'text-blue-700':''">Perfil</div>
+							</button>
+						</li>
+						<li class="mt-0.5 w-full pt-4">
+							<h4 class="uppercase pl-2 font-semibold">
+								App
+							</h4>
+						</li>
+					</ul>
+				</div>
+
+				<!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
+			</mat-nav-list>
+		</mat-sidenav>
+
+		<mat-sidenav-content class="bg-gray-300">
+			<!-- <p *ngFor="let content of fillerContent">{{content}}</p> -->
+			<div class="bg-gray-600 text-yellow-400 dark:bg-black dark:text-white">
+				<router-outlet></router-outlet>
+			</div>
+		</mat-sidenav-content>
+	</mat-sidenav-container>
+</div>
+<!-- Copyright 2022 Google LLC. All Rights Reserved.
        Use of this source code is governed by an MIT-style license that
        can be found in the LICENSE file at https://angular.io/license -->
- 
- 

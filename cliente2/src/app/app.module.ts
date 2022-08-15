@@ -3,7 +3,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { GraficaComponent } from './components/grafica/grafica.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
 import { NgModule } from '@angular/core';
@@ -16,7 +15,6 @@ const config: SocketIoConfig={
 @NgModule({
   declarations: [
     AppComponent,
-    GraficaComponent
   ],
   imports: [
     BrowserModule,
