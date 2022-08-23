@@ -17,10 +17,7 @@
 				<div class="flex justify-center">
 					<p class="text-slate-500">Developer UX</p>
 				</div>
-				<div class="flex justify-center ">
-					<mat-icon class="text-lg">face</mat-icon>
-					<mat-icon class="text-lg text-blue-500">dashboard</mat-icon>
-				</div>
+				
 				<div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full pt-4">
 					<ul class="text-slate-800 pt-4 flex flex-col">
 						<li class="mt-0.5 w-full">
@@ -28,7 +25,7 @@
 								Navigation
 							</h4>
 						</li>
-						<li class="pl-4 pt-8">
+						<li class="py-2 px-2">
 							<button routerLinkActive #dashboard="routerLinkActive" routerLink="/dashboard"
 								[ngClass]="dashboard.isActive? 'text-blue-700':''"
 								class=" flex items-center  rounded-lg   text-slate-700 ">
@@ -39,7 +36,7 @@
 								<div [ngClass]="dashboard.isActive? 'text-blue-700':''">Dashboard</div>
 							</button>
 						</li>
-						<li class="pl-4 pt-4">
+						<li class="py-2 px-2 button">
 							<button routerLinkActive #perfil="routerLinkActive" routerLink="/perfil"
 								class="flex items-center rounded-lg   text-slate-700 ">
 								<div>
