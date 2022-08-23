@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @include mat-core();
+//example of custom theme 
 $my-app-primary: mat-palette($mat-blue-grey);
 $my-app-accent:  mat-palette($mat-pink, 500, 900, A100);
 $my-app-warn:    mat-palette($mat-deep-orange);
@@ -10,4 +11,26 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
   $alternate-accent:  mat-palette($mat-yellow, 400);
   $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
   @include angular-material-theme($alternate-theme);
+
+}
+.g1{
+  background-color: #777D35
+}
+.g2{
+  background-color: #D3D8A2
+}
+.g3{
+  background-color: #4C5303
+}
+.g4{
+  background-color: #7A9562
+}
+.g5{
+  background-color: #C5D7AF
+}
+.a1{
+  background-color: #D8DF1D
+}
+.a2{
+  background-color: #E9EE8A;
 }

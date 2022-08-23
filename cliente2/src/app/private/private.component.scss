@@ -31,10 +31,12 @@
        `<body>` to be our scrolling element for mobile layouts. */
     flex: 1 0 auto;
   }
-  
-
-
-
+.mat-list-icon{
+  padding: 0!important;
+}
+::ng-deep.mat-list-text {
+  padding-left: 5px!important;
+}
 ::ng-deep .mat-list-base {
     padding-top: 8px;
     width: 240px;

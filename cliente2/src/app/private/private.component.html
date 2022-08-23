@@ -3,7 +3,7 @@
 	<!--      <app-header [titulo]="titulo" ></app-header>
  -->
 	<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-		<mat-sidenav class="border-0" opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+		<mat-sidenav class="border-0 g5" opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
 			[fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
 			<mat-nav-list>
 				<!-- profile info -->
@@ -17,50 +17,44 @@
 				<div class="flex justify-center">
 					<p class="text-slate-500">Developer UX</p>
 				</div>
-				
-				<div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full pt-4">
-					<ul class="text-slate-800 pt-4 flex flex-col">
-						<li class="mt-0.5 w-full">
-							<h4 class="uppercase pl-2 font-semibold">
+
+				<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full pt-4">
+					<mat-nav-list class="text-slate-800 pt-4">
+						<div class=" py-1 px-2 ">
+							<h4 class="uppercase font-bold">
 								Navigation
 							</h4>
-						</li>
-						<li class="py-2 px-2">
-							<button routerLinkActive #dashboard="routerLinkActive" routerLink="/dashboard"
-								[ngClass]="dashboard.isActive? 'text-blue-700':''"
-								class=" flex items-center  rounded-lg   text-slate-700 ">
-								<div>
-									<mat-icon [ngClass]="dashboard.isActive? 'text-blue-700':'text-slate-500'"
-										class="text-lg ">dashboard</mat-icon>
-								</div>
-								<div [ngClass]="dashboard.isActive? 'text-blue-700':''">Dashboard</div>
-							</button>
-						</li>
-						<li class="py-2 px-2 button">
-							<button routerLinkActive #perfil="routerLinkActive" routerLink="/perfil"
-								class="flex items-center rounded-lg   text-slate-700 ">
-								<div>
-									<mat-icon [ngClass]="perfil.isActive? 'text-blue-700':'text-slate-500'"
-										class="text-lg ">face</mat-icon>
-								</div>
-								<div [ngClass]="perfil.isActive? 'text-blue-700':''">Perfil</div>
-							</button>
-						</li>
-						<li class="mt-0.5 w-full pt-4">
-							<h4 class="uppercase pl-2 font-semibold">
-								App
-							</h4>
-						</li>
-					</ul>
+						</div>
+						<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/dashboard">
+							<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-white':''">dashboard</mat-icon>
+							<span matLine class="self-start" [ngClass]="dashboard.isActive? 'text-white':''">Dashboard</span>
+						</button>
+						<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/perfil">
+							<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-white':''">face</mat-icon>
+							<span matLine class="self-start" [ngClass]="perfil.isActive? 'text-white':''">Perfil</span>
+						</button>
+						<button mat-list-item  routerLinkActive #sunxmin="routerLinkActive" routerLink="/sunxmin">
+							<mat-icon matListIcon [ngClass]="sunxmin.isActive? 'text-white':''" >bar_chart</mat-icon>
+							<span matLine class="self-start" [ngClass]="sunxmin.isActive? 'text-white':''" >Sol por minuto</span>
+						</button>
+						<button mat-list-item  routerLinkActive #tempxmin="routerLinkActive" routerLink="/tempxmin">
+							<mat-icon matListIcon [ngClass]="tempxmin.isActive? 'text-white':''">bar_chart</mat-icon>
+							<span matLine class="self-start" [ngClass]="tempxmin.isActive? 'text-white':''">Temperatura por minuto</span>
+						</button>
+						<button mat-list-item  routerLinkActive #avg="routerLinkActive" routerLink="/avg">
+							<mat-icon matListIcon [ngClass]="avg.isActive? 'text-white':''">bar_chart</mat-icon>
+							<span matLine class="self-start" [ngClass]="avg.isActive? 'text-white':''">Histórico</span>
+						</button>
+						<button mat-list-item  routerLinkActive #info="routerLinkActive" routerLink="/info">
+							<mat-icon matListIcon [ngClass]="info.isActive? 'text-white':''">article</mat-icon>
+							<span matLine class="self-start" [ngClass]="info.isActive? 'text-white':''">Información del huerto</span>
+						</button>
+					</mat-nav-list>
 				</div>
-
-				<!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
 			</mat-nav-list>
 		</mat-sidenav>
-
-		<mat-sidenav-content class="bg-gray-300">
-			<!-- <p *ngFor="let content of fillerContent">{{content}}</p> -->
-			<div class="bg-gray-600 text-yellow-400 dark:bg-black dark:text-white">
+		<mat-sidenav-content>
+			<div class="dark:bg-black dark:text-white">
 				<router-outlet></router-outlet>
 			</div>
 		</mat-sidenav-content>
