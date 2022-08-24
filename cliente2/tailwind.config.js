@@ -15,6 +15,8 @@ module.exports = {
         '3paleta': '#4C5303',
         '4paleta': '#7A9562',
         '5paleta': '#C4D7AF',
+        'amarilloPaleta0': '#D8DF1D',
+        'amarilloPaleta1': '#E9EE8A'
       }
     },
   },
