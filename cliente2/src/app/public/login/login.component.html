@@ -1,31 +1,32 @@
 
-<div class=" bg-cover bg-4paleta">
+<div class=" bg-cover bg-4.5paleta">
   <div class="w-40 absolute ml-8 mt-2">
     <img src="../../../assets/img/huertitos logo verde.png" alt="">
   </div>
-<div class="container login mx-auto h-full flex flex-1 justify-center items-center  ">
-  <div class="w-full max-w-lg z-10">
-    <div class="leading-loose">
-      <form class="max-w-sm m-4 p-10 bg-2paleta rounded shadow-xl ">
+
+
+<div class="container login  h-full flex flex-1 justify-center items-center  ">
+  <div class=" max-w-lg z-10 w-auto">
+    <div class="leading-10">
+      <form  (ngSubmit)="login()" [formGroup]="user" class="max-w-sm m-4 p-10 bg-2paleta rounded shadow-xl  w-96  content-center " >
           <p class="text-center text-lg font-bold text-cafeLogo">LOG IN</p>
             <div class="">
               <label class="block text-sm text-cafeLogo font-semibold" for="email">E-mail</label>
-              <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="email" id="email"  placeholder="Ingresar e-mail" aria-label="email" required>
+              <input formControlName="email" class="w-full  px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="email" id="email"  placeholder="Ingresar e-mail" aria-label="email" required>
             </div>
             <div class="mt-2">
               <label class="block  text-sm text-cafeLogo font-semibold">Contraseña</label>
-               <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
+               <input formControlName="password" class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
                 type="password" id="password" placeholder="Ingresar contraseña" arial-label="password" required>
             </div>
-
-            <div class=" text-center mt-4 items-center flex justify-between">
-              <button class=" text-center px-4 py-1 font-bold tracking-wider bg-cafeLogo hover:bg-black rounded text-"
-                type="button" routerLink="/private">Entrar</button>
+            <div class=" ml-28 mt-4 items-center flex justify-between">
+              <button class=" place-self-center text-center px-4 py-1 font-bold tracking-wider bg-cafeLogo hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
+              type="submit"  >Entrar</button>
               </div>
 
-            <div class="text-center">
+            <div class="text-center ">
               
-              <a class="inline-block right-0 align-baseline font-light text-sm text-500 hover:text-red-400">
+              <a href="/signin" class="inline-block right-0 align-baseline font-light text-sm text-500 hover:text-1paleta text-verdeLogo">
                   Crear una cuenta
               </a>
             </div>
@@ -43,3 +44,5 @@
     </div>
   </div>
 </div>
+
+  

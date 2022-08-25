@@ -4,10 +4,15 @@ import { GraficaData } from "../classes/grafica";
 import { Router } from "express";
 import Servidorcito from "../classes/servidorcito";
 import { execute } from "../classes/mysql.connector";
+import { select } from "../classes/mysql.connector";
+import { map } from "rxjs/operators"; 
+
+import { createPool, Pool } from "mysql";
 
 const router = Router();
 const grafica =  new GraficaData();
 MySQLConnector.init();
+
 router.get('/grafica', (request, response)=>{
       response.json( grafica.getGraficaData() );
 });
@@ -34,5 +39,14 @@ router.post('/grafica', (request, response)=>{
     server.io.emit('cambio-grafica', grafica.getGraficaData());
     response.json(grafica.getGraficaData());
     contador ++
+});
+router.post('/login', (request, response)=>{
+  
+  console.log(request.body)
+  const email = request.body.email
+  
+const pass = request.body.password
+
+
 });
 export default router;

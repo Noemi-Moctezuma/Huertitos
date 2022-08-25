@@ -36,3 +36,13 @@ export const execute = <T>( query: string, params: string[]| Object): Promise<T>
         throw new Error('Failed to execute');
     }
 };
+
+export const select = (query: string, params: string[])=>{
+    try{
+        return pool.query(query,[]);
+ 
+    }catch(error){
+        console.error( error);
+
+    }
+};

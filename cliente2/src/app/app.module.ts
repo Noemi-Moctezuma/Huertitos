@@ -8,6 +8,9 @@ import { NgChartsModule } from 'ng2-charts';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 const config: SocketIoConfig={
   url:'http://localhost:4003',
   options:{}
@@ -23,6 +26,7 @@ const config: SocketIoConfig={
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
