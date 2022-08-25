@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AvgRoutingModule } from './avg-routing.module';
 import { AvgComponent } from './avg.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { AvgComponent } from './avg.component';
   ],
   imports: [
     CommonModule,
-    AvgRoutingModule
+    AvgRoutingModule,
+    NgChartsModule,
   ]
 })
 export class AvgModule { }

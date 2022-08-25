@@ -1,9 +1,9 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+<div class="example-container " [class.example-is-mobile]="mobileQuery.matches">
 	<!-- HEADER -->
 	<!--      <app-header [titulo]="titulo" ></app-header>
  -->
 	<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-		<mat-sidenav class="border-0 g5" opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+		<mat-sidenav class="border-0 bg-4paleta" opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
 			[fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
 			<mat-nav-list>
 				<!-- profile info -->
@@ -12,7 +12,7 @@
 				</div>
 
 				<div class="flex justify-center pt-4">
-					<p class="font-bold text-slate-800">Ivana Roth</p>
+					<p class="font-bold text-slate-800">Test</p>
 				</div>
 				<div class="flex justify-center">
 					<p class="text-slate-500">Developer UX</p>
@@ -25,36 +25,36 @@
 								Navigation
 							</h4>
 						</div>
-						<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/dashboard">
-							<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-white':''">dashboard</mat-icon>
-							<span matLine class="self-start" [ngClass]="dashboard.isActive? 'text-white':''">Dashboard</span>
+						<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
+							<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
+							<span matLine class="self-start" [ngClass]="dashboard.isActive? 'text-cafeLogo':''">Dashboard</span>
 						</button>
-						<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/perfil">
-							<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-white':''">face</mat-icon>
-							<span matLine class="self-start" [ngClass]="perfil.isActive? 'text-white':''">Perfil</span>
+						<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
+							<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
+							<span matLine class="self-start" [ngClass]="perfil.isActive? 'text-cafeLogo':''">Perfil</span>
 						</button>
-						<button mat-list-item  routerLinkActive #sunxmin="routerLinkActive" routerLink="/sunxmin">
-							<mat-icon matListIcon [ngClass]="sunxmin.isActive? 'text-white':''" >bar_chart</mat-icon>
-							<span matLine class="self-start" [ngClass]="sunxmin.isActive? 'text-white':''" >Sol por minuto</span>
+						<button mat-list-item  routerLinkActive #sunxmin="routerLinkActive" routerLink="/private/sunxmin">
+							<mat-icon matListIcon [ngClass]="sunxmin.isActive? 'text-cafeLogo':''" >bar_chart</mat-icon>
+							<span matLine class="self-start" [ngClass]="sunxmin.isActive? 'text-cafeLogo':''" >Sol por minuto</span>
 						</button>
-						<button mat-list-item  routerLinkActive #tempxmin="routerLinkActive" routerLink="/tempxmin">
-							<mat-icon matListIcon [ngClass]="tempxmin.isActive? 'text-white':''">bar_chart</mat-icon>
-							<span matLine class="self-start" [ngClass]="tempxmin.isActive? 'text-white':''">Temperatura por minuto</span>
+						<button mat-list-item  routerLinkActive #tempxmin="routerLinkActive" routerLink="/private/tempxmin">
+							<mat-icon matListIcon [ngClass]="tempxmin.isActive? 'text-cafeLogo':''">bar_chart</mat-icon>
+							<span matLine class="self-start" [ngClass]="tempxmin.isActive? 'text-cafeLogo':''">Temperatura por minuto</span>
 						</button>
-						<button mat-list-item  routerLinkActive #avg="routerLinkActive" routerLink="/avg">
-							<mat-icon matListIcon [ngClass]="avg.isActive? 'text-white':''">bar_chart</mat-icon>
-							<span matLine class="self-start" [ngClass]="avg.isActive? 'text-white':''">Histórico</span>
+						<button mat-list-item  routerLinkActive #avg="routerLinkActive" routerLink="/private/avg">
+							<mat-icon matListIcon [ngClass]="avg.isActive? 'text-cafeLogo':''">bar_chart</mat-icon>
+							<span matLine class="self-start" [ngClass]="avg.isActive? 'text-cafeLogo':''">Histórico</span>
 						</button>
-						<button mat-list-item  routerLinkActive #info="routerLinkActive" routerLink="/info">
-							<mat-icon matListIcon [ngClass]="info.isActive? 'text-white':''">article</mat-icon>
-							<span matLine class="self-start" [ngClass]="info.isActive? 'text-white':''">Información del huerto</span>
+						<button mat-list-item  routerLinkActive #info="routerLinkActive" routerLink="/private/info">
+							<mat-icon matListIcon [ngClass]="info.isActive? 'text-cafeLogo':''">article</mat-icon>
+							<span matLine class="self-start" [ngClass]="info.isActive? 'text-cafeLogo':''">Información del huerto</span>
 						</button>
 					</mat-nav-list>
 				</div>
 			</mat-nav-list>
 		</mat-sidenav>
 		<mat-sidenav-content>
-			<div class="dark:bg-black dark:text-white">
+			<div class="dark:bg-black dark:text-white h-full">
 				<router-outlet></router-outlet>
 			</div>
 		</mat-sidenav-content>
