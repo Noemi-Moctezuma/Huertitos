@@ -41,11 +41,16 @@ router.post('/grafica', (request, response)=>{
     contador ++
 });
 router.post('/login', (request, response)=>{
+  let email = request.body.email
   
-  console.log(request.body)
-  const email = request.body.email
-  
-const pass = request.body.password
+  let pass = request.body.password
+  /* console.log(request.body)
+   */
+let sql = "SELECT id FROM tbl_usuarios WHERE email ='"+email+"' and password = md5('"+pass+"') "
+
+// como se ejecuta una promesa que siempre está esperando una respuesta puede que no la obtenga a tiempo y marque como pending
+// por eso se pone el .then para que ejecute el response.json hasta que haya terminado
+execute(sql,[]).then(val => response.json(val))
 
 
 });
