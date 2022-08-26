@@ -16,10 +16,10 @@ database="db_invernadero"
 mycursor = mydb.cursor()
 
 http = urllib3.PoolManager()
-#arduino = serial.Serial("COM10", baudrate= 9600)
-arduino = serial.Serial("COM3", baudrate= 9600)
+arduino = serial.Serial("COM10", baudrate= 9600)
+#arduino = serial.Serial("COM3", baudrate= 9600)
 arduino.flushInput()
-URL = 'http://localhost:4003/grafica'
+
 while True:
     row = arduino.readline()
     clean_row = row.decode()
@@ -42,7 +42,7 @@ while True:
     mydb.commit()
     
     print(mycursor.rowcount, "Insert OK")
-    
+    URL = 'http://localhost:4003/grafica'
     if clean_row:
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
         data =  urllib.parse.urlencode({'temp': temp,'tiempo': tiempo_actual, 'sun': sun})

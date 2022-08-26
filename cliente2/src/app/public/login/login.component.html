@@ -1,0 +1,48 @@
+
+<div class=" bg-cover bg-4.5paleta">
+  <div class="w-40 absolute ml-8 mt-2">
+    <img src="../../../assets/img/huertitos logo verde.png" alt="">
+  </div>
+
+
+<div class="container login  h-full flex flex-1 justify-center items-center  ">
+  <div class=" max-w-lg z-10 w-auto">
+    <div class="leading-10">
+      <form  (ngSubmit)="login()" [formGroup]="user" class="max-w-sm m-4 p-10 bg-2paleta rounded shadow-xl  w-96  content-center " >
+          <p class="text-center text-lg font-bold text-cafeLogo">LOG IN</p>
+            <div class="">
+              <label class="block text-sm text-cafeLogo font-semibold" for="email">E-mail</label>
+              <input formControlName="email" class="w-full  px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="email" id="email"  placeholder="Ingresar e-mail" aria-label="email" required>
+            </div>
+            <div class="mt-2">
+              <label class="block  text-sm text-cafeLogo font-semibold">Contraseña</label>
+               <input formControlName="password" class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
+                type="password" id="password" placeholder="Ingresar contraseña" arial-label="password" required>
+            </div>
+            <div class=" ml-28 mt-4 items-center flex justify-between">
+              <button class=" place-self-center text-center px-4 py-1 font-bold tracking-wider bg-cafeLogo hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
+              type="submit"  >Entrar</button>
+              </div>
+
+            <div class="text-center ">
+              
+              <a href="/signin" class="inline-block right-0 align-baseline font-light text-sm text-500 hover:text-1paleta text-verdeLogo">
+                  Crear una cuenta
+              </a>
+            </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+  <div class="containerOlas  z-0">
+    <div class="waves">
+      <div class="wave circulo a"></div>
+      <div class="wave circulo b"></div>
+      <div class="wave circulo c"></div>
+    </div>
+  </div>
+</div>
+
+  
