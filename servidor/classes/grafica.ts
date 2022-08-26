@@ -8,17 +8,24 @@ export class GraficaData{
     
     constructor(){}
     getGraficaData(){
-        return [{
-            label: 'Temperatura',
-            //temp_promedio:this.temp_promedio, 
-            //mes:this.mes, 
-            //sun_promedio: this.sun_promedio,
-            data:this.temp,
-        },{
-            label: 'Sol',
-            data:this.sun
-            
-        }];
+        return {
+            data:[
+                {
+                label: 'Temperatura',
+                //temp_promedio:this.temp_promedio, 
+                //mes:this.mes, 
+                //sun_promedio: this.sun_promedio,
+                data:this.temp,
+            },
+            {
+                label: 'Sol',
+                data:this.sun
+                
+            }
+        ],
+        tme:'22'
+        };
+        
     }
     obtenerPromedio(temp:number, mes:string, sun:number , primer:boolean){
         this.mes= mes.toLowerCase().trim();
