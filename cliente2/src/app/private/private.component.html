@@ -1,54 +1,70 @@
-<div class="example-container " [class.example-is-mobile]="mobileQuery.matches">
+<div class="example-container " [class.example-is-mobile]="mobileQuery.matches" >
 	<!-- HEADER -->
 	<!--      <app-header [titulo]="titulo" ></app-header>
  -->
-	<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+	<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" autosize>
 		<mat-sidenav class="border-0 bg-4paleta" opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
 			[fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
 			<mat-nav-list>
 				<!-- profile info -->
-				<div class="flex justify-center pt-4">
-					<img src="assets/img/ivana-square.jpg" class="rounded-full  h-16 w-16" alt="PTS" />
+				
+				<div *ngIf="isMaximized == false">
+					<div class="flex justify-center">
+						<button mat-icon-button (click)="minimize(isMaximized)"><mat-icon>menu</mat-icon></button>
+					</div>
+					<div class="flex justify-center pt-2">
+						<img src="assets/img/ivana-square.jpg" class="rounded-full  h-10 w-10" alt="PTS" />
+					</div>
+				</div>
+				
+				<div *ngIf="isMaximized == true">
+					<div class="flex justify-end">
+						<button mat-icon-button (click)="minimize(isMaximized)"><mat-icon>menu</mat-icon></button>
+					</div>
+					<div class="flex justify-center pt-2">
+						<img src="assets/img/ivana-square.jpg" class="rounded-full  h-16 w-16" alt="PTS" />
+					</div>
+					<div class="flex justify-center pt-4">
+						<p class="font-bold text-slate-800">Test</p>
+					</div>
+					<div class="flex justify-center">
+						<p class="text-slate-500">Developer UX</p>
+					</div>
 				</div>
 
-				<div class="flex justify-center pt-4">
-					<p class="font-bold text-slate-800">Test</p>
-				</div>
-				<div class="flex justify-center">
-					<p class="text-slate-500">Developer UX</p>
-				</div>
-
-				<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full pt-4">
+				<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full pt-2">
 					<mat-nav-list class="text-slate-800 pt-4">
-						<div class=" py-1 px-2 ">
+						<div *ngIf="isMaximized ==true" class=" py-1 px-2 ">
 							<h4 class="uppercase font-bold">
 								Navigation
 							</h4>
 						</div>
-						<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
-							<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
-							<span matLine class="self-start" [ngClass]="dashboard.isActive? 'text-cafeLogo':''">Dashboard</span>
-						</button>
-						<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
-							<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
-							<span matLine class="self-start" [ngClass]="perfil.isActive? 'text-cafeLogo':''">Perfil</span>
-						</button>
-						<button mat-list-item  routerLinkActive #sunxmin="routerLinkActive" routerLink="/private/sunxmin">
-							<mat-icon matListIcon [ngClass]="sunxmin.isActive? 'text-cafeLogo':''" >bar_chart</mat-icon>
-							<span matLine class="self-start" [ngClass]="sunxmin.isActive? 'text-cafeLogo':''" >Sol por minuto</span>
-						</button>
-						<button mat-list-item  routerLinkActive #tempxmin="routerLinkActive" routerLink="/private/tempxmin">
-							<mat-icon matListIcon [ngClass]="tempxmin.isActive? 'text-cafeLogo':''">bar_chart</mat-icon>
-							<span matLine class="self-start" [ngClass]="tempxmin.isActive? 'text-cafeLogo':''">Temperatura por minuto</span>
-						</button>
-						<button mat-list-item  routerLinkActive #avg="routerLinkActive" routerLink="/private/avg">
-							<mat-icon matListIcon [ngClass]="avg.isActive? 'text-cafeLogo':''">bar_chart</mat-icon>
-							<span matLine class="self-start" [ngClass]="avg.isActive? 'text-cafeLogo':''">Histórico</span>
-						</button>
-						<button mat-list-item  routerLinkActive #info="routerLinkActive" routerLink="/private/info">
-							<mat-icon matListIcon [ngClass]="info.isActive? 'text-cafeLogo':''">article</mat-icon>
-							<span matLine class="self-start" [ngClass]="info.isActive? 'text-cafeLogo':''">Información del huerto</span>
-						</button>
+						<div *ngIf="isMaximized ==true">
+							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
+								<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
+								<span  matLine class="self-start" [ngClass]="dashboard.isActive? 'text-cafeLogo':''">Dashboard</span>
+							</button>
+							<button mat-list-item  routerLinkActive #info="routerLinkActive" routerLink="/private/info">
+								<mat-icon matListIcon [ngClass]="info.isActive? 'text-cafeLogo':''">article</mat-icon>
+								<span  matLine class="self-start" [ngClass]="info.isActive? 'text-cafeLogo':''">Información del huerto</span>
+							</button>
+							<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
+								<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
+								<span  matLine class="self-start" [ngClass]="perfil.isActive? 'text-cafeLogo':''">Perfil</span>
+							</button>
+						</div>
+						<div *ngIf="isMaximized ==false">
+							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
+								<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
+							</button>
+							<button mat-list-item  routerLinkActive #info="routerLinkActive" routerLink="/private/info">
+								<mat-icon matListIcon [ngClass]="info.isActive? 'text-cafeLogo':''">article</mat-icon>
+							</button>
+							<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
+								<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
+							</button>
+						</div>
+						
 					</mat-nav-list>
 				</div>
 			</mat-nav-list>
