@@ -34,22 +34,24 @@ export class PrivateComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, 
-    media: MediaMatcher, 
+  constructor(
+    changeDetectorRef: ChangeDetectorRef, 
+    media: MediaMatcher,
     private router:Router,
-    private http:HttpClient,) {
-      
-    this.nombre=''
-    this.apellido_paterno=''
-    this.apellido_materno=''
-    this.email=''
-    this.telefono=''
-    this.ocupacion=''
+    private http:HttpClient,
+    ) {
 
-    this.getUser()
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+      this.nombre=''
+      this.apellido_paterno=''
+      this.apellido_materno=''
+      this.email=''
+      this.telefono=''
+      this.ocupacion=''
+
+      this.getUser()
+      this.mobileQuery = media.matchMedia('(max-width: 600px)');
+      this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+      this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit(): void {
@@ -59,7 +61,6 @@ export class PrivateComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-
   cerrarsesion(){
     
     localStorage.id=''
@@ -81,7 +82,8 @@ export class PrivateComponent implements OnInit, OnDestroy {
     this.telefono=data2[0]['telefono']
     this.ocupacion=data2[0]['ocupacion']
 
-    });
+    })
+  };
   minimize(isMaximized: boolean) {
     let list = document.getElementsByClassName('mat-list-base');
     //minimize sidenav when clicking the button if sidenav is maximized
