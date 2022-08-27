@@ -1,8 +1,60 @@
 <div  class="bg-2paleta h-full">
-    <div class="container  xl:max-w-6xl mx-auto px-4">
-        <div class="container">
-            
+    <div class="container  xl:max-w-6xl mx-auto p-7 bg-2paleta">
+        <div class="container bg-amarilloclaro ">
+            <div class="flex justify-left pt-5 pl-5 pr-5">
+                <img src="assets/img/ivana-square.jpg" class=" rounded-md h-24 w-24" alt="perfil.png" />
+                <div class="text-black p-4 leading-none">
+                    <h2>{{nombre}}  {{apellido_paterno}} {{apellido_materno}}</h2>
+                    <div class="grid gap-4 grid-cols-2">
+                        
+                        <div> <p  style="display:inline;" class="font-medium" >Correo electrónico: </p>  <p style="display:inline;">{{email}}     </p></div>
+                        <div> <p  style="display:inline; " class="font-medium text-right">   Número de teléfono: </p>  <p style="display:inline;" class="text-right"> +52 {{telefono}}</p></div>
+                        <div> <p  style="display:inline; " class="font-medium">Oficio/profesión: </p>  <p style="display:inline;">  {{ocupacion}}</p>
+                        </div>
+                      </div>
+                   
+                  
+              
+                </div>      
+            </div>  
+            <div class="container pl-4 pr-4 pb-4">
+                <div class="grid  pl-4 items-end grid-cols-4">
 
+                    <button mat-raised-button color="primary" class="col-start-11 " (click)="abrirDialog()">Editar perfil</button>
+ 
+                </div>
+            </div>    
         </div>
+
+       
+        <div class="container bg-2paleta">
+             
+            <div class="p-12 container">
+              <h2 class="text-cafeLogo ">Mis cultivos</h2>
+                <div class="grid gap-5 grid-cols-3">
+                    <div   *ngFor="let cultivo of cultivos; index as i;"  >
+                        <mat-card  class="bg-amarilloclaro text-yellow-800 font-semibold text-center rounded-lg">
+                            <div class="container bg-cafeclaro rounded-lg p-10">
+    
+                                <img src='assets/img/{{cultivo.imagen}}' >
+                            </div>
+                            <p class="pt-2">
+                                {{cultivo.nombre}}
+                            </p>
+                        </mat-card>
+                                
+                    </div>
+                    <mat-card  class="bg-amarilloclaro text-yellow-800 font-semibold text-center">
+                        <div class="container object-center">
+    
+                            <img src='assets/img/agregar.png' class="object-center" onclick="agregar()" >
+                        </div>
+                    </mat-card>
+                  </div>
+                 </div>
+        </div>
+        
+
     </div>
+    
 </div>

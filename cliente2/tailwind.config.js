@@ -13,10 +13,12 @@ module.exports = {
         '2paleta': '#D3D7A2',
         '3paleta': '#4C5303',
         '4paleta': '#7A9562',
-        '4.5paleta': '#8cac71',
+        '4.5paleta': '#8CAC71',
         '5paleta': '#C4D7AF',
+        'amarilloclaro':'#f8fcc7',
         'amarilloPaleta0': '#D8DF1D',
-        'amarilloPaleta1': '#E9EE8A'
+        'amarilloPaleta1': '#E9EE8A',
+        'cafeclaro':'#b9906f'
       }
     },
   },

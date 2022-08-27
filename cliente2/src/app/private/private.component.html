@@ -12,17 +12,17 @@
 				</div>
 
 				<div class="flex justify-center pt-4">
-					<p class="font-bold text-slate-800">Test</p>
+					<p class="font-bold text-slate-800">{{nombre}} {{apellido_paterno}}</p>
 				</div>
 				<div class="flex justify-center">
-					<p class="text-slate-500">Developer UX</p>
+					<p class="text-slate-500">{{ocupacion}}</p>
 				</div>
 
 				<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full pt-4">
 					<mat-nav-list class="text-slate-800 pt-4">
 						<div class=" py-1 px-2 ">
 							<h4 class="uppercase font-bold">
-								Navigation
+								Menú
 							</h4>
 						</div>
 						<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
@@ -52,6 +52,9 @@
 					</mat-nav-list>
 				</div>
 			</mat-nav-list>
+			<div class="text-red-700 pl-36 pt-10 hover:text-red-600">
+				<a href="/public" onclick="cerrarsesion()"> Cerrar sesión </a>
+			</div>
 		</mat-sidenav>
 		<mat-sidenav-content>
 			<div class="dark:bg-black dark:text-white h-full">

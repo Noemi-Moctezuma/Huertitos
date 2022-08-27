@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user: FormGroup;
-
+  
   constructor( 
     private http:HttpClient,
     private router:Router
@@ -23,7 +23,10 @@ export class LoginComponent implements OnInit {
       email: new FormControl(''),
       password: new FormControl('')
     }
+    
     );
+    
+    localStorage.id=''
   }
 
   ngOnInit(): void {
@@ -31,11 +34,16 @@ export class LoginComponent implements OnInit {
    
   }
   login() {
-    this.http.post('http://localhost:4003/login',this.user.value ).subscribe(data => {
-    let data2 = Object.values(data)
+    let  data = {
+      funcion: 'login',
+      user: this.user.value,
+    };
+    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    let data2 = Object.values(response)
+    console.log(data2)
 
     if (data2.length > 0) {
-      localStorage['id_usuario']=data2[0]['id']
+      localStorage.id=data2[0]['id']
       this.router.navigate(['/private'])
       
     } else {
