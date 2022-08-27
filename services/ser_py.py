@@ -44,7 +44,6 @@ while True:
     print(mycursor.rowcount, "Insert OK")
     URL = 'http://localhost:4003/grafica'
     if clean_row:
-
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
         data =  urllib.parse.urlencode({'temp': temp,'tiempo': tiempo_actual, 'sun': sun})
         response = http.request('POST', URL, headers=headers, body=data)
