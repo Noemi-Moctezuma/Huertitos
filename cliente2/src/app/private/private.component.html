@@ -2,9 +2,9 @@
 	<!-- HEADER -->
 	<!--      <app-header [titulo]="titulo" ></app-header>
  -->
-	<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" autosize>
-		<mat-sidenav class="border-0 bg-4paleta" opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-			[fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+	<mat-sidenav-container class="example-sidenav-container"  autosize>
+		<mat-sidenav id="sidenav" disableClose class="border-0 bg-4paleta" opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+			[fixedInViewport]="mobileQuery.matches" >
 			<mat-nav-list>
 				<!-- profile info -->
 				
@@ -28,8 +28,7 @@
 						<p class="font-bold text-slate-800">{{nombre}} {{apellido_paterno}}</p>
 				</div>
 					<div class="flex justify-center">
-						<p class="text-slate-500">{{ocupacion}}</p>
-=======</div>
+						<p class="text-slate-500">{{ocupacion}}</p></div>
 				</div>
 
 				<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full pt-2">
@@ -52,6 +51,9 @@
 								<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
 								<span  matLine class="self-start" [ngClass]="perfil.isActive? 'text-cafeLogo':''">Perfil</span>
 							</button>
+							<div class="text-red-800 hover:text-red-500 flex justify-end pr-4">
+								<a href="/public" onclick="cerrarsesion()"> Cerrar sesión </a>
+							</div>
 						</div>
 						<div *ngIf="isMaximized ==false">
 							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
@@ -63,17 +65,16 @@
 							<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
 								<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
 							</button>
+
 						</div>
 						
 					</mat-nav-list>
 				</div>
 			</mat-nav-list>
-			<div class="text-red-700 pl-36 pt-10 hover:text-red-600">
-				<a href="/public" onclick="cerrarsesion()"> Cerrar sesión </a>
-			</div>
+			
 		</mat-sidenav>
 		<mat-sidenav-content>
-			<div class="dark:bg-black dark:text-white h-full">
+			<div class="dark:bg-black dark:text-white h-auto">
 				<router-outlet></router-outlet>
 			</div>
 		</mat-sidenav-content>

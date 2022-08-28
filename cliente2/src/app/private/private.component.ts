@@ -20,7 +20,7 @@ export class PrivateComponent implements OnInit, OnDestroy {
   telefono:String;
   ocupacion:String;
   titulo: string = '';
-  fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
+  /* fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
   fillerContent = Array.from(
     { length: 50 },
@@ -31,7 +31,7 @@ export class PrivateComponent implements OnInit, OnDestroy {
        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
   );
-
+ */
   private _mobileQueryListener: () => void;
 
   constructor(
@@ -86,13 +86,14 @@ export class PrivateComponent implements OnInit, OnDestroy {
   };
   minimize(isMaximized: boolean) {
     let list = document.getElementsByClassName('mat-list-base');
+    let sidenav = document.getElementById('sidenav')
     //minimize sidenav when clicking the button if sidenav is maximized
-    if (isMaximized) {
+    if(isMaximized) {
       for (let i = 0; i < list.length; i++) {
         list[i].classList.add('mat-list-minimize');
         //console.log(i);
       }
-    } else {
+    }else {
       for (let i = 0; i < list.length; i++) {
         list[i].classList.remove('mat-list-minimize');
         //console.log(i);
