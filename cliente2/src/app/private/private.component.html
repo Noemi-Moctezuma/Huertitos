@@ -2,9 +2,9 @@
 	<!-- HEADER -->
 	<!--      <app-header [titulo]="titulo" ></app-header>
  -->
-	<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" autosize>
-		<mat-sidenav class="border-0 bg-4paleta" opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-			[fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+	<mat-sidenav-container class="example-sidenav-container"  autosize>
+		<mat-sidenav id="sidenav" disableClose class="border-0 bg-4paleta" opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+			[fixedInViewport]="mobileQuery.matches" >
 			<mat-nav-list>
 				<!-- profile info -->
 				
@@ -51,7 +51,7 @@
 								<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
 								<span  matLine class="self-start" [ngClass]="perfil.isActive? 'text-cafeLogo':''">Perfil</span>
 							</button>
-							<div class="text-red-700 pl-36 mt-40  pt-6 hover:text-red-600">
+							<div class="text-red-800 hover:text-red-500 flex justify-end pr-4">
 								<a href="/public" onclick="cerrarsesion()"> Cerrar sesión </a>
 							</div>
 						</div>
@@ -65,7 +65,11 @@
 							<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
 								<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
 							</button>
+<<<<<<< HEAD
 							
+=======
+
+>>>>>>> 1b5f259e8824319b69d368a8dcc052a4ab7b9001
 						</div>
 						
 					</mat-nav-list>
@@ -74,7 +78,7 @@
 			
 		</mat-sidenav>
 		<mat-sidenav-content>
-			<div class="dark:bg-black dark:text-white h-full">
+			<div class="dark:bg-black dark:text-white h-auto">
 				<router-outlet></router-outlet>
 			</div>
 		</mat-sidenav-content>

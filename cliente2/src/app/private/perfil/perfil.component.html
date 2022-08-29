@@ -6,14 +6,11 @@
                 <div class="text-black p-4 leading-none">
                     <h2>{{nombre}}  {{apellido_paterno}} {{apellido_materno}}</h2>
                     <div class="grid gap-4 grid-cols-2">
-                        
                         <div> <p  style="display:inline;" class="font-medium" >Correo electrónico: </p>  <p style="display:inline;">{{email}}     </p></div>
                         <div> <p  style="display:inline; " class="font-medium text-right">   Número de teléfono: </p>  <p style="display:inline;" class="text-right"> +52 {{telefono}}</p></div>
                         <div> <p  style="display:inline; " class="font-medium">Oficio/profesión: </p>  <p style="display:inline;">  {{ocupacion}}</p>
                         </div>
                       </div>
-                   
-                  
               
                 </div>      
             </div>  
@@ -29,7 +26,7 @@
        
         <div class="container bg-2paleta">
              
-            <div class="p-12 container">
+            <div class="px-12 pt-10 container">
               <h2 class="text-cafeLogo ">Mis cultivos</h2>
                 <div class="grid gap-5 grid-cols-3">
                     <div   *ngFor="let cultivo of cultivos; index as i;"  >
