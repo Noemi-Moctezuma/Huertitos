@@ -27,19 +27,31 @@ router.post('/grafica', (request, response)=>{
     const tiempo = new Date(request.body.tiempo);
     const sun = Number (request.body.sun)
     const id = String(request.body.id)
+  
+    const hora =  tiempo.getHours() + ':'+tiempo.getMinutes()+':'+tiempo.getSeconds()
     var primer = false
     if(contador===0){
         primer=true
     }
     var mes:any = tiempo.toLocaleString("es-MX", { month: "long" })
-  grafica.obtenerPromedio(temp, mes, sun, primer, id);
-  grafica.agregarDato(temp, tiempo, sun, id);
+    grafica.obtenerPromedio(temp, mes, sun, primer, id);
+    grafica.agregarDato(temp, hora, sun, id);
     
     const server = Servidorcito.instance;
     //execute("INSERT INTO dispositivo (data) VALUES ('"+valor+"');",[]);
     server.io.emit('cambio-grafica', grafica.getGraficaData());
     response.json(grafica.getGraficaData());
     contador ++
+});
+router.post('/promedio', (request, response)=>{
+    //console.log(request.body)
+    grafica.insertarPrimeros(request.body);
+   /*  
+    const server = Servidorcito.instance;
+    //execute("INSERT INTO dispositivo (data) VALUES ('"+valor+"');",[]);
+    server.io.emit('cambio-grafica', grafica.getGraficaData());
+    response.json(grafica.getGraficaData());
+    contador ++ */
 });
 router.post('/api', (request, response)=>{
   
@@ -94,6 +106,12 @@ router.post('/api', (request, response)=>{
         sql = "INSERT INTO tbl_usuarios(nombre, apellido_paterno, apellido_materno, email, password, telefono, ocupacion) VALUES ('"+nombre+"','"+apellido_paterno+"','"+apellido_materno+"','"+email+"', md5('"+password+"'),'"+telefono+"','"+ocupacion+"')"
        //sql = ""
         break; 
+    case 'getPromedioBDT':
+        sql = "SELECT AVG(valor) temp, month(tiempo) mes FROM tbl_temp GROUP BY month(tiempo)"
+        break;
+    case 'getPromedioBDS':
+        sql = "SELECT AVG(valor) sun , month(tiempo) mes FROM tbl_sun GROUP BY month(tiempo)"
+        break;
         
     default: 
     

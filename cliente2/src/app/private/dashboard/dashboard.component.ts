@@ -21,6 +21,8 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
+
+
   public labelsPromedio: Array<any> = [
     'Enero',
     'Febrero',
@@ -35,13 +37,22 @@ export class DashboardComponent implements OnInit {
     'Noviembre',
     'Diciembre',
   ];
-  public lineChartxMin: Array<any> = [
+  public promedios:Array<any> = [{
+    mes:this.labelsPromedio,
+    temp:[0,0,0,0,0,0,0,0,0,0,0,0],
+    sun:[0,0,0,0,0,0,0,0,0,0,0,0]
+  }
+   ]
+  public lineChartxMinTemp: Array<any> = [
     {
-      data: [5, 5, 5, 5, 5],
+      data: [],
       label: 'Temperatura',
     },
+  ];
+  public lineChartxMinSun: Array<any> = [
+
     {
-      data: [4, 4, 4, 4, 4],
+      data: [],
       label: 'Sol',
     },
   ];
@@ -73,9 +84,37 @@ export class DashboardComponent implements OnInit {
   constructor(private http: HttpClient, public wsService: WebsocketService) {}
 
   ngOnInit(): void {
-    /*  this.getData()
+    let  requestDataT = {
+      funcion: 'getPromedioBDT',
+    };
+    this.http.post('http://localhost:4003/api', requestDataT).subscribe((dataTemp: any) => {
+      //console.log("datos de temperatura")
+     // console.log(dataTemp)
+
+      let  requestDataS = {   
+        funcion: 'getPromedioBDS',
+      };
+      this.http.post('http://localhost:4003/api', requestDataS).subscribe((dataSol: any) => {
+     // console.log("datos de sol")
+       // console.log(dataSol)
+
+      //  console.log("arreglo sis")
+        dataSol.forEach((element: any) => {
+          this.promedios[0].sun[element.mes-1] = element.sun
+        });
+        dataTemp.forEach((element: any) => {
+          this.promedios[0].temp[element.mes-1] = element.temp
+        });
+       console.log(this.promedios)
+        this.http.post('http://localhost:4003/promedio', this.promedios).subscribe((response:any) =>{
+        console.log(response)
+        })
+      });
+    });
+      this.getData()
     this.escucharSocket()
-    console.log(JSON.stringify(this.lineChartPromedio)) */
+    console.log(JSON.stringify(this.lineChartPromedio)) 
+
   }
 
   getData() {
@@ -83,9 +122,10 @@ export class DashboardComponent implements OnInit {
       this.temperatura = data.temperatura;
       this.sol = data.sol;
       this.lineChartPromedio = data.dataPromedio;
-      this.lineChartxMin = data.dataxMin;
+      this.lineChartxMinTemp = data.dataxMinTemp;
+      this.lineChartxMinSun = data.dataxMinSun;
       this.labelsxMin = data.labelsxMin;
-      console.log(data);
+      console.log("get data>>>" + data);
     });
   }
   //actualiza la gráfica cada que el servidor manda un cambio
@@ -93,10 +133,11 @@ export class DashboardComponent implements OnInit {
     this.wsService.listen('cambio-grafica').subscribe((data: any) => {
       this.temperatura = data.temperatura;
       this.sol = data.sol;
-      this.lineChartPromedio = data.dataPromedio;
-      this.lineChartxMin = data.dataxMin;
+      this.lineChartPromedio = data.dataPromedio
+      this.lineChartxMinTemp = data.dataxMinTemp;
+      this.lineChartxMinSun = data.dataxMinSun;
       this.labelsxMin = data.labelsxMin;
-      console.log(data);
+      console.log("socket data>>>" + JSON.stringify(data));
     });
   }
 }

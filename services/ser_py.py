@@ -6,6 +6,7 @@ import mysql.connector
 import serial
 import json
 import re
+from datetime import timedelta
 
 mydb = mysql.connector.connect(
 host="localhost",
@@ -32,13 +33,14 @@ while True:
     sun = re.sub("\r\n", '', sun)
     id = re.sub("\r\n", '', id)
     tiempo_actual= datetime.now()
+    #tiempo_actual = tiempo_actual - timedelta(days=74)
     sql="INSERT INTO tbl_sun (valor, tiempo, sensor) VALUES (%s, %s, %s)"
     valores =(sun, tiempo_actual, id)
 
     mycursor.execute(sql, valores)
 
     sql2="INSERT INTO tbl_temp (valor, tiempo, sensor) VALUES (%s, %s, %s)"
-    valores2 =(sun, tiempo_actual, id)
+    valores2 =(temp, tiempo_actual, id)
 
     mycursor.execute(sql2, valores2)
     mydb.commit()
