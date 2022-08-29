@@ -60,18 +60,19 @@
         type="text" id="ocupacion"  required>
       </div>
       
-      <div class="w-full">
-        <mat-form-field appearance="outline" class="text-cafeLogo  display: none;" style="width: 350px;">
+      <div class="flex">
+        <mat-form-field  color="bg-5paleta" class="w-full">
           <mat-label class="text-cafeLogo">Selecciona el tipo de cultivo</mat-label>
-          <mat-select  [(value)]="cultivoSeleccionado" panelClass="example-panel-green">
-            <mat-option *ngFor="let cultivo of cultivos" [value]="cultivo.id">
+          <mat-select  [(value)]="cultivoSeleccionado" panelClass="bg-5paleta">
+            <mat-option *ngFor="let cultivo of cultivos" [value]="cultivo.id" class="text-3paleta">
               {{cultivo.nombre}}
             </mat-option>
+            
           </mat-select>
         </mat-form-field>
         </div>
         <div class="mt">
-          <mat-form-field id="inputDispositivos" (click) = "buscarDispositivo()" appearance="outline" class="text-cafeLogo  display: none;" style="width: 350px;">
+          <mat-form-field id="inputDispositivos" (click) = "buscarDispositivo()"  color="bg-5paleta"class="text-cafeLogo  display: none;" style="width: 350px;">
             <mat-label class="text-cafeLogo">{{tituloInput}}</mat-label>
             <mat-select  [(value)]="dispositivoSeleccionado">
               <mat-option *ngFor="let dispositivo of dispositivos" [value]="dispositivo.id">

@@ -202,6 +202,9 @@ export class SigninComponent implements OnInit {
         html: 'Buscando dispositivos conectados',
         timer: 1500,
         timerProgressBar: true,
+        background: '#33333s',
+        color: '#4C5303',
+        iconColor: '#777D35',
         didOpen: () => {
           Swal.showLoading()
           const b = Swal.getHtmlContainer()!.querySelector('b')

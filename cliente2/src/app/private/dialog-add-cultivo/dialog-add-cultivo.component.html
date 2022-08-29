@@ -1,10 +1,10 @@
 
 <div class=" z-10">
 
-<mat-form-field appearance="fill" >
+<mat-form-field  color="bg-5paleta">
   <mat-label class="text-cafeLogo">Elige el tipo de Cultivo</mat-label>
-  <mat-select   [(value)]="cultivoSeleccionado">
-    <mat-option *ngFor="let cultivo of cultivos" [value]="cultivo.id">
+  <mat-select   [(value)]="cultivoSeleccionado" panelClass="bg-5paleta" >
+    <mat-option *ngFor="let cultivo of cultivos" [value]="cultivo.id" class="text-3paleta">
       {{cultivo.nombre}}
     </mat-option>
   </mat-select>
@@ -21,7 +21,7 @@
     <div>
 
      <button class="  text-center px-6 py-1 font-bold tracking-wider bg-cafeLogo hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
-     (click)="editarCultivosUsuario()">Editar</button>
+     (click)="editarCultivosUsuario()">Agregar</button>
     </div>
      
      </div>
