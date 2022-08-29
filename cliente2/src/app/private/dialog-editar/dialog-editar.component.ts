@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,  } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
-
+import {PerfilComponent} from '../perfil/perfil.component'
 @Component({
+  providers:[PerfilComponent ],
   selector: 'app-dialog-editar',
   templateUrl: './dialog-editar.component.html',
   styleUrls: ['./dialog-editar.component.scss']
@@ -12,10 +14,13 @@ import Swal from 'sweetalert2'
 export class DialogEditarComponent implements OnInit {
   
   user: FormGroup;
+  
   constructor(
     private http:HttpClient,
-    
-    private router:Router) { 
+    private perfil: PerfilComponent,
+    private router:Router,
+    private dialogRef: MatDialogRef<DialogEditarComponent>) { 
+     
     
     this.user = new FormGroup({
       nombre: new FormControl(''),
@@ -65,16 +70,24 @@ export class DialogEditarComponent implements OnInit {
     console.log(data2.values)
 
    if (data2.length > 0) {
-     
-    this.router.navigate(['/private'])
-      console.log('edición completada')
+    
+   
+    Swal.fire({
+        
+      title: 'Usuario editado con éxito',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    this.cerrarDialog()
+    this.perfil.recargar()
       
     } else {
        
       Swal.fire({
         
-        title: 'Usuario no encontrado',
-        text:'Por favor ingresa los datos nuevamente',
+        title: 'Error al editar usuario',
+        text:'Por favor inténtalo nuevamente',
         icon: 'error'
     
       })
@@ -83,6 +96,12 @@ export class DialogEditarComponent implements OnInit {
 
     });
   }
-
+  cerrarDialog(){
+    this.dialogRef.close();
+  }
+  recargarPerfil(){
+    this.perfil.recargar()  
+  }
 
 }
+

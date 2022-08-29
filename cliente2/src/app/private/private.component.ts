@@ -3,9 +3,11 @@ import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 @Component({
+  
   selector: 'app-private',
   templateUrl: './private.component.html',
   styleUrls: ['./private.component.scss'],

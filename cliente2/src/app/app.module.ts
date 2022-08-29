@@ -7,11 +7,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { MatButtonModule } from '@angular/material/button';
-
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { SigninComponent } from './public/signin/signin.component';
+import { MatIconModule } from '@angular/material/icon'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 const config: SocketIoConfig={
   url:'http://localhost:4003',
   options:{}
@@ -19,6 +24,7 @@ const config: SocketIoConfig={
 @NgModule({
   declarations: [
     AppComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +34,18 @@ const config: SocketIoConfig={
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    MatButtonModule
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule,
+    MatSnackBarModule
+
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,6 +8,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import 'sweetalert2/src/sweetalert2.scss'
 import { Router } from '@angular/router';
 import { DialogEditarComponent } from '../dialog-editar/dialog-editar.component';
+import { DialogAddCultivoComponent } from '../dialog-add-cultivo/dialog-add-cultivo.component';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -23,7 +24,6 @@ export class PerfilComponent implements OnInit {
  ocupacion:String;
  cultivos :any
  dialogRef!:any
- dialogRef2!:any
   constructor(
     private http:HttpClient,
     private router:Router,
@@ -36,13 +36,14 @@ export class PerfilComponent implements OnInit {
     this.telefono=''
     this.ocupacion=''
     this.getUser()
-    this.getCultivos()
+    this.getCultivosUsuario()
   }
 
   ngOnInit(): void {
+
   }
 
-  getUser() {
+   getUser() {
     console.log(localStorage['id'])
     let  data = {
       funcion: 'getUser',
@@ -60,10 +61,10 @@ export class PerfilComponent implements OnInit {
 
     });
   }
-  getCultivos() {
+  getCultivosUsuario() {
     console.log(localStorage['id'])
     let  data = {
-      funcion: 'getCultivos',
+      funcion: 'getCultivosUsuario',
       id: localStorage['id'],
     };
     this.http.post('http://localhost:4003/api', data ).subscribe(response => {
@@ -82,9 +83,24 @@ export class PerfilComponent implements OnInit {
       //window.location.reload()
     });
   }
-  agregar(){
+  abrirDialogAddCultivo(){
     console.log('abrio desde imagen')
+    
+    this.dialogRef = this.dialog.open(DialogAddCultivoComponent, {
+      width: '250px',
+    });
+
+    this.dialogRef.afterClosed().subscribe((result: string) => {
+      console.log('The dialog was closed');
+      //window.location.reload()
+    });
+  }
+  recargar(){
+    window.location.reload()
   }
 
   
+}
+export function recargar(){
+  window.location.reload()
 }

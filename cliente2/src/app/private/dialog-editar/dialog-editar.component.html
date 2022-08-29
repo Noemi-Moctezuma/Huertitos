@@ -1,6 +1,6 @@
 
    <div class=" z-10">
-        <form  (ngSubmit)="editarUser()" [formGroup]="user" class="max-w-sm m-4 p-10 bg-2paleta rounded   w-96  content-center " >
+        <form   [formGroup]="user" class="max-w-sm m-4 p-10 bg-2paleta rounded   w-96  content-center " >
             <p class="text-center text-lg font-bold text-cafeLogo">Editar Perfil</p>
               <div class="">
                 <label class="block text-sm text-cafeLogo font-semibold" for="nombre">Nombre: </label>
@@ -32,9 +32,18 @@
                 <input formControlName="ocupacion" class="w-full  px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" 
                 type="text" id="ocupacion"  required>
               </div>
-              <div class=" ml-28 mt-4 items-center flex justify-between">
-                <button class=" place-self-center text-center px-4 py-1 font-bold tracking-wider bg-cafeLogo hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
-                type="submit"  >Entrar</button>
+              <div class="  mt-4  grid grid-cols-2">
+               <div>
+
+                <button class=" ml-12 text-center px-4 py-1 font-bold tracking-wider bg-cafeLogo hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
+                (click)="cerrarDialog()"
+                >Cancelar</button>
+               </div>
+               <div>
+
+                <button class="  text-center px-4 py-1 font-bold tracking-wider bg-cafeLogo hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
+                (click)="editarUser()"  >Editar</button>
+               </div>
                 
                 </div>
   

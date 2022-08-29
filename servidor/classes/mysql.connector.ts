@@ -31,7 +31,9 @@ export const execute = <T>( query: string, params: string[]| Object): Promise<T>
             pool.query(query,params,(error,results)=>{
                 if(error) reject(error);
                 else resolve(results);
-                console.log(results)
+                
+                //console.log('Consulta: ' + query)
+                //console.log('Results:' + results)
                
             });
         });

@@ -20,7 +20,7 @@
             <div class="container pl-4 pr-4 pb-4">
                 <div class="grid  pl-4 items-end grid-cols-4">
 
-                    <button mat-raised-button color="primary" class="col-start-11 " (click)="abrirDialog()">Editar perfil</button>
+                    <button mat-raised-button color="verde" class="col-start-11 " (click)="abrirDialog()">Editar perfil</button>
  
                 </div>
             </div>    
@@ -47,7 +47,7 @@
                     <mat-card  class="bg-amarilloclaro text-yellow-800 font-semibold text-center">
                         <div class="container object-center">
     
-                            <img src='assets/img/agregar.png' class="object-center" onclick="agregar()" >
+                            <img src='assets/img/agregar.png' class="object-center" (click)="abrirDialogAddCultivo()" >
                         </div>
                     </mat-card>
                   </div>

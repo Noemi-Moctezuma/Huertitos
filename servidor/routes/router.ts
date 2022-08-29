@@ -54,7 +54,7 @@ router.post('/api', (request, response)=>{
         let id = request.body.id
         sql = "SELECT nombre, apellido_paterno, apellido_materno, email, telefono, ocupacion  FROM tbl_usuarios WHERE id ='"+id+"' "
         break;
-    case 'getCultivos':
+    case 'getCultivosUsuario':
         let idUser = request.body.id
         sql = "SELECT nombre, imagen FROM tbl_cultivos JOIN tbl_usuarios_cultivos WHERE tbl_cultivos.id = tbl_usuarios_cultivos.id_cultivo AND tbl_usuarios_cultivos.id_usuario ='"+idUser+"' "
         break;
@@ -68,17 +68,39 @@ router.post('/api', (request, response)=>{
         id = request.body.user.id
         sql = "UPDATE tbl_usuarios SET nombre = '"+nombre+"', apellido_paterno = '"+apellido_paterno+"', apellido_materno = '"+apellido_materno+"', email = '"+email+"', telefono = '"+telefono+"', ocupacion ='"+ocupacion+"' WHERE id = '"+id+"' "
         break;
+    case 'getCultivos':
+        sql = "SELECT id, nombre FROM tbl_cultivos"
+        break;
+    case 'addCultivoUsuario':
+        id=request.body.id
+        let idCultivo = request.body.cultivo
+        sql = "INSERT INTO tbl_usuarios_cultivos(id_usuario, id_cultivo) VALUES ('"+id+"','"+idCultivo+"')"
+        break;
+    case 'agregarUsuario':
+        nombre = request.body.user.nombre
+        apellido_paterno = request.body.user.apellido_paterno
+        apellido_materno = request.body.user.apellido_materno
+        email = request.body.user.email
+        let password = request.body.user.password
+        telefono = request.body.user.telefono
+        ocupacion = request.body.user.ocupacion
+        let cultivo = request.body.user.cultivo
+        sql = "INSERT INTO tbl_usuarios(nombre, apellido_paterno, apellido_materno, email, password, telefono, ocupacion) VALUES ('"+nombre+"','"+apellido_paterno+"','"+apellido_materno+"','"+email+"', md5('"+password+"'),'"+telefono+"','"+ocupacion+"')"
+       //sql = ""
+        break; 
         
     default: 
-        // 
-        break;
+    
+        // break;
  }
   /* console.log(request.body)
    */
 
 // como se ejecuta una promesa que siempre está esperando una respuesta puede que no la obtenga a tiempo y marque como pending
 // por eso se pone el .then para que ejecute el response.json hasta que haya terminado
-execute(sql,[]).then(results => 
-  response.json(results))
+  execute(sql,[]).then(results => 
+  response.json(results))  
+
+
 });
 export default router;
