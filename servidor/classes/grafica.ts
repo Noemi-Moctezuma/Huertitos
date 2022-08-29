@@ -10,8 +10,10 @@ export class GraficaData{
     private tempxmin: number[] =[]
     private sunxmin: number[] =[]
     private labelsxmin: Date[]= []
+    private id:String=''
     constructor(){}
     getGraficaData(){
+
          /* console.log( 
                'temp: ' +this.temp +' sun: '+ this.sun+' tempxmin: '+ this.tempxmin
         +' sunxmin: '+this.sunxmin+' labelsxmin'+this.labelsxmin+' temperatura: '+this.temperatura+
@@ -41,22 +43,25 @@ export class GraficaData{
     ],
         labelsxMin:this.labelsxmin,
         temperatura:this.temperatura,
-        sol:this.sol
+        sol:this.sol,
+        id:this.id
         };
         
     }
-    agregarDato(temp:number, tiempo:Date, sun:number ){
+    agregarDato(temp:number, tiempo:Date, sun:number, id:string ){
         this.temperatura = temp
         this.sol = sun
         this.tempxmin.push(temp)
         this.sunxmin.push(sun)
         this.labelsxmin.push(tiempo)
+        this.id = id
         return this.getGraficaData();
     }
-    obtenerPromedio(temp:number, mes:string, sun:number , primer:boolean){
+    obtenerPromedio(temp:number, mes:string, sun:number , primer:boolean, id:string){
         this.temperatura = temp
         this.sol = sun
         this.mes= mes.toLowerCase().trim();
+        this.id=id
         if(primer){
             this.temp_promedio = temp
             this.sun_promedio = sun

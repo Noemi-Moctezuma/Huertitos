@@ -26,13 +26,14 @@ router.post('/grafica', (request, response)=>{
     const temp = Number (request.body.temp)
     const tiempo = new Date(request.body.tiempo);
     const sun = Number (request.body.sun)
+    const id = String(request.body.id)
     var primer = false
     if(contador===0){
         primer=true
     }
     var mes:any = tiempo.toLocaleString("es-MX", { month: "long" })
-  grafica.obtenerPromedio(temp, mes, sun, primer);
-  grafica.agregarDato(temp, tiempo, sun);
+  grafica.obtenerPromedio(temp, mes, sun, primer, id);
+  grafica.agregarDato(temp, tiempo, sun, id);
     
     const server = Servidorcito.instance;
     //execute("INSERT INTO dispositivo (data) VALUES ('"+valor+"');",[]);
@@ -76,6 +77,11 @@ router.post('/api', (request, response)=>{
         let idCultivo = request.body.cultivo
         sql = "INSERT INTO tbl_usuarios_cultivos(id_usuario, id_cultivo) VALUES ('"+id+"','"+idCultivo+"')"
         break;
+    case 'agregarDispositivo':
+            id = request.body.id
+            let dispositivo = request.body.dispositivo
+            sql = "INSERT INTO tbl_usuarios_dispositivos(id_usuario, dispositivo) VALUES ('"+id+"','"+dispositivo+"')"
+            break;
     case 'agregarUsuario':
         nombre = request.body.user.nombre
         apellido_paterno = request.body.user.apellido_paterno

@@ -32,8 +32,8 @@ export const execute = <T>( query: string, params: string[]| Object): Promise<T>
                 if(error) reject(error);
                 else resolve(results);
                 
-                //console.log('Consulta: ' + query)
-                //console.log('Results:' + results)
+                console.log('Consulta: ' + query)
+                console.log('Results:' + results)
                
             });
         });

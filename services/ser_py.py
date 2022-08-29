@@ -28,15 +28,17 @@ while True:
     #print (row)
     temp = values[0]
     sun = values[1]
+    id = values[2]
     sun = re.sub("\r\n", '', sun)
+    id = re.sub("\r\n", '', id)
     tiempo_actual= datetime.now()
-    sql="INSERT INTO tbl_sun (valor, tiempo) VALUES (%s, %s)"
-    valores =(sun, tiempo_actual)
+    sql="INSERT INTO tbl_sun (valor, tiempo, sensor) VALUES (%s, %s, %s)"
+    valores =(sun, tiempo_actual, id)
 
     mycursor.execute(sql, valores)
 
-    sql2="INSERT INTO tbl_temp (valor, tiempo) VALUES (%s, %s)"
-    valores2 =(sun, tiempo_actual)
+    sql2="INSERT INTO tbl_temp (valor, tiempo, sensor) VALUES (%s, %s, %s)"
+    valores2 =(sun, tiempo_actual, id)
 
     mycursor.execute(sql2, valores2)
     mydb.commit()
@@ -45,6 +47,6 @@ while True:
     URL = 'http://localhost:4003/grafica'
     if clean_row:
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-        data =  urllib.parse.urlencode({'temp': temp,'tiempo': tiempo_actual, 'sun': sun})
+        data =  urllib.parse.urlencode({'temp': temp,'tiempo': tiempo_actual, 'sun': sun, 'id':id})
         response = http.request('POST', URL, headers=headers, body=data)
         #print(response)
