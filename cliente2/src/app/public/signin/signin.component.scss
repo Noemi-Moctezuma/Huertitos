@@ -75,3 +75,11 @@
     .example-panel-green.mat-select-panel {
       background: rgba(0, 255, 0, 0.5);
     }
+    .mat-option.mat-active{
+      color: unset!important
+  }
+  
+  ::ng-deep .mat-form-field-underline{
+      display: none!important;
+  }
+  

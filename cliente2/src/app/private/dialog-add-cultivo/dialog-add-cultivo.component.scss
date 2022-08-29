@@ -1,0 +1,7 @@
+.mat-option.mat-active{
+    color: unset!important
+}
+
+::ng-deep .mat-form-field-underline{
+    display: none!important;
+}
