@@ -8,8 +8,8 @@ import { WebsocketService } from 'src/app/services/websocket.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  public temperatura: any;
-  public sol: any;
+  public temperatura: any = 0;
+  public sol: any= 0;
   public lineChartPromedio: Array<any> = [
     {
       data: [0, 0, 0, 0, 0, 0, 0],
@@ -20,9 +20,6 @@ export class DashboardComponent implements OnInit {
       label: 'Sol',
     },
   ];
-
-
-
   public labelsPromedio: Array<any> = [
     'Enero',
     'Febrero',
@@ -50,7 +47,6 @@ export class DashboardComponent implements OnInit {
     },
   ];
   public lineChartxMinSun: Array<any> = [
-
     {
       data: [],
       label: 'Sol',
@@ -90,14 +86,12 @@ export class DashboardComponent implements OnInit {
     this.http.post('http://localhost:4003/api', requestDataT).subscribe((dataTemp: any) => {
       //console.log("datos de temperatura")
      // console.log(dataTemp)
-
       let  requestDataS = {   
         funcion: 'getPromedioBDS',
       };
       this.http.post('http://localhost:4003/api', requestDataS).subscribe((dataSol: any) => {
      // console.log("datos de sol")
        // console.log(dataSol)
-
       //  console.log("arreglo sis")
         dataSol.forEach((element: any) => {
           this.promedios[0].sun[element.mes-1] = element.sun
@@ -111,12 +105,10 @@ export class DashboardComponent implements OnInit {
         })
       });
     });
-      this.getData()
+    this.getData()
     this.escucharSocket()
     console.log(JSON.stringify(this.lineChartPromedio)) 
-
   }
-
   getData() {
     this.http.get('http://localhost:4003/grafica').subscribe((data: any) => {
       this.temperatura = data.temperatura;

@@ -8,3 +8,11 @@
     .grid-cols-11{
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1rem) minmax(0, 1fr)  minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) ;
     }
+    .grid-info{
+        display: grid;
+        grid-template-columns: minmax(10rem, .75fr) minmax(0, 1fr) minmax(0, 1fr) 
+    }
+    /* hr.solid {
+        border-top: 3px solid #bbb;
+        width: 100%
+      } */
