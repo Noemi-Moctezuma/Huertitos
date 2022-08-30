@@ -85,6 +85,7 @@ export class SigninComponent implements OnInit {
     });
   }
   agregarUsuario(){
+    
     if(this.user.value['password'] == this.user.value['password2']){
       this.user.controls['cultivo'].setValue(this.cultivoSeleccionado);
       let  data = {
@@ -99,6 +100,7 @@ export class SigninComponent implements OnInit {
       }
       //console.log( data2)
     })
+    console.log("si")
     }
     else{
       this._snackBar.open('Las contraseñas no coinciden','',{

@@ -67,7 +67,7 @@ export class DialogEditarComponent implements OnInit {
     };
     this.http.post('http://localhost:4003/api', data ).subscribe(response => {
     let data2 = Object.values(response)
-    console.log(data2.values)
+    console.log(data2.length)
 
    if (data2.length > 0) {
     
