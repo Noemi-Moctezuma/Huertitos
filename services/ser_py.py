@@ -26,10 +26,11 @@ while True:
     clean_row = row.decode()
     
     values = clean_row.split(" ")
-    #print (row)
+    print (row)
     temp = values[0]
     sun = values[1]
-    id = values[2]
+    hum = values[2]
+    id = values[3]
     sun = re.sub("\r\n", '', sun)
     id = re.sub("\r\n", '', id)
     tiempo_actual= datetime.now()
@@ -43,12 +44,17 @@ while True:
     valores2 =(temp, tiempo_actual, id)
 
     mycursor.execute(sql2, valores2)
+
+    sql3="INSERT INTO tbl_hum (valor, tiempo, sensor) VALUES (%s, %s, %s)"
+    valores3 =(hum, tiempo_actual, id)
+
+    mycursor.execute(sql3, valores3)
     mydb.commit()
     
     print(mycursor.rowcount, "Insert OK")
     URL = 'http://localhost:4003/grafica'
     if clean_row:
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-        data =  urllib.parse.urlencode({'temp': temp,'tiempo': tiempo_actual, 'sun': sun, 'id':id})
+        data =  urllib.parse.urlencode({'temp': temp,'tiempo': tiempo_actual, 'sun': sun,  'hum': hum, 'id':id})
         response = http.request('POST', URL, headers=headers, body=data)
         #print(response)
