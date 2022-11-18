@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "start",
+			"path": "cliente2",
+			"problemMatcher": [],
+			"label": "npm: start - cliente2",
+			"detail": "ng serve"
+		}
+	]
+}

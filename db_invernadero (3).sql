@@ -6,7 +6,9 @@
 -- Tiempo de generación: 02-11-2022 a las 05:56:59
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
-
+DROP DATABASE db_invernadero;
+CREATE DATABASE IF NOT EXISTS db_invernadero;
+USE db_invernadero; 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";

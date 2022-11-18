@@ -5,8 +5,8 @@ import { Router } from "express";
 import Servidorcito from "../classes/servidorcito";
 import { execute } from "../classes/mysql.connector";
 import { select } from "../classes/mysql.connector";
-import { map } from "rxjs/operators"; 
-
+/* import { map } from "rxjs/operators"; 
+ */
 import { createPool, Pool } from "mysql";
 
 const router = Router();
@@ -23,6 +23,7 @@ router.post('/grafica', (request, response)=>{
     //const mes = request.body.mes;
     //const valor = Number(request.body.valor);
     //grafica.incrementarValor(mes,valor);
+    const humedad = Number (request.body.humedad)
     const temp = Number (request.body.temp)
     const tiempo = new Date(request.body.tiempo);
     const sun = Number (request.body.sun)
@@ -34,8 +35,8 @@ router.post('/grafica', (request, response)=>{
         primer=true
     }
     var mes:any = tiempo.toLocaleString("es-MX", { month: "long" })
-    grafica.obtenerPromedio(temp, mes, sun, primer, id);
-    grafica.agregarDato(temp, hora, sun, id);
+    grafica.obtenerPromedio(temp, mes, sun, primer, id, humedad);
+    grafica.agregarDato(temp, hora, sun, id, humedad);
     
     const server = Servidorcito.instance;
     //execute("INSERT INTO dispositivo (data) VALUES ('"+valor+"');",[]);
@@ -43,7 +44,7 @@ router.post('/grafica', (request, response)=>{
     response.json(grafica.getGraficaData());
     contador ++
 });
-router.post('/promedio', (request, response)=>{
+router.post('/promedio', (request)=>{
     //console.log(request.body)
     grafica.insertarPrimeros(request.body);
    /*  
@@ -54,7 +55,6 @@ router.post('/promedio', (request, response)=>{
     contador ++ */
 });
 router.post('/api', (request, response)=>{
-  
   let funcion = request.body.funcion
   let sql =''
   switch ( funcion ) {
@@ -112,7 +112,9 @@ router.post('/api', (request, response)=>{
     case 'getPromedioBDS':
         sql = "SELECT AVG(valor) sun , month(tiempo) mes FROM tbl_sun GROUP BY month(tiempo)"
         break;
-        
+    case 'getPromedioBDH':
+        sql = "SELECT AVG(valor) hum , month(tiempo) mes FROM tbl_hum GROUP BY month(tiempo)"
+        break;   
     default: 
     
         // break;

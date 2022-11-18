@@ -9,7 +9,8 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 })
 export class DashboardComponent implements OnInit {
   public temperatura: any = 0;
-  public sol: any= 0;
+  public sol: any = 0;
+  public humedad: any = 0;
   public lineChartPromedio: Array<any> = [
     {
       data: [0, 0, 0, 0, 0, 0, 0],
@@ -18,6 +19,10 @@ export class DashboardComponent implements OnInit {
     {
       data: [0, 0, 0, 0, 0, 0, 0],
       label: 'Sol',
+    },
+    {
+      data: [0, 0, 0, 0, 0, 0, 0],
+      label: 'Humedad',
     },
   ];
   public labelsPromedio: Array<any> = [
@@ -34,12 +39,14 @@ export class DashboardComponent implements OnInit {
     'Noviembre',
     'Diciembre',
   ];
-  public promedios:Array<any> = [{
-    mes:this.labelsPromedio,
-    temp:[0,0,0,0,0,0,0,0,0,0,0,0],
-    sun:[0,0,0,0,0,0,0,0,0,0,0,0]
-  }
-   ]
+  public promedios: Array<any> = [
+    {
+      mes: this.labelsPromedio,
+      temp: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      sun: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      hum: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+  ];
   public lineChartxMinTemp: Array<any> = [
     {
       data: [],
@@ -52,72 +59,95 @@ export class DashboardComponent implements OnInit {
       label: 'Sol',
     },
   ];
+  public lineChartxMinHum: Array<any> = [
+    {
+      data: [],
+      label: 'Humedad',
+    },
+  ];
   public optionsMes = {
     plugins: {
-      	title: {
-			text: 'Gráfica de Temperatura y Nivel del Sol por Mes',
-			display: true,
-      	},
+      title: {
+        text: 'Gráfica de Temperatura, Humedad y Nivel del Sol por Mes',
+        display: true,
+      },
     },
   };
   public optionsMinTemp = {
     plugins: {
-      	title: {
-			text: 'Gráfica de Temperatura por Minuto',
-			display: true,
-      	},
+      title: {
+        text: 'Gráfica de Temperatura por Minuto',
+        display: true,
+      },
     },
   };
   public optionsMinSun = {
     plugins: {
-      	title: {
-			text: 'Gráfica de Nivel del Sol por Minuto',
-			display: true,
-      	},
+      title: {
+        text: 'Gráfica de Nivel del Sol por Minuto',
+        display: true,
+      },
+    },
+  };
+  public optionsMinHum = {
+    plugins: {
+      title: {
+        text: 'Gráfica de Humedad por Minuto',
+        display: true,
+      },
     },
   };
   public labelsxMin: Array<any> = [1, 2, 3, 4, 5, 6];
   constructor(private http: HttpClient, public wsService: WebsocketService) {}
 
   ngOnInit(): void {
-    let  requestDataT = {
+    let requestDataT = {
       funcion: 'getPromedioBDT',
     };
     this.http.post('http://localhost:4003/api', requestDataT).subscribe((dataTemp: any) => {
-      //console.log("datos de temperatura")
-     // console.log(dataTemp)
-      let  requestDataS = {   
-        funcion: 'getPromedioBDS',
-      };
-      this.http.post('http://localhost:4003/api', requestDataS).subscribe((dataSol: any) => {
-     // console.log("datos de sol")
-       // console.log(dataSol)
-      //  console.log("arreglo sis")
-        dataSol.forEach((element: any) => {
-          this.promedios[0].sun[element.mes-1] = element.sun
-        });
-        dataTemp.forEach((element: any) => {
-          this.promedios[0].temp[element.mes-1] = element.temp
-        });
-       console.log(this.promedios)
-        this.http.post('http://localhost:4003/promedio', this.promedios).subscribe((response:any) =>{
-        console.log(response)
-        })
+        //console.log("datos de temperatura")
+        // console.log(dataTemp)
+        let requestDataS = {
+          funcion: 'getPromedioBDS',
+        };
+        this.http.post('http://localhost:4003/api', requestDataS).subscribe((dataSol: any) => {
+            // console.log("datos de sol")
+            // console.log(dataSol)
+            let requestDataH = {
+              funcion: 'getPromedioBDH',
+            };
+            this.http.post('http://localhost:4003/api', requestDataH).subscribe((dataHum:any)=>{
+              dataSol.forEach((element: any) => {
+                this.promedios[0].sun[element.mes - 1] = element.sun;
+              });
+              dataTemp.forEach((element: any) => {
+                this.promedios[0].temp[element.mes - 1] = element.temp;
+              });
+              dataHum.forEach((element: any) => {
+                this.promedios[0].hum[element.mes - 1] = element.hum;
+              });
+              console.log(this.promedios);
+              this.http.post('http://localhost:4003/promedio', this.promedios).subscribe((response: any) => {
+                  console.log(response);
+                });
+            })
+          });
       });
-    });
-    this.getData()
-    this.escucharSocket()
-    console.log(JSON.stringify(this.lineChartPromedio)) 
+    this.getData();
+    this.escucharSocket();
+    console.log(JSON.stringify(this.lineChartPromedio));
   }
   getData() {
     this.http.get('http://localhost:4003/grafica').subscribe((data: any) => {
       this.temperatura = data.temperatura;
       this.sol = data.sol;
+      this.humedad = data.humedad;
       this.lineChartPromedio = data.dataPromedio;
       this.lineChartxMinTemp = data.dataxMinTemp;
       this.lineChartxMinSun = data.dataxMinSun;
+      this.lineChartxMinHum = data.dataxMinHumedad;
       this.labelsxMin = data.labelsxMin;
-      console.log("get data>>>" + data);
+      console.log(data);
     });
   }
   //actualiza la gráfica cada que el servidor manda un cambio
@@ -125,11 +155,13 @@ export class DashboardComponent implements OnInit {
     this.wsService.listen('cambio-grafica').subscribe((data: any) => {
       this.temperatura = data.temperatura;
       this.sol = data.sol;
-      this.lineChartPromedio = data.dataPromedio
+      this.humedad = data.humedad;
+      this.lineChartPromedio = data.dataPromedio;
       this.lineChartxMinTemp = data.dataxMinTemp;
       this.lineChartxMinSun = data.dataxMinSun;
+      this.lineChartxMinHum = data.dataxMinHumedad;
       this.labelsxMin = data.labelsxMin;
-      console.log("socket data>>>" + JSON.stringify(data));
+      console.log('socket data>>>' + JSON.stringify(data));
     });
   }
 }

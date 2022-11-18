@@ -55,6 +55,6 @@ while True:
     URL = 'http://localhost:4003/grafica'
     if clean_row:
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-        data =  urllib.parse.urlencode({'temp': temp,'tiempo': tiempo_actual, 'sun': sun,  'hum': hum, 'id':id})
+        data =  urllib.parse.urlencode({'temp': temp,'tiempo': tiempo_actual, 'sun': sun,  'humedad': hum, 'id':id})
         response = http.request('POST', URL, headers=headers, body=data)
         #print(response)
