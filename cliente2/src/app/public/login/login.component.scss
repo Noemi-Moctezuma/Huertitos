@@ -1,32 +1,26 @@
-.login{
-  height: 60vh;
-  padding-top: 40vh;
-  }
-.logo{
-  height: 50px;
-  
-}
+.height-full-img{
+  height: calc(100% - 10rem);
+}  
   .containerOlas {
     background-repeat: no-repeat;
     background-size: cover;
-    height: 40vh;
-    position: relative;
-    
+    //height: 40vh;
   }
 
   .waves {
     position: absolute;
     bottom: 0px;
-    height: 527px;
+    height: 32.95rem;
     width: 100%;
     overflow: hidden;
   }
   .wave {
+    overflow: hidden;
     position: absolute;
-    left: -180px;
+    left: -11.25rem;
     bottom: 0;
-    width: 2402px;
-    height: 227px;
+    width: 150.25rem;
+    height: 14.1875rem;
     background: url(https://static.platzi.com/media/files/waves_c8551f5d-ecf6-4a81-ae1d-f3a0ad55ba10.png) center bottom no-repeat;
     animation: 5s wave ease-in-out infinite alternate;
   }
@@ -46,7 +40,7 @@
       transform: translate(0 , 0);
     }
     50% {
-      transform: translate(-80px, 25px);
+      transform: translate(-5px, 25px);
     }
     100% {
       transform: translate(160px, -5px);
