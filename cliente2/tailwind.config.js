@@ -7,12 +7,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'verdeLogo': '#426d1b',
-        'cafeLogo': '#874a17',
-        '1paleta': '#777D35',
-        '2paleta': '#D3D7A2',
-        '3paleta': '#4C5303',
-        '4paleta': '#7A9562',
+        'verde-oscuro-btn': '#345C06',
+        'verde-oscuro-hover': '#476327',
+        'verde-oscuro-transparencia': 'rgb(2, 23, 1, .95)',
+        'blanco': '#ffffff',
+        'verde-oscuro-margen': '#081F08',
+        'negro': '#000000',
+        'gris-input': '#D9D9D9',
         '4.5paleta': '#8CAC71',
         '5paleta': '#C4D7AF',
         'amarilloclaro':'#f8fcc7',

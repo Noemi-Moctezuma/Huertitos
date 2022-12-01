@@ -1,40 +1,46 @@
-
-<div class=" bg-cover h-full bg-4.5paleta">
+<div id="main" class=" bg-cover h-full ">
   <div class="flex">
-	<div class="flex-initial w-40 ml-8 ">
-		<img src="../../../assets/img/huertitos logo verde.png" alt="">
-	</div>
-  </div>
-
-
-<div class="container  flex justify-center items-center mx-auto height-full-img">
-  <div class=" max-w-lg z-10 w-auto">
-    <div class="leading-10">
-      <form  (ngSubmit)="login()" [formGroup]="user" class="max-w-sm m-4 p-8 bg-2paleta rounded shadow-xl  w-96  content-center flex flex-col" >
-          <p class="text-center text-lg font-bold text-cafeLogo">LOG IN</p>
-            <div class="mt-2">
-              <label class="block text-sm text-cafeLogo font-semibold" for="email">E-mail</label>
-              <input formControlName="email" class="w-full  px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="email" id="email"  placeholder="Ingresar e-mail" aria-label="email" required>
-            </div>
-            <div class="mt-2">
-              <label class="block  text-sm text-cafeLogo font-semibold">Contraseña</label>
-               <input formControlName="password" class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
-                type="password" id="password" placeholder="Ingresar contraseña" arial-label="password" required>
-            </div>
-            <div class=" mx-auto mt-4 items-center  justify-between">
-              <button class=" place-self-center text-center px-4 py-1 font-bold tracking-wider bg-cafeLogo hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
-              type="submit"  >Entrar</button>
-              </div>
-      </form>
+    <div class="flex-shrink w-40 ml-8 ">
+      <img src="..\..\assets\img\logos\logo-completo-color.png" alt="">
     </div>
   </div>
-</div>
-<div class="containerOlas  z-0">
-    <div class="waves">
-      <div class="wave circulo a"></div>
-      <div class="wave circulo b"></div>
-      <div class="wave circulo c"></div>
+
+
+  <div class="container  flex justify-center items-center mx-auto  height-full-img">
+    <div class=" card max-w-md ">
+      <div class=" leading-10 ">
+        <form (ngSubmit)="login()" [formGroup]="user"
+          class="border-verde-oscuro-margen border-4 max-w-md  sm:m-0 pb-8 pt-0 px-8  rounded shadow-xl    content-center flex flex-col">
+          <p class="text-center py-3 text-lg font-bold text-cafeLogo">Log In</p>
+          <div class="">
+            <label class=" text-sm text-cafeLogo font-semibold" for="email">E-mail</label>
+            <input formControlName="email"
+              class="w-full  px-5 py-1 text-gray-700 bg-gris-input-300 rounded focus:outline-none focus:bg-white"
+              type="email" id="email" placeholder="Ingresar e-mail" aria-label="email" required>
+          </div>
+          <div class="mt-4">
+            <label class="  text-sm text-cafeLogo font-semibold">Contraseña</label>
+            <input formControlName="password"
+              class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
+              type="password" id="password" placeholder="Ingresar contraseña" arial-label="password" required>
+          </div>
+          <div class="text-center">
+            <small><a href="#">¿Olvidaste tu contraseña? Comunícate con nosotros</a></small>
+          </div>
+          <div class=" mx-auto mt-4 items-center  justify-between">
+            <button
+              class=" place-self-center text-center px-4  font-bold tracking-wider bg-verde-oscuro-btn hover:bg-verde-oscuro-hover rounded text-blanco  "
+              type="submit">Iniciar Sesión</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
+  <div class="text-white bg-verde-oscuro-transparencia opacity-95 grid grid-cols-2 md:grid-cols-4 items-center text-center h-20">
+    <div class="leading-loose">Huertitos® </div>
+    <div><span class=" fab fa-whatsapp text-lg"> </span> +52 415 123 45 67</div>
+    <div><span class=" fab fa-instagram text-lg"> </span> @HuertitosOficial</div>
+    <div><span class=" fa fa-envelope text-lg"> </span> contacto@huertitos.com</div>
+  </div>
 
+</div>

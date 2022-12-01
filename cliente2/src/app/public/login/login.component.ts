@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
-import Swal from 'sweetalert2'
-
+import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss'
 import { Router } from '@angular/router';
 
@@ -13,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user: FormGroup;
-  
   constructor( 
     private http:HttpClient,
     private router:Router

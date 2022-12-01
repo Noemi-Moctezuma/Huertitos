@@ -1,51 +1,10 @@
+
+.card{
+  background-color: rgba(255, 255, 255, 0.95);
+}
 .height-full-img{
   height: calc(100% - 10rem);
 }  
-  .containerOlas {
-    background-repeat: no-repeat;
-    background-size: cover;
-    //height: 40vh;
-  }
-
-  .waves {
-    position: absolute;
-    bottom: 0px;
-    height: 32.95rem;
-    width: 100%;
-    overflow: hidden;
-  }
-  .wave {
-    overflow: hidden;
-    position: absolute;
-    left: -11.25rem;
-    bottom: 0;
-    width: 150.25rem;
-    height: 14.1875rem;
-    background: url(https://static.platzi.com/media/files/waves_c8551f5d-ecf6-4a81-ae1d-f3a0ad55ba10.png) center bottom no-repeat;
-    animation: 5s wave ease-in-out infinite alternate;
-  }
-  .wave.a {
-    background-position: 0 -854px;
-  }
-  .wave.b {
-    background-position: 0 -427px;
-    animation-delay: .6s;
-  }
-  .wave.c {
-    background-position: 0 0;
-    animation-delay: 1.2s;
-  }
-  @keyframes wave {
-    0% {
-      transform: translate(0 , 0);
-    }
-    50% {
-      transform: translate(-5px, 25px);
-    }
-    100% {
-      transform: translate(160px, -5px);
-    }
-  }
 
   .example-container .mat-form-field + .mat-form-field {
     margin-left: 8px;
@@ -54,3 +13,19 @@
     color: #FFC900
   }
    
+/* *{
+  outline: 1px solid red!important;
+}
+ */
+@media (min-width: 501px){
+  #main{
+    background-image: url('../../../assets/img/fondo_login_horizontal.png') ;
+    background-size: cover;
+  }
+}
+@media (max-width: 500px){
+  #main{
+    background-image: url('../../../assets/img/fondo_login.png') ;
+    background-size: cover;
+  }
+}
