@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss'
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    console.log(AppComponent.url+'/api')
    
   }
   login() {
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
       funcion: 'login',
       user: this.user.value,
     };
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    console.log(data)
+    this.http.post(AppComponent.url+'/api', data, {headers: {"ngrok-skip-browser-warning": "69420"}}).subscribe(response => {
     let data2 = Object.values(response)
     console.log(data2)
 

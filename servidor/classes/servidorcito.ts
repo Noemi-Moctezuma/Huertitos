@@ -17,7 +17,7 @@ export default class Servidorcito {
         this.io = new Server(this.httpServer,{
             cors: {
                 origin: "*",
-                methods: ["GET", "POST"]
+                methods: ["GET", "POST"],
               }
         });
     }

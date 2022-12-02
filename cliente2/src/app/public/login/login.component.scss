@@ -3,7 +3,7 @@
   background-color: rgba(255, 255, 255, 0.95);
 }
 .height-full-img{
-  height: calc(100% - 10rem);
+  height: calc(100% - 10.75rem);
 }  
 
   .example-container .mat-form-field + .mat-form-field {
@@ -15,8 +15,8 @@
    
 /* *{
   outline: 1px solid red!important;
-}
- */
+} */
+
 @media (min-width: 501px){
   #main{
     background-image: url('../../../assets/img/fondo_login_horizontal.png') ;
