@@ -22,6 +22,7 @@ export class PrivateComponent implements OnInit, OnDestroy {
   telefono:String;
   ocupacion:String;
   titulo: string = '';
+  fondo:string='';
   /* fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
   fillerContent = Array.from(
@@ -50,6 +51,7 @@ export class PrivateComponent implements OnInit, OnDestroy {
       this.telefono=''
       this.ocupacion=''
 
+
       this.getUser()
       this.mobileQuery = media.matchMedia('(max-width: 600px)');
       this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -58,6 +60,13 @@ export class PrivateComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.titulo = 'ola';
+    
+localStorage.setItem( 'imagenFondo1', '../../assets/img/fondo_inicio_1.png')
+localStorage.setItem( 'imagenFondo2', '../../assets/img/fondo_inicio_2.png')
+
+    document.getElementById("sidenav").style.backgroundImage = 'url(' + localStorage['imagenFondo1'] + ')'
+    document.getElementById("fondo").style.backgroundImage = 'url(' + localStorage['imagenFondo2'] + ')'
+     
   }
 
   ngOnDestroy(): void {

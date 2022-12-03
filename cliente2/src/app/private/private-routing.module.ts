@@ -27,6 +27,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./info/info.module').then((m) => m.InfoModule),
       },
+      {
+        path: 'mis-huertos',
+        loadChildren: () =>
+          import('./mis-huertos/mis-huertos.module').then((m) => m.MisHuertosModule),
+      },
       
     ],
   },

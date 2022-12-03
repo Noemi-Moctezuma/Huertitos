@@ -1,19 +1,26 @@
-<div class="example-container " [class.example-is-mobile]="mobileQuery.matches" >
+
+<div [class.example-is-mobile]="mobileQuery.matches"  >
 	<!-- HEADER -->
 	<!--      <app-header [titulo]="titulo" ></app-header>
  -->
-	<mat-sidenav-container class="example-sidenav-container"  autosize>
-		<mat-sidenav id="sidenav" disableClose class="border-0 bg-4paleta" opened #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-			[fixedInViewport]="mobileQuery.matches" >
-			<mat-nav-list>
+ 
+
+	<mat-sidenav-container  autosize >
+		<mat-sidenav class = "barra-lateral" id="sidenav" disableClose class="border-0 " opened 
+		#snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+			[fixedInViewport]="mobileQuery.matches"
+			 >
+<div>
+<div class="barra-superior" style="margin-left: 30px;" >
+<img src="../../assets/img/logos/logo-completo-color.png" style="height: 8vh; ">
+	
+</div>
+			<mat-nav-list  class="fondo-verde">
 				<!-- profile info -->
 				
 				<div *ngIf="isMaximized == false">
 					<div class="flex justify-center">
 						<button mat-icon-button (click)="minimize(isMaximized)"><mat-icon>menu</mat-icon></button>
-					</div>
-					<div class="flex justify-center pt-2">
-						<img src="assets/img/ivana-square.jpg" class="rounded-full  h-10 w-10" alt="PTS" />
 					</div>
 				</div>
 				
@@ -21,41 +28,40 @@
 					<div class="flex justify-end">
 						<button mat-icon-button (click)="minimize(isMaximized)"><mat-icon>menu</mat-icon></button>
 					</div>
-					<div class="flex justify-center pt-2">
-						<img src="assets/img/ivana-square.jpg" class="rounded-full  h-16 w-16" alt="PTS" />
-					</div>
-					<div class="flex justify-center pt-4">
-						<p class="font-bold text-slate-800">{{nombre}} {{apellido_paterno}}</p>
-				</div>
-					<div class="flex justify-center">
-						<p class="text-slate-500">{{ocupacion}}</p></div>
+	
 				</div>
 
 				<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full pt-2">
 					<mat-nav-list class="text-slate-800 pt-4">
 						<div *ngIf="isMaximized ==true" class=" py-1 px-2 ">
-							<h4 class="uppercase font-bold">
-								Menú
-							</h4>
+							
 						</div>
 						<div *ngIf="isMaximized ==true">
 							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
 								<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
-								<span  matLine class="self-start" [ngClass]="dashboard.isActive? 'text-cafeLogo':''">Dashboard</span>
+								<span  matLine class="self-start" [ngClass]="dashboard.isActive? 'text-cafeLogo':''">Inicio</span>
 							</button>
-							<button mat-list-item  routerLinkActive #info="routerLinkActive" routerLink="/private/info">
-								<mat-icon matListIcon [ngClass]="info.isActive? 'text-cafeLogo':''">article</mat-icon>
-								<span  matLine class="self-start" [ngClass]="info.isActive? 'text-cafeLogo':''">Información del huerto</span>
+							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/mis-huertos">
+								<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
+								<span  matLine class="self-start" [ngClass]="dashboard.isActive? 'text-cafeLogo':''">Mis Huertos</span>
 							</button>
 							<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
 								<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
 								<span  matLine class="self-start" [ngClass]="perfil.isActive? 'text-cafeLogo':''">Perfil</span>
 							</button>
-							<div class="text-red-800 hover:text-red-500 flex justify-end pr-4">
+							
+							<button mat-list-item  routerLinkActive #info="routerLinkActive" routerLink="/private/info">
+								<mat-icon matListIcon [ngClass]="info.isActive? 'text-cafeLogo':''">article</mat-icon>
+								<span  matLine class="self-start" [ngClass]="info.isActive? 'text-cafeLogo':''">Más información</span>
+							</button>
+							<div class="text-white hover:text-gary-200 flex  pr-4 bottom-0">
 								<a href="/public" onclick="cerrarsesion()"> Cerrar sesión </a>
 							</div>
 						</div>
 						<div *ngIf="isMaximized ==false">
+							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
+								<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
+							</button>
 							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
 								<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
 							</button>
@@ -70,14 +76,44 @@
 					</mat-nav-list>
 				</div>
 			</mat-nav-list>
+</div>
 			
 		</mat-sidenav>
-		<mat-sidenav-content>
-			<div class="dark:bg-black dark:text-white h-auto">
-				<router-outlet></router-outlet>
-			</div>
-		</mat-sidenav-content>
+			<mat-sidenav-content id = "fondo" class="contenido" >
+				
+						
+							  <div class="barra-superior" style="margin-right:30px">
+								<div class="flex justify-end">
+								
+									<div>
+										<div class="flex justify-center pt-1">
+											<img src="assets/img/ivana-square.jpg" class="rounded-full"  style=" height: 5vh; width: 5vh" />
+										</div>
+									</div>
+									<div class="ml-3 mr-12">
+										<div class="flex justify-left pt-2" style="line-height: 1mm; font-size: 2vh;">
+											<p class="font-bold text-black">{{nombre}} {{apellido_paterno}}</p>
+									</div>
+										<div class="flex justify-left align-top " style="line-height: 1mm; font-size: 2vh;">
+											<p class="text-black">{{ocupacion}}</p></div>
+										  
+									</div>
+									</div>
+				
+								</div>
+								
+								
+							<div style="height: auto; ">
+
+								<router-outlet style="background-color: aliceblue;" ></router-outlet>
+							</div>
+							
+				
+
+			</mat-sidenav-content>
 	</mat-sidenav-container>
+
+
 </div>
 <!-- Copyright 2022 Google LLC. All Rights Reserved.
        Use of this source code is governed by an MIT-style license that

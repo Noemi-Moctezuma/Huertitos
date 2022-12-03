@@ -47,3 +47,41 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+::ng-deep .mat-drawer-content {
+  height: 80vh;
+}
+
+::ng-deep .mat-sidenav-content {
+  height: 80vh;
+}
+.fondo-verde{
+  background-color: #021701;
+  margin: 30px;
+  overflow: hidden;
+  height: 80vh;
+  
+}
+.contenido {
+
+  overflow: hidden;
+  
+  background-position: top;
+  
+  background-size: cover;
+  
+}
+.barra-superior{
+  background-color: white;
+  opacity: .9;
+  height: 7vh;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.barra-lateral{
+  width: 30vw;
+  overflow: hidden;
+  background-position: top;
+
+  background-size: cover;
+}

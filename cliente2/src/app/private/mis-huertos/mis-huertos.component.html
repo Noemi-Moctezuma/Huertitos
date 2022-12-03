@@ -1,0 +1,32 @@
+
+ <div class="container fondo ">
+             
+    <div class="container  xl:max-w-6xl mx-auto p-7 bg-2paleta h-auto">
+        <div class="container  grid-rows-2 items-center justify-center">
+
+    <div class="px-12 pt-10 container">
+      <h2 class="text-cafeLogo ">Mis cultivos</h2>
+        <div class="grid gap-5 grid-cols-3">
+            <div   *ngFor="let cultivo of cultivos; index as i;"  >
+                <mat-card  class="bg-white text-yellow-800 font-semibold text-center ">
+                    <div class="container bg-cafeclaro  p-10">
+
+                        <img src='assets/img/{{cultivo.imagen}}' >
+                    </div>
+                    <p class="pt-2">
+                        {{cultivo.nombre}}
+                    </p>
+                </mat-card>
+                        
+            </div>
+            <mat-card  class="bg-white text-yellow-800 font-semibold text-center ">
+                <div class="container object-center">
+
+                    <img src='assets/img/agregar.png' class="object-center" (click)="abrirDialogAddCultivo()" >
+                </div>
+            </mat-card>
+          </div>
+         </div>
+        </div>
+    </div>
+</div>
