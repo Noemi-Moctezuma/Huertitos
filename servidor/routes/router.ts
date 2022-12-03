@@ -69,7 +69,7 @@ router.post('/api', (request, response)=>{
         break;
     case 'getCultivosUsuario':
         let idUser = request.body.id
-        sql = "SELECT nombre, imagen FROM tbl_cultivos JOIN tbl_usuarios_cultivos WHERE tbl_cultivos.id = tbl_usuarios_cultivos.id_cultivo AND tbl_usuarios_cultivos.id_usuario ='"+idUser+"' "
+        sql = "SELECT nombre FROM tbl_cultivos JOIN tbl_usuarios_cultivos WHERE tbl_cultivos.id = tbl_usuarios_cultivos.id_cultivo AND tbl_usuarios_cultivos.id_usuario ='"+idUser+"' "
         break;
     case 'editarUsuario':
         let nombre = request.body.user.nombre
