@@ -20,7 +20,10 @@ module.exports = {
         'amarilloPaleta0': '#D8DF1D',
         'amarilloPaleta1': '#E9EE8A',
         'cafeclaro':'#b9906f'
-      }
+      },
+      height:{
+        '11/12': '91.666667%'
+      },
     },
   },
   variants: {
