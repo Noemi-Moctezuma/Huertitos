@@ -14,6 +14,8 @@ module.exports = {
         'verde-oscuro-margen': '#081F08',
         'negro': '#000000',
         'gris-input': '#D9D9D9',
+        'verde-estado': '#33BE11',
+        'rojo-estado': '#F01212',
         '4.5paleta': '#8CAC71',
         '5paleta': '#C4D7AF',
         'amarilloclaro':'#f8fcc7',

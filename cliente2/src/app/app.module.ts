@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -15,8 +15,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import localeEs from '@angular/common/locales/es'
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs, 'es');
 const config: SocketIoConfig={
-  url:'http://localhost:4003',
+  url:AppComponent.url,
   options:{}
 }
 @NgModule({
@@ -42,7 +45,7 @@ const config: SocketIoConfig={
 
   ],
   providers: [
-    
+    {provide: LOCALE_ID, useValue:'es'}
   ],
   bootstrap: [AppComponent]
 })

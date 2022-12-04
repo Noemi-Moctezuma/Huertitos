@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 import { WebsocketService } from 'src/app/services/websocket.service';
 
 @Component({
@@ -8,13 +9,39 @@ import { WebsocketService } from 'src/app/services/websocket.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  
-  constructor(private http: HttpClient, public wsService: WebsocketService) {}
-
-  ngOnInit(): void {
+  cultivos:any;
+  public imgs: Array<any> = [
+    'brote',
+    'crecimiento',
+    'floracion',
+    'cosecha'
+  ];
+  public etapas: Array<any> = [
+    'Brote',
+    'Crecimiento',
+    'Floración',
+    'Cosecha'
+  ];
+  constructor(private http: HttpClient, public wsService: WebsocketService) {
   }
 
-}
+  ngOnInit(): void {
+    let  data = {
+      funcion: 'getCultivoFases',
+      id: localStorage.getItem('id')
+    };
+    console.log(data)
+     this.http.post(AppComponent.url+'/api', data, {headers: {"ngrok-skip-browser-warning": "69420"}}).subscribe(response => {
+      this.cultivos = (response)
+      console.log(this.cultivos)
+  });
+  setTimeout(()=>{
+  console.log(this.cultivos)
+    
+  },5000)
+  }
+
+  }
 
 //CODIGO DE LAS GRÁFICAS
 /*

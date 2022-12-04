@@ -55,6 +55,7 @@ router.post('/promedio', (request)=>{
     contador ++ */
 });
 router.post('/api', (request, response)=>{
+    console.log(request.body.funcion) 
   let funcion = request.body.funcion
   let sql =''
   switch ( funcion ) {
@@ -89,8 +90,8 @@ router.post('/api', (request, response)=>{
         let idCultivo = request.body.cultivo
         sql = "INSERT INTO tbl_usuarios_cultivos(id_usuario, id_cultivo) VALUES ('"+id+"','"+idCultivo+"')"
         break;
-    case 'agregarDispositivo':
-            id = request.body.id
+    case 'agregarDispositivo': 
+            id = request.body.id  
             let dispositivo = request.body.dispositivo
             sql = "INSERT INTO tbl_usuarios_dispositivos(id_usuario, dispositivo) VALUES ('"+id+"','"+dispositivo+"')"
             break;
@@ -115,9 +116,17 @@ router.post('/api', (request, response)=>{
     case 'getPromedioBDH':
         sql = "SELECT AVG(valor) hum , month(tiempo) mes FROM tbl_hum GROUP BY month(tiempo)"
         break;   
+    case 'getCultivoFases':
+        let uid = request.body.id
+        sql = "SELECT e.id, c.nombre huerto, e.nombre etapa_actual, es.nombre etapa_siguiente,ec.fecha, adddate(ec.fecha, interval e.duracion_dias day) fecha_sig_etapa, e.duracion_dias, e.orden"
+        +" FROM `tbl_etapas_cultivos` ec inner join tbl_etapas e on e.id = ec.id_etapa "
+        +" inner join tbl_cultivos c on c.id = ec.id_cultivo "
+        +" inner join tbl_etapas es on es.id = (select id from tbl_etapas where id > e.id limit 1) "
+        +" where c.id_usuario = '"+uid+"' order by ec.fecha desc;"  
+        break;
     default: 
     
-        // break;
+        break;
  }
   /* console.log(request.body)
    */

@@ -1,13 +1,10 @@
-.back-img{
-    background-image: url('../../../assets/img/fondo_inicio.png') ;
-    background-size: contain; 
-}
+
 .card{
     background-color: rgba(255, 255, 255, 0.95);
   }
 *{
   outline: 1px solid red!important;
-}
+} 
 
 @media (min-width: 640px) {
     .floracion{
@@ -15,10 +12,34 @@
         width: 120px;
     }
 }
+.brote{
+    background-image: url('../../../assets/img/brote.png') ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 96px;
+    width: 60px;
+}
+.crecimiento{
+    background-image: url('../../../assets/img/crecimiento.png') ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 96px;
+    width: 60px;
+}
 .floracion{
     background-image: url('../../../assets/img/floracion.png') ;
     background-size: contain;
     background-repeat: no-repeat;
     height: 96px;
     width: 60px;
+}
+.cosecha{
+    background-image: url('../../../assets/img/cosecha.png') ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 96px;
+    width: 60px;
+}
+.custom-height{
+    height: calc(93vh - 30px);
 }

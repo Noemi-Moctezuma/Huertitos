@@ -61,11 +61,11 @@ export class PrivateComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.titulo = 'ola';
     
-localStorage.setItem( 'imagenFondo1', '../../assets/img/fondo_inicio_1.png')
-localStorage.setItem( 'imagenFondo2', '../../assets/img/fondo_inicio_2.png')
+//localStorage.setItem( 'imagenFondo1', '../../assets/img/fondo_inicio_1.png')
+//localStorage.setItem( 'imagenFondo2', '../../assets/img/fondo_inicio_2.png')
 
-    document.getElementById("sidenav").style.backgroundImage = 'url(' + localStorage['imagenFondo1'] + ')'
-    document.getElementById("fondo").style.backgroundImage = 'url(' + localStorage['imagenFondo2'] + ')'
+    //document.getElementById("sidenav").style.backgroundImage = 'url(' + localStorage['imagenFondo1'] + ')'
+    //document.getElementById("fondo").style.backgroundImage = 'url(' + localStorage['imagenFondo2'] + ')'
      
   }
 

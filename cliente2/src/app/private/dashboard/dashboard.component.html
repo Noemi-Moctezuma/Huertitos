@@ -1,14 +1,14 @@
 <!-- FONDO -->
-<div class="back-img h-screen flex items-center">
+<div class=" custom-height flex items-center">
     <!-- MARCO BCO -->
     <div class="flex flex-col card h-11/12 w-11/12 mx-auto px-2">
         <!-- TITULO -->
         <div class="py-3 font-bold text-4xl tracking-wider text-center text-black">Inicio</div>
         <!-- TABLE CONTAINER -->
         <div class=" text-black font-semibold flex flex-row sm:flex-col mx-auto sm:mx-0 text-center">
-            <table>
+            <table class="table-auto">
                 <thead>
-                    <tr>
+                    <tr class="border-solid border-b-2 border-black text-lg">
                         <td>
                             Huerto
                         </td>
@@ -27,28 +27,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            Papas
-                        </td>
-                        <td>
-                            Óptimo <span class="fa fa-check-circle text-green-800"></span>
-                        </td>
-                        <td class="">
-                            <div class="floracion mx-auto">
-                                &nbsp;
-                            </div>
-                            <span>Floración</span>
-                        </td>
-                        <td>
-                            <div class="floracion mx-auto">
-                                &nbsp;
-                            </div>
-                            <span>Floración</span>
-                        </td>
-                        <td>
-                            22 de diciembre de 2022
-                        </td>
+                    <tr *ngFor="let cultivo of cultivos" class="border-solid border-b-2 border-black text-base">
+                            <td>
+                                {{cultivo.huerto}}
+                            </td>
+                            <!-- CAMBIAR DEPENDIENDO DEL ESTADO -->
+                            <td>
+                                <div class="bg-verde-estado text-white rounded-lg px-2 py-1">
+                                    Óptimo 
+                                </div>
+                                <span class="text-2xl fa fa-check-circle text-verde-estado"></span>
+                            </td>
+                            <td class="">
+                                <div class="{{imgs[cultivo.orden]}} mx-auto">
+                                    &nbsp;
+                                </div>
+                                <span>{{etapas[cultivo.orden]}}</span>
+                            </td>
+                            <td>
+                                <div class="floracion mx-auto">
+                                    &nbsp;
+                                </div>
+                                <span>Floración</span>
+                            </td>
+                            <td>
+                                {{cultivo.fecha_sig_etapa|date:'longDate'}}
+                            </td>
                     </tr>
                 </tbody>
             </table>

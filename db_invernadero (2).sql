@@ -1,14 +1,12 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-11-2022 a las 05:56:59
--- Versión del servidor: 10.4.18-MariaDB
--- Versión de PHP: 8.0.3
-DROP DATABASE db_invernadero;
-CREATE DATABASE IF NOT EXISTS db_invernadero;
-USE db_invernadero; 
+-- Tiempo de generación: 04-12-2022 a las 07:47:43
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.33
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -22,6 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_invernadero`
 --
+DROP DATABASE IF EXISTS db_invernadero; 
+CREATE DATABASE IF NOT EXISTS `db_invernadero` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `db_invernadero`;
 
 -- --------------------------------------------------------
 
@@ -29,13 +30,15 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `tbl_bounds`
 --
 
-CREATE TABLE `tbl_bounds` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_bounds`;
+CREATE TABLE IF NOT EXISTS `tbl_bounds` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sensor` varchar(66) NOT NULL,
   `limite_superior` int(11) NOT NULL,
   `limite_inferior` int(11) NOT NULL,
-  `id_cultivo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_cultivo` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_bounds`
@@ -51,19 +54,103 @@ INSERT INTO `tbl_bounds` (`id`, `sensor`, `limite_superior`, `limite_inferior`, 
 -- Estructura de tabla para la tabla `tbl_cultivos`
 --
 
-CREATE TABLE `tbl_cultivos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_cultivos`;
+CREATE TABLE IF NOT EXISTS `tbl_cultivos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(128) NOT NULL,
-  `imagen` varchar(56) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_tipo` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `fecha_siembra` date NOT NULL,
+  `dispositivo` varchar(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_cult` (`id_usuario`),
+  KEY `fk_tipo` (`id_tipo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_cultivos`
 --
 
-INSERT INTO `tbl_cultivos` (`id`, `nombre`, `imagen`) VALUES
-(1, 'maiz', 'maiz.png'),
-(2, 'trigo', 'trigo.png');
+INSERT INTO `tbl_cultivos` (`id`, `nombre`, `id_tipo`, `id_usuario`, `fecha_siembra`, `dispositivo`) VALUES
+(1, 'chile', 2, 1, '2022-11-09', '0'),
+(2, 'jitomatess', 3, 1, '2022-11-03', '0'),
+(3, 'Papas de Rodrigo', 1, 2, '2022-12-03', 'test');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_cultivos_sensores`
+--
+
+DROP TABLE IF EXISTS `tbl_cultivos_sensores`;
+CREATE TABLE IF NOT EXISTS `tbl_cultivos_sensores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_sensores` int(11) NOT NULL,
+  `id_cultivos` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_etapas`
+--
+
+DROP TABLE IF EXISTS `tbl_etapas`;
+CREATE TABLE IF NOT EXISTS `tbl_etapas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tipo_vegetal` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` varchar(540) NOT NULL,
+  `duracion_dias` int(11) NOT NULL,
+  `orden` int(2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tv` (`id_tipo_vegetal`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_etapas`
+--
+
+INSERT INTO `tbl_etapas` (`id`, `id_tipo_vegetal`, `nombre`, `descripcion`, `duracion_dias`, `orden`) VALUES
+(1, 1, 'Etapa vegetativa', 'Inicia con el rompimiento de la latencia de la semilla y termina con el inicio de la formación de tubérculos, variando de 15 hasta 30 días dependiendo de las condiciones climáticas y edáficas donde se establezca el cultivo.', 22, 1),
+(2, 1, 'Tuberización', 'Inicia cuando los estolones aparecen y varía entre 10 y 14 días. Un déficit de humedad en esta etapa puede reducir el número de tubérculos producidos por cada planta.', 12, 2),
+(5, 1, 'Desarrollo de tubérculos', 'Se caracteriza por la acumulación de carbohidratos (en forma de almidón), con un incremento constante en el tamaño y peso de los tubérculos bajo condiciones óptimas de humedad. Esta etapa puede durar de 60 a 90 días dependiendo del clima y sanidad del cultivo, ya que la humedad tiene una relación directa con el tamaño y calidad de los tubérculos, principalmente a mediados de la tuberización la cual se presenta de 3 a 6 semanas después de su inicio.', 75, 3),
+(6, 1, 'Maduración', 'Empieza con la caída del follaje, donde las hojas viejas se tornan amarillas hasta llegar gradualmente a un color café al madurar. Tiene lugar un crecimiento mínimo de los tubérculos y los requerimientos hídricos van disminuyendo por la reducida evapotranspiración de las hojas en el proceso de secado', 21, 4),
+(7, 2, 'Germinación y emergencia', 'Esta fase es más rápida cuando la temperatura es mayor. Durante el período entre la germinación y la emergencia de la semilla, emerge primeramente una raíz pivotante y las hojas cotiledonales, luego el crecimiento de la parte aérea procede muy lentamente. Cualquier daño que ocurra durante este período tiene consecuencias letales.', 9, 1),
+(8, 2, 'Crecimiento de la plántula', 'Crecimiento lento de la parte aérea, mientras la planta sigue desarrollando el sistema radicular, es decir, alargando y profundizando la raíz pivotante y empezando a producir algunas raíces secundarias laterales.\r\nLa tolerancia de la planta a los daños empieza a aumentarse, pero todavía se considera que es muy susceptible a cualquier daño externo o mal cuidado.\r\n', 0, 2),
+(9, 2, 'Crecimiento vegetativo', 'A partir de la producción de la sexta a la octava hoja, la tasa de crecimiento del sistema radicular se reduce gradualmente; en cambio la del follaje y de los tallos se incrementa, las hojas alcanzan el máximo tamaño, el tallo principal se bifurca y a medida que la planta crece, ambos tallos se ramifican. La tasa máxima de crecimiento se alcanza durante tal período y luego disminuye gradualmente a medida que la planta entra en etapa de floración y fructificación, y los frutos en desarrollo empiezan a acumular los productos de la fotos', 0, 3),
+(10, 2, 'Floración y fructificación', 'El chile dulce produce abundantes flores terminales en la mayoría de las ramas, aunque debido al tipo de ramificación de la planta, parece que fueran producidas en pares en las axilas de las hojas superiores. El período de floración se prolonga hasta que la carga de frutos cuajados corresponda a la capacidad de madurarlos que tenga la planta. Bajo condiciones óptimas, la mayoría de las primeras flores produce fruto, luego ocurre un período durante el cual la mayoría de las flores aborta. A medida que los frutos crecen, se inhibe el cr', 0, 4),
+(11, 3, 'Desarrollo del semillero', 'Periodo de formación inicial', 42, 1),
+(12, 3, 'Crecimiento vegetativo', 'Comienza su desarrollo continuo', 40, 2),
+(13, 3, 'Floración e inicio del cuaje', 'El cuaje tiene lugar cuando la flor es fecundada y empieza el proceso de su transformación en fruto.', 30, 3),
+(15, 3, 'Maduración de la fruta', 'La maduración dependerá de la nutrición y las condiciones climáticas.', 80, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_etapas_cultivos`
+--
+
+DROP TABLE IF EXISTS `tbl_etapas_cultivos`;
+CREATE TABLE IF NOT EXISTS `tbl_etapas_cultivos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_etapa` int(11) NOT NULL,
+  `id_cultivo` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_etapa` (`id_etapa`),
+  KEY `fk_cultivo` (`id_cultivo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_etapas_cultivos`
+--
+
+INSERT INTO `tbl_etapas_cultivos` (`id`, `id_etapa`, `id_cultivo`, `fecha`) VALUES
+(1, 1, 3, '2022-12-05'),
+(2, 7, 1, '2022-12-03'),
+(3, 11, 2, '2022-12-03');
 
 -- --------------------------------------------------------
 
@@ -71,12 +158,14 @@ INSERT INTO `tbl_cultivos` (`id`, `nombre`, `imagen`) VALUES
 -- Estructura de tabla para la tabla `tbl_hum`
 --
 
-CREATE TABLE `tbl_hum` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_hum`;
+CREATE TABLE IF NOT EXISTS `tbl_hum` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `valor` int(10) NOT NULL,
   `tiempo` date NOT NULL,
-  `sensor` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `sensor` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_hum`
@@ -98,11 +187,13 @@ INSERT INTO `tbl_hum` (`id`, `valor`, `tiempo`, `sensor`) VALUES
 -- Estructura de tabla para la tabla `tbl_prueba`
 --
 
-CREATE TABLE `tbl_prueba` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_prueba`;
+CREATE TABLE IF NOT EXISTS `tbl_prueba` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `valor` int(11) NOT NULL,
-  `mes` varchar(12) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `mes` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_prueba`
@@ -120,12 +211,14 @@ INSERT INTO `tbl_prueba` (`id`, `valor`, `mes`) VALUES
 -- Estructura de tabla para la tabla `tbl_sun`
 --
 
-CREATE TABLE `tbl_sun` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_sun`;
+CREATE TABLE IF NOT EXISTS `tbl_sun` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `valor` int(11) NOT NULL,
   `tiempo` datetime NOT NULL,
-  `sensor` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `sensor` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=774 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_sun`
@@ -912,12 +1005,14 @@ INSERT INTO `tbl_sun` (`id`, `valor`, `tiempo`, `sensor`) VALUES
 -- Estructura de tabla para la tabla `tbl_temp`
 --
 
-CREATE TABLE `tbl_temp` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_temp`;
+CREATE TABLE IF NOT EXISTS `tbl_temp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `valor` int(11) NOT NULL,
   `tiempo` datetime NOT NULL,
-  `sensor` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `sensor` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=784 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_temp`
@@ -1711,32 +1806,67 @@ INSERT INTO `tbl_temp` (`id`, `valor`, `tiempo`, `sensor`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tbl_tipo_vegetal`
+--
+
+DROP TABLE IF EXISTS `tbl_tipo_vegetal`;
+CREATE TABLE IF NOT EXISTS `tbl_tipo_vegetal` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(128) NOT NULL,
+  `r_inf_temp` int(3) NOT NULL,
+  `r_sup_temp` int(3) NOT NULL,
+  `r_inf_luz` int(3) NOT NULL,
+  `r_sup_luz` int(3) NOT NULL,
+  `r_inf_hum` int(3) NOT NULL,
+  `r_sup_hum` int(3) NOT NULL,
+  `dificultad` varchar(255) NOT NULL,
+  `clima` varchar(255) NOT NULL,
+  `referencia` varchar(255) NOT NULL,
+  `img` varchar(56) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_tipo_vegetal`
+--
+
+INSERT INTO `tbl_tipo_vegetal` (`id`, `nombre`, `r_inf_temp`, `r_sup_temp`, `r_inf_luz`, `r_sup_luz`, `r_inf_hum`, `r_sup_hum`, `dificultad`, `clima`, `referencia`, `img`) VALUES
+(1, 'papa', 15, 20, 0, 0, 60, 80, 'fácil', 'de buen drenaje y ventilación', 'Intagri S.C', ''),
+(2, 'chile', 18, 30, 0, 0, 50, 60, 'fácil', 'cálido', 'SAGARPA', ''),
+(3, 'jitomate', 20, 40, 0, 0, 75, 100, 'fácil', 'cálido', 'SAGARPA', '');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tbl_usuarios`
 --
 
-CREATE TABLE `tbl_usuarios` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_usuarios`;
+CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(128) NOT NULL,
   `apellido_paterno` varchar(128) NOT NULL,
   `apellido_materno` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
   `password` varchar(254) NOT NULL,
   `telefono` varchar(10) NOT NULL,
-  `ocupacion` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ocupacion` varchar(128) NOT NULL,
+  `edad` int(3) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_usuarios`
 --
 
-INSERT INTO `tbl_usuarios` (`id`, `nombre`, `apellido_paterno`, `apellido_materno`, `email`, `password`, `telefono`, `ocupacion`) VALUES
-(1, 'Noemi m', 'Granados m', 'Moctezuma m', 'noemi@mail.com', 'e10adc3949ba59abbe56e057f20f883e', '4151252544', 'Granjera m'),
-(2, 'Rodrigo', 'Zapatero', 'Ortíz2', 'rodrigo@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', '4159876543', 'Granjero'),
-(22, 'Alma Luz', 'Granados', 'Moctezuma', 'alma@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '4151080553', 'Granjera'),
-(35, 'ww', '', '', '', 'd41d8cd98f00b204e9800998ecf8427e', '', ''),
-(36, '2asd', '2asd', '2asd', '2asd', 'c81e728d9d4c2f636f067f89cc14862c', '4151252544', '2asd'),
-(37, 'Pedro', 'Gonzalez', 'Ram', 'pedleo93@gmail.com', '202cb962ac59075b964b07152d234b70', '4151408682', 'Programador'),
-(38, 'Lizbeth1', 'Chavarria', 'Guerrero', 'l.cagl040716@itses.edu.mx', '827ccb0eea8a706c4c34a16891f84e7b', '4151232344', 'Granjera');
+INSERT INTO `tbl_usuarios` (`id`, `nombre`, `apellido_paterno`, `apellido_materno`, `email`, `password`, `telefono`, `ocupacion`, `edad`) VALUES
+(1, 'Noemi m', 'Granados m', 'Moctezuma m', 'noemi@mail.com', 'e10adc3949ba59abbe56e057f20f883e', '4151252544', 'Granjera m', 22),
+(2, 'Rodrigo', 'Zapatero', 'Ortíz2', 'rodrigo@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', '4159876543', 'Granjero', 20),
+(22, 'Alma Luz', 'Granados', 'Moctezuma', 'alma@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '4151080553', 'Granjera', 19),
+(35, 'ww', '', '', '', 'd41d8cd98f00b204e9800998ecf8427e', '', '', 23),
+(36, '2asd', '2asd', '2asd', '2asd', 'c81e728d9d4c2f636f067f89cc14862c', '4151252544', '2asd', 21),
+(37, 'Pedro', 'Gonzalez', 'Ram', 'pedleo93@gmail.com', '202cb962ac59075b964b07152d234b70', '4151408682', 'Programador', 22),
+(38, 'Lizbeth1', 'Chavarria', 'Guerrero', 'l.cagl040716@itses.edu.mx', '827ccb0eea8a706c4c34a16891f84e7b', '4151232344', 'Granjera', 22);
 
 -- --------------------------------------------------------
 
@@ -1744,11 +1874,13 @@ INSERT INTO `tbl_usuarios` (`id`, `nombre`, `apellido_paterno`, `apellido_matern
 -- Estructura de tabla para la tabla `tbl_usuarios_cultivos`
 --
 
-CREATE TABLE `tbl_usuarios_cultivos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_usuarios_cultivos`;
+CREATE TABLE IF NOT EXISTS `tbl_usuarios_cultivos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
-  `id_cultivo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_cultivo` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_usuarios_cultivos`
@@ -1769,7 +1901,6 @@ INSERT INTO `tbl_usuarios_cultivos` (`id`, `id_usuario`, `id_cultivo`) VALUES
 (33, 38, 1),
 (34, 38, 2),
 (35, 2, 2),
-(36, 0, 1),
 (37, 35, 2);
 
 -- --------------------------------------------------------
@@ -1778,11 +1909,13 @@ INSERT INTO `tbl_usuarios_cultivos` (`id`, `id_usuario`, `id_cultivo`) VALUES
 -- Estructura de tabla para la tabla `tbl_usuarios_dispositivos`
 --
 
-CREATE TABLE `tbl_usuarios_dispositivos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_usuarios_dispositivos`;
+CREATE TABLE IF NOT EXISTS `tbl_usuarios_dispositivos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
-  `dispositivo` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `dispositivo` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_usuarios_dispositivos`
@@ -1795,120 +1928,28 @@ INSERT INTO `tbl_usuarios_dispositivos` (`id`, `id_usuario`, `dispositivo`) VALU
 (5, 38, '');
 
 --
--- Índices para tablas volcadas
+-- Restricciones para tablas volcadas
 --
 
 --
--- Indices de la tabla `tbl_bounds`
---
-ALTER TABLE `tbl_bounds`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `tbl_cultivos`
+-- Filtros para la tabla `tbl_cultivos`
 --
 ALTER TABLE `tbl_cultivos`
-  ADD PRIMARY KEY (`id`);
+  ADD CONSTRAINT `fk_tipo` FOREIGN KEY (`id_tipo`) REFERENCES `tbl_tipo_vegetal` (`id`),
+  ADD CONSTRAINT `fk_user_cult` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_usuarios` (`id`);
 
 --
--- Indices de la tabla `tbl_hum`
+-- Filtros para la tabla `tbl_etapas`
 --
-ALTER TABLE `tbl_hum`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `tbl_etapas`
+  ADD CONSTRAINT `fk_tv` FOREIGN KEY (`id_tipo_vegetal`) REFERENCES `tbl_tipo_vegetal` (`id`);
 
 --
--- Indices de la tabla `tbl_prueba`
+-- Filtros para la tabla `tbl_etapas_cultivos`
 --
-ALTER TABLE `tbl_prueba`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `tbl_sun`
---
-ALTER TABLE `tbl_sun`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `tbl_temp`
---
-ALTER TABLE `tbl_temp`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `tbl_usuarios`
---
-ALTER TABLE `tbl_usuarios`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `tbl_usuarios_cultivos`
---
-ALTER TABLE `tbl_usuarios_cultivos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `tbl_usuarios_dispositivos`
---
-ALTER TABLE `tbl_usuarios_dispositivos`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `tbl_bounds`
---
-ALTER TABLE `tbl_bounds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `tbl_cultivos`
---
-ALTER TABLE `tbl_cultivos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `tbl_hum`
---
-ALTER TABLE `tbl_hum`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `tbl_prueba`
---
-ALTER TABLE `tbl_prueba`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `tbl_sun`
---
-ALTER TABLE `tbl_sun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=774;
-
---
--- AUTO_INCREMENT de la tabla `tbl_temp`
---
-ALTER TABLE `tbl_temp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=784;
-
---
--- AUTO_INCREMENT de la tabla `tbl_usuarios`
---
-ALTER TABLE `tbl_usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
---
--- AUTO_INCREMENT de la tabla `tbl_usuarios_cultivos`
---
-ALTER TABLE `tbl_usuarios_cultivos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
-
---
--- AUTO_INCREMENT de la tabla `tbl_usuarios_dispositivos`
---
-ALTER TABLE `tbl_usuarios_dispositivos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `tbl_etapas_cultivos`
+  ADD CONSTRAINT `fk_cultivo` FOREIGN KEY (`id_cultivo`) REFERENCES `tbl_cultivos` (`id`),
+  ADD CONSTRAINT `fk_etapa` FOREIGN KEY (`id_etapa`) REFERENCES `tbl_etapas` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,21 +1,23 @@
 
-<div [class.example-is-mobile]="mobileQuery.matches"  >
+<div [class.example-is-mobile]="mobileQuery.matches" id="ss" style="    background-image: url(../../assets/img/fondo_inicio_1.png);
+background-size: cover;
+" >
 	<!-- HEADER -->
 	<!--      <app-header [titulo]="titulo" ></app-header>
  -->
  
 
 	<mat-sidenav-container  autosize >
-		<mat-sidenav class = "barra-lateral" id="sidenav" disableClose class="border-0 " opened 
+		<mat-sidenav class = "barra-lateral bg-transparent" id="sidenav" disableClose class="border-0 " opened 
 		#snav [mode]="mobileQuery.matches ? 'over' : 'side'"
 			[fixedInViewport]="mobileQuery.matches"
 			 >
-<div>
-<div class="barra-superior" style="margin-left: 30px;" >
+<div >
+<div class="barra-superior " style="margin-left: 30px;" >
 <img src="../../assets/img/logos/logo-completo-color.png" style="height: 8vh; ">
 	
 </div>
-			<mat-nav-list  class="fondo-verde">
+			<mat-nav-list  class="fondo-verde bg-transparent">
 				<!-- profile info -->
 				
 				<div *ngIf="isMaximized == false">
@@ -79,7 +81,7 @@
 </div>
 			
 		</mat-sidenav>
-			<mat-sidenav-content id = "fondo" class="contenido" >
+			<mat-sidenav-content id = "fondo" class="contenido bg-transparent" >
 				
 						
 							  <div class="barra-superior" style="margin-right:30px">
