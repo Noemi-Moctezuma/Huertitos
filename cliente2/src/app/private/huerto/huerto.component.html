@@ -1,69 +1,49 @@
+<div class="sm:p-4 p-2">
 
- <div class="container fondo ">
-             
-    <div class="container  xl:max-w-6xl mx-auto p-7 bg-2paleta h-auto">
-        <div class="container  grid-rows-2 items-center justify-center">
-
-    <div class="">
-      <h2 class="titulo">{{titulo}}</h2>
-      
-     
-     
-      <div class="subtitulo">
-
-        Datos en tiempo real
-      </div>
-      <br>
+  <div class="  xl:max-w-6xl sm:w-full w-auto mx-auto  bg-2paleta h-auto">
+    <div class="  grid-rows-2 items-center justify-center">
+        <div class="pb-3 font-bold text-3xl tracking-wider text-center text-black">{{titulo}}</div>
+        <div class="text-lg text-black pt-4 pb-3 mt-2">
+          Datos en tiempo real
+        </div>
         <div class="grid gap- datos">
-            <div  class="cardDato" style="background-color: #F01212; color: white;">
-Temperatura:
-<br>
-<a href="">{{temperatura}}</a>
-            </div>
-            <div  class="cardDato" style="background-color: #FFDA1A;">
-Luz:
-<br>
-<a href="">{{sol}}</a>
-            </div>
-            <div class="cardDato" style="background-color: #1763D4; color: white;">
-Humedad:
-<br>
-<a href=""> {{humedad}}</a>
-            </div>
-            
-          <br>
-          <div class="subtitulo">
+          <div class="cardDato" style="background-color: #F01212; color: white;">
+            Temperatura:
+            <br>
+            <a href="">{{temperatura}}</a>
+          </div>
+          <div class="cardDato" style="background-color: #FFDA1A;">
+            Luz:
+            <br>
+            <a href="">{{sol}}</a>
+          </div>
+          <div class="cardDato" style="background-color: #1763D4; color: white;">
+            Humedad:
+            <br>
+            <a href=""> {{humedad}}</a>
+          </div>
 
+          <br>
+          <div class="text-lg text-black pt-4 pb-3 mt-2">
             Etapas del cultivo
           </div>
           <br>
 
-<!--Calendario con eventos-->
+          <!--Calendario con eventos-->
 
-<div class="calendario">
-    <full-calendar [options]="calendarOptions"></full-calendar>
-</div>
-<!--fin-->
+          <div class="calendario">
+            <full-calendar [options]="calendarOptions"></full-calendar>
           </div>
-
-         </div>
+          <!--fin-->
         </div>
     </div>
+  </div>
 
-   
-
-    <div class=" col-span-2  px-2 bg-white rounded flex justify-center">
-        <div style="display:block;  width: 100%;" class="bg-white rounded">
-            <canvas
-            baseChart
-            width="3" 
-            height="2"
-            [options]="optionsMes"
-            [datasets]="lineChartPromedio"
-            [labels]="labelsPromedio"
-            type="line"
-            ></canvas>
-        </div>
+  <div class=" col-span-2  px-2 bg-white rounded flex justify-center">
+    <div style="display:block;  width: 100%;" class="bg-white rounded">
+      <canvas baseChart width="3" height="2" [options]="optionsMes" [datasets]="lineChartPromedio"
+        [labels]="labelsPromedio" type="line"></canvas>
     </div>
-    
+  </div>
+
 </div>

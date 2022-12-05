@@ -1,32 +1,36 @@
+<div class="  ">
 
- <div class="container fondo ">
-             
-    <div class="container  xl:max-w-6xl mx-auto p-7 bg-2paleta h-auto">
-        <div class="container  grid-rows-2 items-center justify-center">
+    <div class="  xl:max-w-6xl sm:w-full w-auto mx-auto sm:p-4 p-2 bg-2paleta h-auto">
+        <div class="  grid-rows-2 items-center justify-center">
 
-    <div class="px-12 pt-10 container justify-center">
-      <h2 class="titulo">Mis Huertos</h2>
-        <div class="grid gap-5 columnas">
-            <div   *ngFor="let cultivo of cultivos; index as i;"  >
-                <mat-card  class="bg-white  card  text-black font-semibold  text-center border-4 border-black">
-                    <div class="container bg-white ">
+            <div class=" ">
+                <div class="pb-3 font-bold text-3xl tracking-wider text-center text-black">Mis Huertos</div>
+                <div class="grid gap-5 columnas justify-items-center mt-8">
+                    <div *ngFor="let cultivo of cultivos; index as i;">
+                        <mat-card class="bg-white  cursor-pointer card  text-black font-semibold  
+                        text-center border-4 border-black h-5/6 " href="/private/huerto"  (click)="huertoClick(cultivo.id) ">
+                        <a  href="/private/huerto">
+                            <div class="container bg-white ">
 
-                        <img src='../../../assets/img/{{cultivo.img}}' >
+                                <img src='../../../assets/img/{{cultivo.img}}'>
+                            </div>
+                            <p class=" nombre text-">
+                                {{cultivo.nombre}}
+                            </p>
+                        </a>
+           
+                        </mat-card>
+
                     </div>
-                    <p class=" nombre text-">
-                        {{cultivo.nombre}}
-                    </p>
-                </mat-card>
-                        
-            </div>
-            <mat-card  class="bg-white  card text-blackfont-semibold text-center border-4 border-black">
-                <div class="container object-center">
+                    <mat-card class="bg-white  cursor-pointer card text-black font-semibold text-center border-4 border-black">
+                        <div class="container object-center">
 
-                    <img src='assets/img/add_huerto.svg' class="object-center" (click)="abrirDialogAddCultivo()" >
+                            <img src='assets/img/add_huerto.svg' class="object-center"
+                                (click)="abrirDialogAddCultivo()">
+                        </div>
+                    </mat-card>
                 </div>
-            </mat-card>
-          </div>
-         </div>
+            </div>
         </div>
     </div>
 </div>

@@ -31,7 +31,6 @@ export class PrivateComponent implements OnInit, OnDestroy {
 
 
   private _mobileQueryListener: () => void;
-  isMaximized: boolean;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef, 
@@ -93,23 +92,6 @@ export class PrivateComponent implements OnInit, OnDestroy {
     this.ocupacion=data2[0]['ocupacion']
     })
   };
-  minimize(isMaximized: boolean) {
-    let list = document.getElementsByClassName('mat-list-base');
-    let sidenav = document.getElementById('sidenav')
-    //minimize sidenav when clicking the button if sidenav is maximized
-    if(isMaximized) {
-      for (let i = 0; i < list.length; i++) {
-        list[i].classList.add('mat-list-minimize');
-        //console.log(i);
-      }
-    }else {
-      for (let i = 0; i < list.length; i++) {
-        list[i].classList.remove('mat-list-minimize');
-        //console.log(i);
-      }
-    }
-    this.isMaximized = !isMaximized;
-  }
   getCultivosUsuario() {
     console.log(localStorage['id'])
     let  data = {

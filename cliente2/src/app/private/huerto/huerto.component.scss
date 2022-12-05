@@ -1,31 +1,11 @@
-.fondo{
-    background-color: white;
-    opacity: .95;
-    color:#021701;
-    width: auto;
-    margin: 30px;
-    height:calc(90vh - 90px);
-    
-	overflow-y: scroll;
-    justify-content: center;
-}
-.titulo{
-    color: #021701;
-    justify-self: center;
-}
 .datos{
-    
     grid-template-columns: repeat(3, minmax(0, 1fr));
-
 }
-
 .cardDato{
     margin-left: 3vw;
     margin-right: 3vh;
-    
   display: flex;
   justify-content: center;
-  
   font-size:calc(1.5vw);
   line-height:1vw;
   padding: 10px;
@@ -40,12 +20,7 @@
     background-color: white;
     color: black;
 }
-.subtitulo{
-    
-    margin-top: 8vh;
-    margin-bottom: 5vh;
-    font-size: 3vmin;
-}
+
 .grafica{
     background-size: 40%; 
     background-position-x: 50px;
@@ -60,8 +35,7 @@
     display: grid;
     grid-template-columns: minmax(10rem, .75fr) minmax(0, 1fr) minmax(0, 1fr) 
 }
-/* hr.solid {
-    border-top: 3px solid #bbb;
-    width: 100%
-  } */
 
+/*   *{
+    outline: 1px solid red!important;
+  }  */

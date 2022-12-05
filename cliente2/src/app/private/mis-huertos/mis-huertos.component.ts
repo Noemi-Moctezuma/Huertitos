@@ -45,7 +45,12 @@ export class MisHuertosComponent implements OnInit {
     });
 
   }
-  
+  huertoClick(id:any){
+    // let huertoElegido = document.getElementById('huertoElegido') as HTMLInputElement 
+    localStorage.setItem('id_huerto', id)
+    console.log(id);
+     
+   }
   abrirDialogAddCultivo(){
     console.log('abrio desde imagen')
     
