@@ -23,18 +23,8 @@ export class PrivateComponent implements OnInit, OnDestroy {
   ocupacion:String;
   titulo: string = '';
   fondo:string='';
-  /* fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
-  fillerContent = Array.from(
-    { length: 50 },
-    () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
-  );
- */
+
   private _mobileQueryListener: () => void;
 
   constructor(
@@ -53,20 +43,12 @@ export class PrivateComponent implements OnInit, OnDestroy {
 
 
       this.getUser()
-      this.mobileQuery = media.matchMedia('(max-width: 600px)');
+      this.mobileQuery = media.matchMedia('(max-width: 640px)');
       this._mobileQueryListener = () => changeDetectorRef.detectChanges();
       this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit(): void {
-    this.titulo = 'ola';
-    
-//localStorage.setItem( 'imagenFondo1', '../../assets/img/fondo_inicio_1.png')
-//localStorage.setItem( 'imagenFondo2', '../../assets/img/fondo_inicio_2.png')
-
-    //document.getElementById("sidenav").style.backgroundImage = 'url(' + localStorage['imagenFondo1'] + ')'
-    //document.getElementById("fondo").style.backgroundImage = 'url(' + localStorage['imagenFondo2'] + ')'
-     
   }
 
   ngOnDestroy(): void {
@@ -92,25 +74,6 @@ export class PrivateComponent implements OnInit, OnDestroy {
     this.email=data2[0]['email']
     this.telefono=data2[0]['telefono']
     this.ocupacion=data2[0]['ocupacion']
-
     })
   };
-  minimize(isMaximized: boolean) {
-    let list = document.getElementsByClassName('mat-list-base');
-    let sidenav = document.getElementById('sidenav')
-    //minimize sidenav when clicking the button if sidenav is maximized
-    if(isMaximized) {
-      for (let i = 0; i < list.length; i++) {
-        list[i].classList.add('mat-list-minimize');
-        //console.log(i);
-      }
-    }else {
-      for (let i = 0; i < list.length; i++) {
-        list[i].classList.remove('mat-list-minimize');
-        //console.log(i);
-      }
-    }
-    this.isMaximized = !isMaximized;
-  }
-
 }

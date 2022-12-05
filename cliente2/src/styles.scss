@@ -7,9 +7,14 @@ h4 {margin: 0 !important;}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 mat-dialog-container {
-    background-color: #D3D7A2 !important;
+    background-color: unset !important;
   }
-  
 .mat-drawer, .mat-drawer-container{
-  background-color: transparent;
+  background-color: #021701;
+}
+.mat-toolbar{
+  height: unset;
+}
+.mat-drawer, .mat-sidenav ,mat-drawer-opened ,mat-drawer-over ,mat-sidenav-fixed{
+  height: calc(100vh - 10rem) ;
 }

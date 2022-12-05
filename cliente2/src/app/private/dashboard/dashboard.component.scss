@@ -1,10 +1,11 @@
 
 .card{
     background-color: rgba(255, 255, 255, 0.95);
+    width: fit-content;
   }
-*{
+/* *{
   outline: 1px solid red!important;
-} 
+}  */
 
 @media (min-width: 640px) {
     .floracion{
@@ -39,7 +40,4 @@
     background-repeat: no-repeat;
     height: 96px;
     width: 60px;
-}
-.custom-height{
-    height: calc(93vh - 30px);
 }

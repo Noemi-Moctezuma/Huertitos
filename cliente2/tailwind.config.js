@@ -10,6 +10,8 @@ module.exports = {
         'verde-oscuro-btn': '#345C06',
         'verde-oscuro-hover': '#476327',
         'verde-oscuro-transparencia': 'rgb(2, 23, 1, .95)',
+        'fondo-verde': 'rgb(2, 23, 1)',
+        'fondo-verde-active': '#0FB007',
         'blanco': '#ffffff',
         'verde-oscuro-margen': '#081F08',
         'negro': '#000000',
