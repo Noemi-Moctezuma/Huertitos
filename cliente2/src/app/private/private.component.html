@@ -56,12 +56,12 @@ background-size: cover;
 
 					<div  class="links" *ngFor="let cultivo of cultivos; index as i;"  >
 								
-						<p class=" nombre text-">
-							
-						</p>
-						<a id="huertoElegido"  href="/private/huerto"  (click)="huertoClick(cultivo.id)"> {{cultivo.nombre}}</a>
-							
-				</div>
+									<p class=" nombre text-">
+										
+									</p>
+									<a id="huertoElegido"  href="/private/huerto"  (click)="huertoClick(cultivo.id)"> {{cultivo.nombre}}</a>
+										
+							</div>
 
 					<a  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
 						<mat-list-item [ngClass]="perfil.isActive? 'bg-fondo-verde-active':''" >
