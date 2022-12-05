@@ -1,3 +1,4 @@
+<div class="sm:p-4 p-2">
 
  <div class="container  ">
              
@@ -34,36 +35,27 @@ Humedad:
           <br>
           <div class="text-black subtitulo">
 
+          <br>
+          <div class="text-lg text-black pt-4 pb-3 mt-2">
             Etapas del cultivo
           </div>
           <br>
 
-<!--Calendario con eventos-->
+          <!--Calendario con eventos-->
 
-<div class="calendario">
-    <full-calendar [options]="calendarOptions"></full-calendar>
-</div>
-<!--fin-->
+          <div class="calendario">
+            <full-calendar [options]="calendarOptions"></full-calendar>
           </div>
-
-         </div>
+          <!--fin-->
         </div>
     </div>
+  </div>
 
-   
-
-    <div class=" col-span-2  px-2 bg-white rounded flex justify-center">
-        <div style="display:block;  width: 100%;" class="bg-white rounded">
-            <canvas
-            baseChart
-            width="3" 
-            height="2"
-            [options]="optionsMes"
-            [datasets]="lineChartPromedio"
-            [labels]="labelsPromedio"
-            type="line"
-            ></canvas>
-        </div>
+  <div class=" col-span-2  px-2 bg-white rounded flex justify-center">
+    <div style="display:block;  width: 100%;" class="bg-white rounded">
+      <canvas baseChart width="3" height="2" [options]="optionsMes" [datasets]="lineChartPromedio"
+        [labels]="labelsPromedio" type="line"></canvas>
     </div>
-    
+  </div>
+
 </div>

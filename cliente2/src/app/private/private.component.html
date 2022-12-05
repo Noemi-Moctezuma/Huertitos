@@ -6,7 +6,7 @@ background-size: cover;
 
 	<mat-toolbar style="background-color: rgba(255, 255, 255, 0.95); ;" class="example-toolbar flex justify-between">
 		<!-- primer bloque -->
-		<div class="flex items-center">
+		<div class="flex items-center" overflow-none>
 			<button mat-icon-button (click)="snav.toggle(); hide()" class="m-2 bg-verde-oscuro-transparencia">
 				<mat-icon>menu</mat-icon>
 			</button>
@@ -29,24 +29,23 @@ background-size: cover;
 		</div>
 	</mat-toolbar>
 	<!-- BARRA LATERAL -->
-	<mat-sidenav-container class="example-sidenav-container " 
-		[style.marginTop.px]="mobileQuery.matches ? 128 : 0">
+	<mat-sidenav-container class="example-sidenav-container " [style.marginTop.px]="mobileQuery.matches ? 128 : 0">
 		<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
 			fixedTopGap="128" class="bg-fondo-verde" id="sidenav">
 			<!-- LISTA MENÚ -->
 
-			<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full" >
+			<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
 				<mat-nav-list class="text-slate-800">
 
 					<a routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
-						<mat-list-item  [ngClass]="dashboard.isActive? 'bg-fondo-verde-active':''">
+						<mat-list-item [ngClass]="dashboard.isActive? 'bg-fondo-verde-active':''">
 							<mat-icon matListIcon>dashboard
 							</mat-icon>
 							<span matLine class="self-start">Inicio</span>
 						</mat-list-item>
 					</a>
 
-					<a  routerLinkActive #mis_huertos="routerLinkActive" routerLink="/private/mis-huertos" >
+					<a routerLinkActive #mis_huertos="routerLinkActive" routerLink="/private/mis-huertos">
 						<mat-list-item [ngClass]="mis_huertos.isActive? 'bg-fondo-verde-active':''">
 							<mat-icon matListIcon>dashboard
 							</mat-icon>
@@ -63,9 +62,9 @@ background-size: cover;
 										
 							</div>
 
-					<a  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
-						<mat-list-item [ngClass]="perfil.isActive? 'bg-fondo-verde-active':''" >
-							<mat-icon matListIcon >face</mat-icon>
+					<a routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
+						<mat-list-item [ngClass]="perfil.isActive? 'bg-fondo-verde-active':''">
+							<mat-icon matListIcon>face</mat-icon>
 							<span matLine class="self-start">Perfil</span>
 						</mat-list-item>
 					</a>
@@ -77,7 +76,7 @@ background-size: cover;
 		</mat-sidenav>
 		<!-- CONTENIDO -->
 		<mat-sidenav-content style="background-color: rgba(255, 255, 255, 0.95);">
-			<router-outlet ></router-outlet>
+			<router-outlet></router-outlet>
 		</mat-sidenav-content>
 	</mat-sidenav-container>
 </div>

@@ -182,6 +182,14 @@ INSERT INTO `tbl_hum` (`id`, `valor`, `tiempo`, `sensor`) VALUES
 (8, 1010, '2022-11-01', 'TS-001');
 
 -- --------------------------------------------------------
+CREATE TABLE `tbl_mis_huertos` (
+  `id` int(11) NOT NULL,
+  `nombre_huerto` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_tipo_vegetal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tbl_prueba`
@@ -1831,9 +1839,9 @@ CREATE TABLE IF NOT EXISTS `tbl_tipo_vegetal` (
 --
 
 INSERT INTO `tbl_tipo_vegetal` (`id`, `nombre`, `r_inf_temp`, `r_sup_temp`, `r_inf_luz`, `r_sup_luz`, `r_inf_hum`, `r_sup_hum`, `dificultad`, `clima`, `referencia`, `img`) VALUES
-(1, 'papa', 15, 20, 0, 0, 60, 80, 'fácil', 'de buen drenaje y ventilación', 'Intagri S.C', ''),
-(2, 'chile', 18, 30, 0, 0, 50, 60, 'fácil', 'cálido', 'SAGARPA', ''),
-(3, 'jitomate', 20, 40, 0, 0, 75, 100, 'fácil', 'cálido', 'SAGARPA', '');
+(1, 'papa', 15, 20, 0, 0, 60, 80, 'fácil', 'de buen drenaje y ventilación', 'Intagri S.C', 'papa.jpg'),
+(2, 'chile', 18, 30, 0, 0, 50, 60, 'fácil', 'cálido', 'SAGARPA', 'chile.jpg'),
+(3, 'jitomate', 20, 40, 0, 0, 75, 100, 'fácil', 'cálido', 'SAGARPA', 'jitomate.jpg');
 
 -- --------------------------------------------------------
 
@@ -1933,6 +1941,8 @@ INSERT INTO `tbl_usuarios_dispositivos` (`id`, `id_usuario`, `dispositivo`) VALU
 
 --
 -- Filtros para la tabla `tbl_cultivos`
+ALTER TABLE `tbl_mis_huertos`
+  ADD PRIMARY KEY (`id`);
 --
 ALTER TABLE `tbl_cultivos`
   ADD CONSTRAINT `fk_tipo` FOREIGN KEY (`id_tipo`) REFERENCES `tbl_tipo_vegetal` (`id`),

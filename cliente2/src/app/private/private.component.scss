@@ -1,52 +1,4 @@
 .example-container {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .example-is-mobile .example-toolbar {
-    position: fixed;
-    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-    z-index: 2;
-  }
-  
-  h1.example-app-name {
-    margin-left: 8px;
-  }
-  
-  // .example-sidenav-container {
-  //   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-  //      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-  //   flex: 1;
-  // }
-  
-  .example-is-mobile .example-sidenav-container {
-    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-       `<body>` to be our scrolling element for mobile layouts. */
-    flex: 1 0 auto;
-  }
-.mat-list-icon{
-  padding: 0!important;
-}
-.mat-list-minimize{
-  width: auto;
-}
-::ng-deep.mat-list-text {
-  padding-left: 5px!important;
-}
-::ng-deep .mat-list-base {
-    padding-top: 8px;
-    width: 240px;
-    display: block;
-    -webkit-tap-highlight-color: transparent;
-}
-
-::ng-deep .mat-drawer-content {
-  height: 80vh;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -76,53 +28,7 @@ h1.example-app-name {
 .mat-drawer .mat-sidenav{
   top: 6rem!important;
 }
-.fondo-verde{
-  background-color: #021701;
-  margin: 30px;
-  overflow: hidden;
-  height:calc(90vh - 90px);
-  margin-top: 60px;
-  
-}
-.contenido {
-
-  overflow: hidden;
-  
-  background-position: top;
-  
-  background-size: cover;
-  
-}
-.barra-superior{
-  background-color: white;
-  opacity: .9;
-  height: 7vh;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.barra-lateral{
-  
-  overflow: hidden;
-  background-position: top;
-
-  background-size: cover;
-  
-}
-
-
-@media (max-width: 500px){
-  mat-sidenav{
-    display:none;
-  }
-}
-.links{
-  text-decoration: underline;
-  margin-left: 5vw;
-  margin-bottom: 20px;
-  margin-top: -15px;
 
 a .bg-fondo-verde-active{
   background: #0FB007;
-}
 }

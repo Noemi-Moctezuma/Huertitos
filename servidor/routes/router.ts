@@ -70,7 +70,7 @@ router.post('/api', (request, response)=>{
         break;
     case 'getCultivosUsuario':
         let idUser = request.body.id
-        sql = " SELECT t1.nombre,  t1.id, t3.img FROM tbl_cultivos t1 JOIN tbl_tipo_vegetal t3 ON t1.id_tipo_vegetal = t3.id WHERE t1.id_usuario='"+idUser+"' "
+        sql = " SELECT t1.nombre,  t1.id, t3.img FROM tbl_cultivos t1 JOIN tbl_tipo_vegetal t3 ON t1.id_tipo = t3.id WHERE t1.id_usuario='"+idUser+"' "
         break;
     case 'editarUsuario':
         let nombre = request.body.user.nombre
@@ -121,7 +121,7 @@ router.post('/api', (request, response)=>{
         
         case 'getEtapas':
         idCultivo = request.body.idCultivo
-        sql="SELECT t1.* FROM tbl_etapas t1 JOIN tbl_cultivos t2 ON t1.id_tipo_vegetal = t2.id_tipo_vegetal WHERE t2.id ='"+idCultivo+"' "
+        sql="SELECT t1.* FROM tbl_etapas t1 JOIN tbl_cultivos t2 ON t1.id_tipo_vegetal = t2.id_tipo WHERE t2.id ='"+idCultivo+"' "
         break;
         
 case 'getEventos':

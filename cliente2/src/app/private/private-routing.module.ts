@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HuertoComponent } from './huerto/huerto.component';
 import { PrivateComponent } from './private.component';
 
 const routes: Routes = [
@@ -31,7 +32,9 @@ const routes: Routes = [
         path: 'huerto',
         loadChildren: () =>
           import('./huerto/huerto.module').then((m) => m.HuertoModule),
-      },
+      },{
+        path: 'huerto/:id', component: HuertoComponent
+      }
       
     ],
   },
