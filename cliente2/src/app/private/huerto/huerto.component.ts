@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { WebsocketService } from 'src/app/services/websocket.service';
 
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
-
+import { ActivatedRoute } from '@angular/router';
 import interactionPlugin from '@fullcalendar/interaction';
 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -110,7 +110,7 @@ export class HuertoComponent implements OnInit {
 
   constructor(
     public wsService: WebsocketService,
-    
+    private route: ActivatedRoute,
   public dialog: MatDialog,
     private router:Router,
     private http:HttpClient,
@@ -145,6 +145,9 @@ export class HuertoComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      console.log('The id of this route is: ', params.id);
+    });
     
     let requestDataT = {
       funcion: 'getPromedioBDT',

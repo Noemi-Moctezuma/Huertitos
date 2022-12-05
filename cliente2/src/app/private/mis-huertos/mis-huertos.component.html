@@ -8,8 +8,7 @@
                 <div class="grid gap-5 columnas justify-items-center mt-8">
                     <div *ngFor="let cultivo of cultivos; index as i;">
                         <mat-card class="bg-white  cursor-pointer card  text-black font-semibold  
-                        text-center border-4 border-black h-5/6 " href="/private/huerto"  (click)="huertoClick(cultivo.id) ">
-                        <a  href="/private/huerto">
+                        text-center border-4 border-black h-5/6 " routerLink="/private/huerto/{{cultivo.id}}"  >
                             <div class="container bg-white ">
 
                                 <img src='../../../assets/img/{{cultivo.img}}'>
@@ -17,10 +16,7 @@
                             <p class=" nombre text-">
                                 {{cultivo.nombre}}
                             </p>
-                        </a>
-           
                         </mat-card>
-
                     </div>
                     <mat-card class="bg-white  cursor-pointer card text-black font-semibold text-center border-4 border-black">
                         <div class="container object-center">
