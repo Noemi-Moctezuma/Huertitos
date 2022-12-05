@@ -48,6 +48,7 @@ export class DialogAddCultivoComponent implements OnInit {
     let  data = {
       funcion: 'getCultivos'
     };
+    
     this.http.post('http://localhost:4003/api', data ).subscribe(response => {
     let data2 = Object.values(response)
     console.log(data2)
@@ -76,7 +77,7 @@ export class DialogAddCultivoComponent implements OnInit {
       nombre_cultivo:nombre.value
       
     };
-   console.log(data)
+   console.log(JSON.stringify(data))
 
     this.http.post('http://localhost:4003/api', data ).subscribe(response => {
     let data2 = Object.values(response)

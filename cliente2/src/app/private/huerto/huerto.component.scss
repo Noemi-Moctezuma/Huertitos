@@ -15,11 +15,14 @@
 
 //@import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
+
 .calendario{
     width: 50vw;
     background-color: white;
     color: black;
-    justify-self:rleftight;
+    
+    font-size: 1.7vmin;
+    margin-bottom: 10vh;
 }
 
 .grafica{
@@ -40,3 +43,8 @@
 /*   *{
     outline: 1px solid red!important;
   }  */
+  .subtitulo{
+      font-size: 3vmin;
+      color: black;
+      margin-top: 1vmin;
+  }

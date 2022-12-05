@@ -6,51 +6,60 @@
         <div class="container  grid-rows-2 items-center justify-center">
 
     <div class="">
-      <h2 class="titulo">{{titulo}}</h2>
+      <h2 class="titulo text-black">{{titulo}}</h2>
       
      
      
-      <div class="text-black">
+      <div class="text-black subtitulo">
 
         Datos en tiempo real
       </div>
       <br>
         <div class="grid gap- datos">
             <div  class="cardDato" style="background-color: #F01212; color: white;">
-Temperatura:
-<br>
-<a href="">{{temperatura}}</a>
+            Temperatura:
+            <br>
+            <a href="">{{temperatura}}</a>
             </div>
             <div  class="cardDato" style="background-color: #FFDA1A;">
-Luz:
-<br>
-<a href="">{{sol}}</a>
+            Luz:
+            <br>
+            <a href="">{{sol}}</a>
             </div>
             <div class="cardDato" style="background-color: #1763D4; color: white;">
-Humedad:
-<br>
-<a href=""> {{humedad}}</a>
+            Humedad:
+            <br>
+            <a href=""> {{humedad}}</a>
             </div>
             
           <br>
-          <div class="text-black subtitulo">
-
+        </div>
+          <div class="text-black ">
+          
           <br>
-          <div class="text-lg text-black pt-4 pb-3 mt-2">
+          <div class="text-lg text-black pt-4 pb-3 mt-2 subtitulo">
             Etapas del cultivo
+          </div>
+          <div style="font-size: 1.7vmin;"> 
+            Haz click en alguna fecha para agregar un nuevo cultivo
           </div>
           <br>
 
           <!--Calendario con eventos-->
+<div style="justify-content:center">
 
-          <div class="calendario">
-            <full-calendar [options]="calendarOptions"></full-calendar>
-          </div>
+  <div class="calendario">
+    <full-calendar [options]="calendarOptions"></full-calendar>
+  </div>
+</div>
           <!--fin-->
-        </div>
+        
     </div>
   </div>
 
+  <div class="subtitulo">
+    Promedios mensuales
+  </div>
   <div class=" col-span-2  px-2 bg-white rounded flex justify-center">
     <div style="display:block;  width: 100%;" class="bg-white rounded">
       <canvas baseChart width="3" height="2" [options]="optionsMes" [datasets]="lineChartPromedio"

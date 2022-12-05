@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { WebsocketService } from 'src/app/services/websocket.service';
 
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
-import { ActivatedRoute } from '@angular/router';
+
 import interactionPlugin from '@fullcalendar/interaction';
 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -110,7 +110,7 @@ export class HuertoComponent implements OnInit {
 
   constructor(
     public wsService: WebsocketService,
-    private route: ActivatedRoute,
+    
   public dialog: MatDialog,
     private router:Router,
     private http:HttpClient,
@@ -118,7 +118,7 @@ export class HuertoComponent implements OnInit {
   ) {
     this.getHuerto()
     this.getEtapas()
-    this.getEventos()
+    console.log(this.eventos)
     this.calendarOptions = {
       initialView: 'dayGridMonth',
       locale: esLocale,
@@ -138,16 +138,42 @@ export class HuertoComponent implements OnInit {
       //window.location.reload()
     });
       },
-      events:this.eventos
+      events:this.eventos,
+      eventSources:[
+            // your event source
+    {
+      url: 'http://localhost:4003/api',
+      method: 'POST',
+      extraParams: {
+        funcion: 'getEventos',
+        idCultivo: localStorage['id_huerto'],
+      }
+
+    }
+      ],
+      eventClick: function(info) {
+        var eventObj = info.event;
+  
+        if (eventObj.url) {
+          alert(
+            'Clicked ' + eventObj.title + '.\n' +
+            'Will open ' + eventObj.url + ' in a new tab'
+          );
+  
+          window.open(eventObj.url);
+  
+          info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
+        } else {
+          Swal.fire( eventObj.title);
+        }
+      }
+      
     };
 
 
    }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      console.log('The id of this route is: ', params.id);
-    });
     
     let requestDataT = {
       funcion: 'getPromedioBDT',
