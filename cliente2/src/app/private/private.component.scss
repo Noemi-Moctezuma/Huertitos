@@ -47,10 +47,34 @@
 
 ::ng-deep .mat-drawer-content {
   height: 80vh;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-::ng-deep .mat-sidenav-content {
-  height: 80vh;
+.example-toolbar{
+  width:   auto;
+  margin: 2rem 2rem 0 2rem !important;
+  height: 4rem!important;
+}
+h1.example-app-name {
+  margin-left: 8px;
+}
+.example-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+  margin: 2rem!important;
+}
+/* *{
+  outline: 1px solid red!important;
+}  */
+.mat-drawer .mat-sidenav{
+  top: 6rem!important;
 }
 .fondo-verde{
   background-color: #021701;
@@ -97,4 +121,8 @@
   margin-left: 5vw;
   margin-bottom: 20px;
   margin-top: -15px;
+
+a .bg-fondo-verde-active{
+  background: #0FB007;
+}
 }

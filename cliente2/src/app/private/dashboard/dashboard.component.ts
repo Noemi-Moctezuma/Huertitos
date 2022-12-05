@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 import { WebsocketService } from 'src/app/services/websocket.service';
 
 @Component({
@@ -8,7 +9,39 @@ import { WebsocketService } from 'src/app/services/websocket.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  public temperatura: any = 0;
+  cultivos:any;
+  public imgs: Array<any> = [
+    'brote',
+    'crecimiento',
+    'floracion',
+    'cosecha'
+  ];
+  public etapas: Array<any> = [
+    'Brote',
+    'Crecimiento',
+    'Floración',
+    'Cosecha'
+  ];
+  constructor(private http: HttpClient, public wsService: WebsocketService) {
+  }
+
+  ngOnInit(): void {
+    let  data = {
+      funcion: 'getCultivoFases',
+      id: localStorage.getItem('id')
+    };
+    console.log(data)
+     this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
+      this.cultivos = (response)
+      console.log(this.cultivos)
+  });
+  }
+  }
+
+//CODIGO DE LAS GRÁFICAS
+/*
+DECLARACIONES
+public temperatura: any = 0;
   public sol: any = 0;
   public humedad: any = 0;
   public lineChartPromedio: Array<any> = [
@@ -98,9 +131,9 @@ export class DashboardComponent implements OnInit {
     },
   };
   public labelsxMin: Array<any> = [1, 2, 3, 4, 5, 6];
-  constructor(private http: HttpClient, public wsService: WebsocketService) {}
 
-  ngOnInit(): void {
+  CODIGO DEL ON INIT
+  
     let requestDataT = {
       funcion: 'getPromedioBDT',
     };
@@ -136,8 +169,10 @@ export class DashboardComponent implements OnInit {
     this.getData();
     this.escucharSocket();
     console.log(JSON.stringify(this.lineChartPromedio));
-  }
-  getData() {
+
+
+    //FUNCIONES
+      getData() {
     this.http.get('http://localhost:4003/grafica').subscribe((data: any) => {
       this.temperatura = data.temperatura;
       this.sol = data.sol;
@@ -164,4 +199,4 @@ export class DashboardComponent implements OnInit {
       console.log('socket data>>>' + JSON.stringify(data));
     });
   }
-}
+*/

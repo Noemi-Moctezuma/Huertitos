@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -22,8 +22,11 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import { DialogAddEtapaComponent } from './private/dialog-add-etapa/dialog-add-etapa.component';
 
+import localeEs from '@angular/common/locales/es'
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs, 'es');
 const config: SocketIoConfig={
-  url:'http://localhost:4003',
+  url:AppComponent.url,
   options:{}
 }
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -56,7 +59,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 
   ],
   providers: [
-    
+    {provide: LOCALE_ID, useValue:'es'}
   ],
   bootstrap: [AppComponent]
 })

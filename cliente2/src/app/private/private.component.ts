@@ -4,6 +4,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { PerfilComponent } from './perfil/perfil.component';
   styleUrls: ['./private.component.scss'],
 })
 export class PrivateComponent implements OnInit, OnDestroy {
-  isMaximized: boolean = true;
+  hidden:boolean = true;
   mobileQuery: MediaQueryList;
   nombre:String;
   apellido_paterno:String;
@@ -26,19 +27,11 @@ export class PrivateComponent implements OnInit, OnDestroy {
   huertoElegido:String=''
   
   cultivos :any
-  /* fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
+   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
-  fillerContent = Array.from(
-    { length: 50 },
-    () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
-  );
- */
+
   private _mobileQueryListener: () => void;
+  isMaximized: boolean;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef, 
@@ -56,21 +49,13 @@ export class PrivateComponent implements OnInit, OnDestroy {
 
 
       this.getUser()
-      this.mobileQuery = media.matchMedia('(max-width: 600px)');
+      this.mobileQuery = media.matchMedia('(max-width: 640px)');
       this._mobileQueryListener = () => changeDetectorRef.detectChanges();
       this.mobileQuery.addListener(this._mobileQueryListener);
       this.getCultivosUsuario()
   }
 
   ngOnInit(): void {
-    this.titulo = 'ola';
-    
-localStorage.setItem( 'imagenFondo1', '../../assets/img/fondo_inicio_1.png')
-localStorage.setItem( 'imagenFondo2', '../../assets/img/fondo_inicio_2.png')
-
-    document.getElementById("sidenav").style.backgroundImage = 'url(' + localStorage['imagenFondo1'] + ')'
-    document.getElementById("fondo").style.backgroundImage = 'url(' + localStorage['imagenFondo2'] + ')'
-     
   }
   huertoClick(id:any){
    // let huertoElegido = document.getElementById('huertoElegido') as HTMLInputElement 
@@ -88,13 +73,17 @@ localStorage.setItem( 'imagenFondo2', '../../assets/img/fondo_inicio_2.png')
     this.router.navigate(['/'])
      
   }
+  hide(){
+    this.hidden = !this.hidden;
+    console.log("is hidden" + this.hidden)
+  }
   getUser() {
     console.log(localStorage['id'])
     let  data = {
       funcion: 'getUser',
       id: localStorage['id'],
     };
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     let data2 = Object.values(response)
     this.nombre=data2[0]['nombre']
     this.apellido_paterno=data2[0]['apellido_paterno']
@@ -102,7 +91,6 @@ localStorage.setItem( 'imagenFondo2', '../../assets/img/fondo_inicio_2.png')
     this.email=data2[0]['email']
     this.telefono=data2[0]['telefono']
     this.ocupacion=data2[0]['ocupacion']
-
     })
   };
   minimize(isMaximized: boolean) {

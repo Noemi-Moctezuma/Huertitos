@@ -1,22 +1,67 @@
-<div  class=" h-screen">
-    <div class="container  xl:max-w-6xl mx-auto p-7 bg-2paleta h-auto">
-        <div class="container bg-amarilloclaro grid-rows-2 items-center justify-center">
-            <div class=" grid-info grid-flow-col gap-4 p-4 ">
-                <div class="flex ">
-                    <div class="grid grid-flow-row bg-white rounded text-base text-cafeLogo min-w-full pt-3 justify-items-end p-2 self-stretch">
-                        <span class="justify-self-start">Nivel de luz solar:</span>
-                        <p class="">{{sol}}</p>
-                        <span class="justify-self-start">Temperatura:</span>
-                        <p class="">{{temperatura}}°C</p>
-                        <span class="justify-self-start">Semana:</span>
-                        <p class="">6/15</p>
-                        <span class="justify-self-start">Fecha de último riego:</span>
-                        <p class="">29 de agosto de 2022</p>
-                    </div>
-                </div>
-    
-                <div class=" col-span-2  px-2 bg-white rounded flex justify-center">
-                    <div style="display:block;  width: 100%;" class="bg-white rounded">
+<!-- FONDO -->
+<div class=" h-full flex items-center card">
+    <!-- MARCO BCO -->
+    <div class="flex flex-col  h-11/12 sm:w-full w-auto mx-auto m-[200px] px-2">
+        <!-- TITULO -->
+        <div class="py-3 font-bold text-4xl tracking-wider text-center text-black">Inicio</div>
+        <!-- TABLE CONTAINER -->
+        <div class=" text-black font-semibold flex flex-row sm:flex-col mx-auto sm:mx-0 text-center">
+            <table class="table-auto">
+                <thead>
+                    <tr class="border-solid border-b-2 border-black text-lg">
+                        <td>
+                            Huerto
+                        </td>
+                        <td>
+                            Estado
+                        </td>
+                        <td>
+                            Etapa actual
+                        </td>
+                        <td>
+                            Etapa siguiente
+                        </td>
+                        <td>
+                            Fecha siguiente etapa
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cultivo of cultivos" class="border-solid border-b-2 border-black text-base">
+                            <td>
+                                {{cultivo.huerto}}
+                            </td>
+                            <!-- CAMBIAR DEPENDIENDO DEL ESTADO -->
+                            <td>
+                                <div class="bg-verde-estado text-white rounded-lg px-2 py-1">
+                                    Óptimo 
+                                </div>
+                                <span class="text-2xl fa fa-check-circle text-verde-estado"></span>
+                            </td>
+                            <td class="">
+                                <div class="{{imgs[cultivo.orden]}} mx-auto">
+                                    &nbsp;
+                                </div>
+                                <span>{{etapas[cultivo.orden]}}</span>
+                            </td>
+                            <td>
+                                <div class="floracion mx-auto">
+                                    &nbsp;
+                                </div>
+                                <span>Floración</span>
+                            </td>
+                            <td>
+                                {{cultivo.fecha_sig_etapa|date:'longDate'}}
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--GRAFICAS  
+                      <div style="display:block;  width: 100%;" class="bg-white rounded">
                         <canvas
                         baseChart
                         width="3" 
@@ -27,11 +72,6 @@
                         type="line"
                         ></canvas>
                     </div>
-                </div>
-                
-                </div>
-                <div class="grid grid-cols-11   grid-flow-col  px-4 pb-4">
-                    <div class=" col-span-5   flex justify-center">
                         <div style="display:block;width: 100%;" class="bg-white rounded " >
                             <canvas
                             baseChart
@@ -44,9 +84,6 @@
                             type="line"
                             ></canvas>
                         </div> 
-                    </div>
-        
-                    <div class="col-start-7 col-span-5  flex justify-center">
                         <div style="display:block; width: 100%;" class="bg-white rounded"  >
                             <canvas
                             baseChart
@@ -60,8 +97,6 @@
                             type="line"
                             ></canvas>
                         </div> 
-                    </div>
-                    <div class="col-start-7 col-span-5  flex justify-center">
                         <div style="display:block; width: 100%;" class="bg-white rounded"  >
                             <canvas
                             baseChart
@@ -74,12 +109,7 @@
                             
                             type="line"
                             ></canvas>
-                        </div> 
-                    </div>
-                    </div>
-        </div>
-    </div>
-</div>
+                        </div>  -->
 
 <!-- <p>
     Temperatura: {{temperatura}}

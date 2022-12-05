@@ -1,19 +1,39 @@
-.grafica{
-        background-size: 40%; 
-        background-position-x: 50px;
-        background-position-y: 50px;
-        background-color: chocolate;
-        background-size: length(50px);
-    }
-    .grid-cols-11{
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1rem) minmax(0, 1fr)  minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) ;
-    }
-    .grid-info{
-        display: grid;
-        grid-template-columns: minmax(10rem, .75fr) minmax(0, 1fr) minmax(0, 1fr) 
-    }
-    /* hr.solid {
-        border-top: 3px solid #bbb;
-        width: 100%
-      } */
 
+/* *{
+  outline: 1px solid red!important;
+}  */
+
+@media (min-width: 640px) {
+    .floracion{
+        height: 192px;
+        width: 120px;
+    }
+}
+.brote{
+    background-image: url('../../../assets/img/brote.png') ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 96px;
+    width: 60px;
+}
+.crecimiento{
+    background-image: url('../../../assets/img/crecimiento.png') ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 96px;
+    width: 60px;
+}
+.floracion{
+    background-image: url('../../../assets/img/floracion.png') ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 96px;
+    width: 60px;
+}
+.cosecha{
+    background-image: url('../../../assets/img/cosecha.png') ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 96px;
+    width: 60px;
+}

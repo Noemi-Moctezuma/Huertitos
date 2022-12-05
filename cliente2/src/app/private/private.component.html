@@ -1,132 +1,73 @@
+<!-- FONDO -->i
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" style="background-image: url(../../assets/img/fondo_inicio.png);
+background-size: cover;
+">
+	<!-- BARRA SUPERIOR -->
 
-<div [class.example-is-mobile]="mobileQuery.matches" >
-	<!-- HEADER -->
-	<!--      <app-header [titulo]="titulo" ></app-header>
- -->
- 
+	<mat-toolbar style="background-color: rgba(255, 255, 255, 0.95); ;" class="example-toolbar flex justify-between">
+		<!-- primer bloque -->
+		<div class="flex items-center">
+			<button mat-icon-button (click)="snav.toggle(); hide()" class="m-2 bg-verde-oscuro-transparencia">
+				<mat-icon>menu</mat-icon>
+			</button>
+			<img src="../../assets/img/logos/logo-completo-color.png" style="height: 8vh; ">
 
-	<mat-sidenav-container  autosize >
+		</div>
+		<!-- segundo bloque -->
+		<div class="flex items-center">
+			<div class="flex justify-center ">
+				<img src="assets/img/ivana-square.jpg" class="rounded-full" style=" height: 5vh; width: 5vh" />
+			</div>
+			<div class="ml-3 hidden flex-col text-sm sm:flex">
+				<div class="flex justify-left">
+					<span class="font-bold text-black">{{nombre}} {{apellido_paterno}}</span>
+				</div>
+				<div class="flex justify-left">
+					<span class="text-black">{{ocupacion}}</span>
+				</div>
+			</div>
+		</div>
+	</mat-toolbar>
+	<!-- BARRA LATERAL -->
+	<mat-sidenav-container class="example-sidenav-container " 
+		[style.marginTop.px]="mobileQuery.matches ? 128 : 0">
+		<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+			fixedTopGap="128" class="bg-fondo-verde" id="sidenav">
+			<!-- LISTA MENÚ -->
 
+			<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full" >
+				<mat-nav-list class="text-slate-800">
 
-		<mat-sidenav class = "barra-lateral pantalla " id="sidenav" disableClose class="border-0 " opened 
-		#snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-			[fixedInViewport]="mobileQuery.matches"
-			 >
-<div>
-<div class="barra-superior" style="margin-left: 30px;" >
-<img src="../../assets/img/logos/logo-completo-color.png" style="height: 8vh; ">
-	
-</div>
-			<mat-nav-list  class="fondo-verde">
-				<!-- profile info -->
-				
-				<div *ngIf="isMaximized == false">
-					<div class="flex justify-center">
-						<button mat-icon-button (click)="minimize(isMaximized)"><mat-icon>menu</mat-icon></button>
+					<a routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
+						<mat-list-item  [ngClass]="dashboard.isActive? 'bg-fondo-verde-active':''">
+							<mat-icon matListIcon>dashboard
+							</mat-icon>
+							<span matLine class="self-start">Inicio</span>
+						</mat-list-item>
+					</a>
+
+					<a  routerLinkActive #mis_huertos="routerLinkActive" routerLink="/private/mis-huertos" >
+						<mat-list-item [ngClass]="mis_huertos.isActive? 'bg-fondo-verde-active':''">
+							<mat-icon matListIcon>dashboard
+							</mat-icon>
+							<span matLine class="self-start">Mis Huertos</span>
+						</mat-list-item>
+					</a>
+					<a  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
+						<mat-list-item [ngClass]="perfil.isActive? 'bg-fondo-verde-active':''" >
+							<mat-icon matListIcon >face</mat-icon>
+							<span matLine class="self-start">Perfil</span>
+						</mat-list-item>
+					</a>
+					<div class="text-white hover:text-gary-200 flex  pr-4 bottom-0">
+						<a href="/public" onclick="cerrarsesion()"> Cerrar sesión </a>
 					</div>
-				</div>
-				
-				<div *ngIf="isMaximized == true">
-					<div class="flex justify-end">
-						<button mat-icon-button (click)="minimize(isMaximized)" ><mat-icon>menu</mat-icon></button>
-					</div>
-	
-				</div>
-
-				<div class="block w-auto overflow-auto  grow basis-full pt-2">
-					<mat-nav-list class="text-slate-800 pt-4">
-						<div *ngIf="isMaximized ==true" class=" py-1 px-2 ">
-							
-						</div>
-						<div *ngIf="isMaximized ==true">
-							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
-								<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
-								<span  matLine class="self-start" [ngClass]="dashboard.isActive? 'text-cafeLogo':''">Inicio</span>
-							</button>
-							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/mis-huertos">
-								<mat-icon matListIcon > local_florist</mat-icon>
-								<span  matLine class="self-start" >Mis Huertos</span>
-							</button>
-							
-							<div  class="links" *ngFor="let cultivo of cultivos; index as i;"  >
-								
-									<p class=" nombre text-">
-										
-									</p>
-									<a id="huertoElegido"  href="/private/huerto"  (click)="huertoClick(cultivo.id)"> {{cultivo.nombre}}</a>
-										
-							</div>
-
-							<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
-								<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
-								<span  matLine class="self-start" [ngClass]="perfil.isActive? 'text-cafeLogo':''">Perfil</span>
-							</button>
-							
-							<button mat-list-item  routerLinkActive #info="routerLinkActive" routerLink="/private/info">
-								<mat-icon matListIcon [ngClass]="info.isActive? 'text-cafeLogo':''">article</mat-icon>
-								<span  matLine class="self-start" [ngClass]="info.isActive? 'text-cafeLogo':''">Más información</span>
-							</button>
-							<div class="text-white hover:text-gary-200 flex  pr-4 bottom-0">
-								<a href="/public" onclick="cerrarsesion()"> Cerrar sesión </a>
-							</div>
-						</div>
-						<div *ngIf="isMaximized ==false">
-							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
-								<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
-							</button>
-							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/mis-huertos">
-								<mat-icon matListIcon> local_florist</mat-icon>
-							</button>
-							<button mat-list-item  routerLinkActive #info="routerLinkActive" routerLink="/private/info">
-								<mat-icon matListIcon [ngClass]="info.isActive? 'text-cafeLogo':''">article</mat-icon>
-							</button>
-							<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
-								<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
-							</button>
-						</div>
-						
-					</mat-nav-list>
-				</div>
-			</mat-nav-list>
-</div>
-			
+				</mat-nav-list>
+			</div>
 		</mat-sidenav>
-
-
-			<mat-sidenav-content id = "fondo" class="contenido" >
-				
-						
-							  <div class="barra-superior" style="margin-right:30px">
-								<div class="flex justify-end">
-								
-									<div>
-										<div class="flex justify-center pt-1">
-											<img src="assets/img/ivana-square.jpg" class="rounded-full"  style=" height: 5vh; width: 5vh" />
-										</div>
-									</div>
-									<div class="ml-3 mr-12">
-										<div class="flex justify-left pt-2" style="line-height: 1mm; font-size: 2vh;">
-											<p class="font-bold text-black">{{nombre}} {{apellido_paterno}}</p>
-									</div>
-										<div class="flex justify-left align-top " style="line-height: 1mm; font-size: 2vh;">
-											<p class="text-black">{{ocupacion}}</p></div>
-										  
-									</div>
-									</div>
-				
-								</div>
-								
-								
-							<div style=" overflow-y: scroll">
-							<router-outlet ></router-outlet>
-						
-							</div>
-							
-				
-
-			</mat-sidenav-content>
+		<!-- CONTENIDO -->
+		<mat-sidenav-content style="background-color: rgba(255, 255, 255, 0.95);">
+			<router-outlet ></router-outlet>
+		</mat-sidenav-content>
 	</mat-sidenav-container>
-
-
 </div>
-
