@@ -4,6 +4,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { PerfilComponent } from './perfil/perfil.component';
   styleUrls: ['./private.component.scss'],
 })
 export class PrivateComponent implements OnInit, OnDestroy {
-  isMaximized: boolean = true;
+  hidden:boolean = true;
   mobileQuery: MediaQueryList;
   nombre:String;
   apellido_paterno:String;
@@ -60,13 +61,17 @@ export class PrivateComponent implements OnInit, OnDestroy {
     this.router.navigate(['/'])
      
   }
+  hide(){
+    this.hidden = !this.hidden;
+    console.log("is hidden" + this.hidden)
+  }
   getUser() {
     console.log(localStorage['id'])
     let  data = {
       funcion: 'getUser',
       id: localStorage['id'],
     };
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     let data2 = Object.values(response)
     this.nombre=data2[0]['nombre']
     this.apellido_paterno=data2[0]['apellido_paterno']

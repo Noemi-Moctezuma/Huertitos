@@ -7,7 +7,7 @@ background-size: cover;
 	<mat-toolbar style="background-color: rgba(255, 255, 255, 0.95); ;" class="example-toolbar flex justify-between">
 		<!-- primer bloque -->
 		<div class="flex items-center">
-			<button mat-icon-button (click)="snav.toggle()" class="m-2 bg-verde-oscuro-transparencia">
+			<button mat-icon-button (click)="snav.toggle(); hide()" class="m-2 bg-verde-oscuro-transparencia">
 				<mat-icon>menu</mat-icon>
 			</button>
 			<img src="../../assets/img/logos/logo-completo-color.png" style="height: 8vh; ">
@@ -18,7 +18,7 @@ background-size: cover;
 			<div class="flex justify-center ">
 				<img src="assets/img/ivana-square.jpg" class="rounded-full" style=" height: 5vh; width: 5vh" />
 			</div>
-			<div class="ml-3 flex flex-col text-sm">
+			<div class="ml-3 hidden flex-col text-sm sm:flex">
 				<div class="flex justify-left">
 					<span class="font-bold text-black">{{nombre}} {{apellido_paterno}}</span>
 				</div>
@@ -29,13 +29,13 @@ background-size: cover;
 		</div>
 	</mat-toolbar>
 	<!-- BARRA LATERAL -->
-	<mat-sidenav-container class="example-sidenav-container bg-verde-oscuro-transparencia"
+	<mat-sidenav-container class="example-sidenav-container " 
 		[style.marginTop.px]="mobileQuery.matches ? 128 : 0">
 		<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-			fixedTopGap="128" class="">
+			fixedTopGap="128" class="bg-fondo-verde" id="sidenav">
 			<!-- LISTA MENÚ -->
 
-			<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
+			<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full" >
 				<mat-nav-list class="text-slate-800">
 
 					<a routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
@@ -59,13 +59,6 @@ background-size: cover;
 							<span matLine class="self-start">Perfil</span>
 						</mat-list-item>
 					</a>
-
-					<a routerLinkActive #info="routerLinkActive" routerLink="/private/info">
-						<mat-list-item  [ngClass]="info.isActive? 'bg-fondo-verde-active':''">
-							<mat-icon matListIcon >article</mat-icon>
-							<span matLine class="self-start" >Más información</span>
-						</mat-list-item>
-					</a>
 					<div class="text-white hover:text-gary-200 flex  pr-4 bottom-0">
 						<a href="/public" onclick="cerrarsesion()"> Cerrar sesión </a>
 					</div>
@@ -73,8 +66,8 @@ background-size: cover;
 			</div>
 		</mat-sidenav>
 		<!-- CONTENIDO -->
-		<mat-sidenav-content>
-			<router-outlet style="background-color: aliceblue;"></router-outlet>
+		<mat-sidenav-content style="background-color: rgba(255, 255, 255, 0.95);">
+			<router-outlet ></router-outlet>
 		</mat-sidenav-content>
 	</mat-sidenav-container>
 </div>

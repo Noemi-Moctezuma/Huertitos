@@ -6,12 +6,17 @@ h4 {margin: 0 !important;}
 //@import "node_modules/font-awesome/css/font-awesome.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-mat-dialog-container {
+/* mat-dialog-container {
     background-color: unset !important;
   }
 .mat-drawer, .mat-drawer-container{
   background-color: #021701;
+
 }
+.mat-drawer-content{
+  background-color: rgba(255, 255, 255, 0.95);
+
+} */
 .mat-toolbar{
   height: unset;
 }

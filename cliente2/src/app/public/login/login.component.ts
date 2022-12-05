@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       user: this.user.value,
     };
     console.log(data)
-    this.http.post(AppComponent.url+'/api', data, {headers: {"ngrok-skip-browser-warning": "69420"}}).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     let data2 = Object.values(response)
     console.log(data2)
 

@@ -31,16 +31,11 @@ export class DashboardComponent implements OnInit {
       id: localStorage.getItem('id')
     };
     console.log(data)
-     this.http.post(AppComponent.url+'/api', data, {headers: {"ngrok-skip-browser-warning": "69420"}}).subscribe(response => {
+     this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
       this.cultivos = (response)
       console.log(this.cultivos)
   });
-  setTimeout(()=>{
-  console.log(this.cultivos)
-    
-  },5000)
   }
-
   }
 
 //CODIGO DE LAS GRÁFICAS

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-info',
@@ -10,13 +11,16 @@ import { HttpClient } from '@angular/common/http';
 export class InfoComponent implements OnInit {
   public temperatura: any = 0;
   public sol: any= 0;
-  constructor(private http: HttpClient, public wsService: WebsocketService) { }
+  constructor(private http: HttpClient, public wsService: WebsocketService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getData()
-    this.escucharSocket()
+    this.route.params.subscribe(params => {
+      console.log('The id of this route is: ', params.id);
+    });
+   // this.getData()
+    //this.escucharSocket()
   }
-  getData() {
+ /*  getData() {
     this.http.get('http://localhost:4003/grafica').subscribe((data: any) => {
       this.temperatura = data.temperatura;
       this.sol = data.sol;
@@ -30,5 +34,5 @@ export class InfoComponent implements OnInit {
       this.sol = data.sol;
       console.log("socket data>>>" + JSON.stringify(data));
     });
-  }
+  } */
 }
