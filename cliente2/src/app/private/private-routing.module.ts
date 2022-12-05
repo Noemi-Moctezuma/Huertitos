@@ -32,6 +32,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./mis-huertos/mis-huertos.module').then((m) => m.MisHuertosModule),
       },
+      {
+        path: 'huerto',
+        loadChildren: () =>
+          import('./huerto/huerto.module').then((m) => m.HuertoModule),
+      },
       
     ],
   },

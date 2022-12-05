@@ -1,22 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
+import { CommonModule } from '@angular/common'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { AnyObject } from 'chart.js/types/basic';
 interface Cultivos {
   id: string;
   nombre: string;
 }
 @Component({
   
-  selector: 'app-dialog-add-cultivo',
-  templateUrl: './dialog-add-cultivo.component.html',
-  styleUrls: ['./dialog-add-cultivo.component.scss']
+  selector: 'app-dialog-add-etapa',
+  templateUrl: './dialog-add-etapa.component.html',
+  styleUrls: ['./dialog-add-etapa.component.scss']
 })
-export class DialogAddCultivoComponent implements OnInit {
+export class DialogAddEtapaComponent implements OnInit {
   cultivoSeleccionado = '';
   cultivos: Cultivos[] = [];
   n =  new Date();
@@ -25,18 +26,18 @@ export class DialogAddCultivoComponent implements OnInit {
   d = this.n.getDate();
   hoy:string = this.y + '-' + this.m + '-' + this.d
 
-  
+  etapas:any;
   constructor(
     
    
     private http:HttpClient,
     
     private router:Router,
-    private dialogRef: MatDialogRef<DialogAddCultivoComponent>,
+    private dialogRef: MatDialogRef<DialogAddEtapaComponent>,
     
   ) { 
-    console.log(this.hoy)
-    this.getCultivosDisponibles()
+    //console.log(this.hoy)
+    this.getEtapasDisponibles()
     
     
   }
@@ -44,36 +45,33 @@ export class DialogAddCultivoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getCultivosDisponibles() {
+  getEtapasDisponibles() {
     let  data = {
-      funcion: 'getCultivos'
+      funcion: 'getEtapas',
+      idCultivo: localStorage['id_huerto'],
     };
+    console.log(data)
     this.http.post('http://localhost:4003/api', data ).subscribe(response => {
-    let data2 = Object.values(response)
-    console.log(data2)
-   this.cultivos=data2;
+    this.etapas = Object.values(response)
+    console.log(this.etapas)
       
 
     }); 
   }
   editarCultivosUsuario(){
+
+let seleccionado = document.getElementById('select') as  HTMLInputElement ;
+
+    console.log(seleccionado.value)
     console.log(this.cultivoSeleccionado)
     
-    console.log(localStorage['id'])
 
-    let fecha_siembra = document.getElementById('fecha') as HTMLInputElement 
-    console.log(fecha_siembra.value);
-
-    let nombre = document.getElementById('nombreCultivo') as HTMLInputElement 
-    console.log(nombre.value);
-
-
+  
     let  data = {
-      funcion: 'addCultivoUsuario',
-      cultivo: this.cultivoSeleccionado,
-      id:localStorage['id'],
-      fecha_siembra:fecha_siembra.value,
-      nombre_cultivo:nombre.value
+      funcion: 'addEtapaCultivo',
+      id_etapa: seleccionado.value,
+      id_cultivo:localStorage['id_huerto'],
+      fecha2: localStorage['fechaClick']
       
     };
    console.log(data)
@@ -87,7 +85,7 @@ export class DialogAddCultivoComponent implements OnInit {
  
     Swal.fire({
         
-      title: 'Cultivo agregado con éxito',
+      title: 'Etapa agregada con éxito',
       icon: 'success',
       showConfirmButton: false,
       timer: 1500
@@ -100,7 +98,7 @@ export class DialogAddCultivoComponent implements OnInit {
        
       Swal.fire({
         
-        title: 'Error al agregar cultivo',
+        title: 'Error al agregar etapa',
         text:'Por favor inténtalo nuevamente',
         icon: 'error'
     

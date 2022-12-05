@@ -15,13 +15,26 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import { DialogAddEtapaComponent } from './private/dialog-add-etapa/dialog-add-etapa.component';
+
 const config: SocketIoConfig={
   url:'http://localhost:4003',
   options:{}
 }
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
+
 @NgModule({
   declarations: [
     AppComponent,
+    DialogAddEtapaComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +51,8 @@ const config: SocketIoConfig={
     MatSelectModule,
     MatIconModule,
     MatSnackBarModule,
-    
+   
+    FullCalendarModule // register FullCalendar with your app
 
   ],
   providers: [

@@ -17,9 +17,7 @@
   h1.example-app-name {
     margin-left: 8px;
   }
-  mat-sidenav-container {
-    height: 100vh;
-  }
+  
   // .example-sidenav-container {
   //   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
   //      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
@@ -58,7 +56,8 @@
   background-color: #021701;
   margin: 30px;
   overflow: hidden;
-  height: 80vh;
+  height:calc(90vh - 90px);
+  margin-top: 60px;
   
 }
 .contenido {
@@ -79,9 +78,23 @@
 }
 
 .barra-lateral{
-  width: 30vw;
+  
   overflow: hidden;
   background-position: top;
 
   background-size: cover;
+  
+}
+
+
+@media (max-width: 500px){
+  mat-sidenav{
+    display:none;
+  }
+}
+.links{
+  text-decoration: underline;
+  margin-left: 5vw;
+  margin-bottom: 20px;
+  margin-top: -15px;
 }

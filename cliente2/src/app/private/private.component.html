@@ -1,12 +1,14 @@
 
-<div [class.example-is-mobile]="mobileQuery.matches"  >
+<div [class.example-is-mobile]="mobileQuery.matches" >
 	<!-- HEADER -->
 	<!--      <app-header [titulo]="titulo" ></app-header>
  -->
  
 
 	<mat-sidenav-container  autosize >
-		<mat-sidenav class = "barra-lateral" id="sidenav" disableClose class="border-0 " opened 
+
+
+		<mat-sidenav class = "barra-lateral pantalla " id="sidenav" disableClose class="border-0 " opened 
 		#snav [mode]="mobileQuery.matches ? 'over' : 'side'"
 			[fixedInViewport]="mobileQuery.matches"
 			 >
@@ -26,12 +28,12 @@
 				
 				<div *ngIf="isMaximized == true">
 					<div class="flex justify-end">
-						<button mat-icon-button (click)="minimize(isMaximized)"><mat-icon>menu</mat-icon></button>
+						<button mat-icon-button (click)="minimize(isMaximized)" ><mat-icon>menu</mat-icon></button>
 					</div>
 	
 				</div>
 
-				<div class="block w-auto max-h-screen overflow-auto h-sidenav grow basis-full pt-2">
+				<div class="block w-auto overflow-auto  grow basis-full pt-2">
 					<mat-nav-list class="text-slate-800 pt-4">
 						<div *ngIf="isMaximized ==true" class=" py-1 px-2 ">
 							
@@ -42,9 +44,19 @@
 								<span  matLine class="self-start" [ngClass]="dashboard.isActive? 'text-cafeLogo':''">Inicio</span>
 							</button>
 							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/mis-huertos">
-								<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
-								<span  matLine class="self-start" [ngClass]="dashboard.isActive? 'text-cafeLogo':''">Mis Huertos</span>
+								<mat-icon matListIcon > local_florist</mat-icon>
+								<span  matLine class="self-start" >Mis Huertos</span>
 							</button>
+							
+							<div  class="links" *ngFor="let cultivo of cultivos; index as i;"  >
+								
+									<p class=" nombre text-">
+										
+									</p>
+									<a id="huertoElegido"  href="/private/huerto"  (click)="huertoClick(cultivo.id)"> {{cultivo.nombre}}</a>
+										
+							</div>
+
 							<button mat-list-item  routerLinkActive #perfil="routerLinkActive" routerLink="/private/perfil">
 								<mat-icon matListIcon [ngClass]="perfil.isActive? 'text-cafeLogo':''">face</mat-icon>
 								<span  matLine class="self-start" [ngClass]="perfil.isActive? 'text-cafeLogo':''">Perfil</span>
@@ -62,8 +74,8 @@
 							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
 								<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
 							</button>
-							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/dashboard">
-								<mat-icon matListIcon [ngClass]="dashboard.isActive? 'text-cafeLogo':''">dashboard</mat-icon>
+							<button mat-list-item  routerLinkActive #dashboard="routerLinkActive" routerLink="/private/mis-huertos">
+								<mat-icon matListIcon> local_florist</mat-icon>
 							</button>
 							<button mat-list-item  routerLinkActive #info="routerLinkActive" routerLink="/private/info">
 								<mat-icon matListIcon [ngClass]="info.isActive? 'text-cafeLogo':''">article</mat-icon>
@@ -79,6 +91,8 @@
 </div>
 			
 		</mat-sidenav>
+
+
 			<mat-sidenav-content id = "fondo" class="contenido" >
 				
 						
@@ -103,9 +117,9 @@
 								</div>
 								
 								
-							<div style="height: auto; ">
-
-								<router-outlet style="background-color: aliceblue;" ></router-outlet>
+							<div style=" overflow-y: scroll">
+							<router-outlet ></router-outlet>
+						
 							</div>
 							
 				
@@ -115,6 +129,4 @@
 
 
 </div>
-<!-- Copyright 2022 Google LLC. All Rights Reserved.
-       Use of this source code is governed by an MIT-style license that
-       can be found in the LICENSE file at https://angular.io/license -->
+

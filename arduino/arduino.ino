@@ -11,6 +11,7 @@ int hum;
 float antHum;
 float difHum;
 
+float humedad;
 void setup() {
 
   Serial.begin(9600);
@@ -76,7 +77,7 @@ void loop() {
     } 
 //humedad
 
-  if (hum > antHum ){
+ /* if (hum > antHum ){
     difHum = hum - antHum;
     }
     else{
@@ -92,12 +93,14 @@ void loop() {
         else{
            difHum = antHum - hum;
           }
-    } 
+    } */
     
 //se imprimen los dos datos
 
     //Serial.println( "datos devueltos");
-  Serial << tempC << " " << luz<< " " << hum<< " " << id;
+    humedad = hum / 10.23;
+    humedad = 100 - humedad;
+  Serial << tempC << " " << luz<< " " << humedad<< " " << id;
   Serial.println(" ");
   antTemp = tempC;
   antLuz = luz;

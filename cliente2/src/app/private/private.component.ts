@@ -23,6 +23,9 @@ export class PrivateComponent implements OnInit, OnDestroy {
   ocupacion:String;
   titulo: string = '';
   fondo:string='';
+  huertoElegido:String=''
+  
+  cultivos :any
   /* fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
   fillerContent = Array.from(
@@ -56,6 +59,7 @@ export class PrivateComponent implements OnInit, OnDestroy {
       this.mobileQuery = media.matchMedia('(max-width: 600px)');
       this._mobileQueryListener = () => changeDetectorRef.detectChanges();
       this.mobileQuery.addListener(this._mobileQueryListener);
+      this.getCultivosUsuario()
   }
 
   ngOnInit(): void {
@@ -67,6 +71,12 @@ localStorage.setItem( 'imagenFondo2', '../../assets/img/fondo_inicio_2.png')
     document.getElementById("sidenav").style.backgroundImage = 'url(' + localStorage['imagenFondo1'] + ')'
     document.getElementById("fondo").style.backgroundImage = 'url(' + localStorage['imagenFondo2'] + ')'
      
+  }
+  huertoClick(id:any){
+   // let huertoElegido = document.getElementById('huertoElegido') as HTMLInputElement 
+   localStorage.setItem('id_huerto', id)
+   console.log(id);
+    
   }
 
   ngOnDestroy(): void {
@@ -111,6 +121,19 @@ localStorage.setItem( 'imagenFondo2', '../../assets/img/fondo_inicio_2.png')
       }
     }
     this.isMaximized = !isMaximized;
+  }
+  getCultivosUsuario() {
+    console.log(localStorage['id'])
+    let  data = {
+      funcion: 'getCultivosUsuario',
+      id: localStorage['id'],
+    };
+    console.log(data)
+    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.cultivos = Object.values(response)
+    console.log(this.cultivos)
+    });
+
   }
 
 }

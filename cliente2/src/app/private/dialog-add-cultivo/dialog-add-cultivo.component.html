@@ -1,26 +1,43 @@
 
-<div class=" z-10">
 
-<mat-form-field  color="bg-5paleta">
-  <mat-label class="text-cafeLogo">Elige el tipo de Cultivo</mat-label>
-  <mat-select   [(value)]="cultivoSeleccionado" panelClass="bg-5paleta" >
-    <mat-option *ngFor="let cultivo of cultivos" [value]="cultivo.id" class="text-3paleta">
+
+<div class=" modal z-10 justify-center">
+
+<h1 class="titulo">Agregar cultivo</h1>
+<br>
+<label for="" class="text-black">Nombre del nuevo cultivo:</label>
+<input type="text" id="nombreCultivo" placeholder="Ingresa el nombre:" class="text-black">
+<br>
+<br>
+<label for="" class="text-black">Elige el tipo de vegetal:</label>
+<mat-form-field class="text-black   p-2"   >
+  <mat-label class="text-cafeLogo text-black">Selecciona..</mat-label>
+  <mat-select   [(value)]="cultivoSeleccionado" panelClass="bg-gray-200" class="text-black" >
+    <mat-option *ngFor="let cultivo of cultivos" [value]="cultivo.id" class="text-black">
       {{cultivo.nombre}}
     </mat-option>
   </mat-select>
  
 </mat-form-field>
+<br>
+
+<label for="" class="text-black text-sm 
+"> Fecha de siembra: </label>
+ <br>
+<input  class = "text-black " type="date" id="fecha" name="trip-start"
+       value="2022-12-05"
+       min="2022-01-01" max="2022-12-31">
 
 <div class="  mt-4  grid grid-cols-2">
     <div>
 
-     <button class="  text-center px-4 py-1 font-bold tracking-wider bg-cafeLogo hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
+     <button class="  text-center px-4 py-1 font-bold tracking-wider bg-verde-oscuro-btn hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
      (click)="cerrarDialog()"
      >Cancelar</button>
     </div>
     <div>
 
-     <button class="  text-center px-6 py-1 font-bold tracking-wider bg-cafeLogo hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
+     <button class="  text-center px-6 py-1 font-bold tracking-wider bg-verde-oscuro-btn hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
      (click)="editarCultivosUsuario()">Agregar</button>
     </div>
      

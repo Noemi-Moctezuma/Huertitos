@@ -1,0 +1,36 @@
+
+
+
+<div class=" modal z-10 justify-center">
+
+<h3 class="titulo">Agregar Etapa</h3>
+
+<label for="" class="text-black">Elige la etapa a registrar:</label>
+<select  id="select">
+    <option *ngFor="let etapa of etapas" [value]="etapa.id" class="text-black">
+      {{etapa.nombre}}
+    </option>
+</select>
+  
+
+
+
+<br>
+
+
+<div class="  mt-4  grid grid-cols-2">
+    <div>
+
+     <button class="  text-center px-4 py-1 font-bold tracking-wider bg-verde-oscuro-btn hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
+     (click)="cerrarDialog()"
+     >Cancelar</button>
+    </div>
+    <div>
+
+     <button class="  text-center px-6 py-1 font-bold tracking-wider bg-verde-oscuro-btn hover:bg-5paleta rounded text-5paleta hover:text-cafeLogo"
+     (click)="editarCultivosUsuario()">Agregar</button>
+    </div>
+     
+     </div>
+
+</div>

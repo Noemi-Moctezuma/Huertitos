@@ -4,4 +4,66 @@
     color:#021701;
     width: auto;
     margin: 30px;
+    height:calc(90vh - 90px);
 }
+.titulo{
+    color: #021701;
+    justify-self: center;
+}
+.nombre{
+    font-size:calc(1vw);
+    line-height:1vw
+}
+
+
+@media (min-width: 501px) and (max-width:1000px){
+    .card{ height: 15vmin;
+        width: 15vmin;
+        vertical-align: text-bottom; 
+
+    }
+  }
+  @media (min-width: 1001px) and (max-width:1500px){
+    .card{ height: 23vmin;
+        width: 23vmin;
+        vertical-align: text-bottom; 
+
+    }
+  }
+  @media (max-width: 500px) {
+    .card{ height: 15vmin;
+    width: 15vmin;
+    vertical-align: text-bottom; 
+    }
+  }
+  
+  @media (min-width: 1501px){
+    .card{ height: 30vmin;
+    width: 30vmin;
+    vertical-align: text-bottom; 
+    }
+  }
+  @media (min-width:501px) and (max-width:820px){
+    .columnas{ 
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    }
+  }
+  
+  @media (min-width: 821px) and (max-width:1200px){
+    .columnas{ 
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    }
+  }
+  @media (max-width: 500px) {
+    .columnas{ 
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  
+  @media (min-width: 1201px){
+    .columnas{ 
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }

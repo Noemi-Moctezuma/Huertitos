@@ -69,7 +69,7 @@ router.post('/api', (request, response)=>{
         break;
     case 'getCultivosUsuario':
         let idUser = request.body.id
-        sql = "SELECT nombre FROM tbl_cultivos JOIN tbl_usuarios_cultivos WHERE tbl_cultivos.id = tbl_usuarios_cultivos.id_cultivo AND tbl_usuarios_cultivos.id_usuario ='"+idUser+"' "
+        sql = " SELECT t1.nombre,  t1.id, t3.img FROM tbl_cultivos t1 JOIN tbl_tipo_vegetal t3 ON t1.id_tipo_vegetal = t3.id WHERE t1.id_usuario='"+idUser+"' "
         break;
     case 'editarUsuario':
         let nombre = request.body.user.nombre
@@ -82,12 +82,14 @@ router.post('/api', (request, response)=>{
         sql = "UPDATE tbl_usuarios SET nombre = '"+nombre+"', apellido_paterno = '"+apellido_paterno+"', apellido_materno = '"+apellido_materno+"', email = '"+email+"', telefono = '"+telefono+"', ocupacion ='"+ocupacion+"' WHERE id = '"+id+"' "
         break;
     case 'getCultivos':
-        sql = "SELECT id, nombre FROM tbl_cultivos"
+        sql = "SELECT id, nombre FROM tbl_tipo_vegetal"
         break;
     case 'addCultivoUsuario':
         id=request.body.id
         let idCultivo = request.body.cultivo
-        sql = "INSERT INTO tbl_usuarios_cultivos(id_usuario, id_cultivo) VALUES ('"+id+"','"+idCultivo+"')"
+        let nombre_cultivo = request.body.nombre_cultivo
+        let fecha_siembra = request.body.fecha_siembra
+        sql = "INSERT INTO tbl_cultivos(nombre, id_usuario, fecha_siembra, dispositivo, id_tipo_vegetal) VALUES ('"+nombre_cultivo+"','"+id+"','"+fecha_siembra+"','TS-001','"+idCultivo+"')"
         break;
     case 'agregarDispositivo':
             id = request.body.id
@@ -114,7 +116,31 @@ router.post('/api', (request, response)=>{
         break;
     case 'getPromedioBDH':
         sql = "SELECT AVG(valor) hum , month(tiempo) mes FROM tbl_hum GROUP BY month(tiempo)"
-        break;   
+        break;
+        
+        case 'getEtapas':
+        idCultivo = request.body.idCultivo
+        sql="SELECT t1.* FROM tbl_etapas t1 JOIN tbl_cultivos t2 ON t1.id_tipo_vegetal = t2.id_tipo_vegetal WHERE t2.id ='"+idCultivo+"' "
+        break;
+        
+case 'getEventos':
+    idCultivo = request.body.idCultivo
+    sql = 'SELECT t1.nombre as title, DATE_FORMAT( t2.fecha, "%Y-%m-%d") as start FROM tbl_etapas t1 JOIN tbl_etapas_cultivos t2 ON t1.id = t2.id_etapa WHERE t2.id_cultivo= '+idCultivo
+break;
+        case 'getHuerto':
+            
+         idCultivo = request.body.idCultivo
+            sql = "SELECT * FROM tbl_cultivos WHERE id ='"+idCultivo+"' "
+            break;
+
+        case 'addEtapaCultivo':
+        let id_etapa=request.body.id_etapa
+        let id_cultivo = request.body.id_cultivo
+        let fecha = request.body.fecha2
+        
+        sql = "INSERT INTO tbl_etapas_cultivos(id_etapa, id_cultivo, fecha) VALUES ('"+id_etapa+"','"+id_cultivo+"', '"+fecha+"')"
+        //console.log(sql)
+        break;
     default: 
     
         // break;

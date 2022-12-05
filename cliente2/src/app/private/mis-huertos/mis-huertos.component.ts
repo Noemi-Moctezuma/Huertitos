@@ -38,10 +38,12 @@ export class MisHuertosComponent implements OnInit {
       funcion: 'getCultivosUsuario',
       id: localStorage['id'],
     };
+    console.log(data)
     this.http.post('http://localhost:4003/api', data ).subscribe(response => {
     this.cultivos = Object.values(response)
-    console.log(this.cultivos)
+    console.log(this.cultivos.values)
     });
+
   }
   
   abrirDialogAddCultivo(){
