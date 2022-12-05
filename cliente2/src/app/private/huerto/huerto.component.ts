@@ -13,6 +13,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import esLocale from '@fullcalendar/core/locales/es';
 import Swal from 'sweetalert2';
 import { DialogAddEtapaComponent } from '../dialog-add-etapa/dialog-add-etapa.component';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-huerto',
@@ -178,19 +179,19 @@ export class HuertoComponent implements OnInit {
     let requestDataT = {
       funcion: 'getPromedioBDT',
     };
-    this.http.post('http://localhost:4003/api', requestDataT).subscribe((dataTemp: any) => {
+    this.http.post(AppComponent.url+'/api', requestDataT, AppComponent.header).subscribe((dataTemp: any) => {
         //console.log("datos de temperatura")
         // console.log(dataTemp)
         let requestDataS = {
           funcion: 'getPromedioBDS',
         };
-        this.http.post('http://localhost:4003/api', requestDataS).subscribe((dataSol: any) => {
+        this.http.post(AppComponent.url+'/api', requestDataS, AppComponent.header).subscribe((dataSol: any) => {
             // console.log("datos de sol")
             // console.log(dataSol)
             let requestDataH = {
               funcion: 'getPromedioBDH',
             };
-            this.http.post('http://localhost:4003/api', requestDataH).subscribe((dataHum:any)=>{
+            this.http.post(AppComponent.url+'/api', requestDataH, AppComponent.header).subscribe((dataHum:any)=>{
               dataSol.forEach((element: any) => {
                 this.promedios[0].sun[element.mes - 1] = element.sun;
               });
@@ -201,7 +202,7 @@ export class HuertoComponent implements OnInit {
                 this.promedios[0].hum[element.mes - 1] = element.hum;
               });
               console.log(this.promedios);
-              this.http.post('http://localhost:4003/promedio', this.promedios).subscribe((response: any) => {
+              this.http.post(AppComponent.url+'/promedio', this.promedios, AppComponent.header).subscribe((response: any) => {
                   console.log(response);
                 });
             })
@@ -219,7 +220,7 @@ export class HuertoComponent implements OnInit {
       idCultivo: localStorage['id_huerto'],
     };
     console.log(data)
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     this.huerto = Object.values(response)
     console.log(this.huerto[0].nombre)
     this.titulo=this.huerto[0].nombre
@@ -233,7 +234,7 @@ export class HuertoComponent implements OnInit {
       idCultivo: localStorage['id_huerto'],
     };
     console.log(data)
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     this.etapas = Object.values(response)
     console.log(this.etapas)
     
@@ -248,7 +249,7 @@ export class HuertoComponent implements OnInit {
       idCultivo: localStorage['id_huerto'],
     };
     console.log(data)
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     this.eventos = Object.values(response)
     console.log(this.eventos)
     
@@ -256,7 +257,7 @@ export class HuertoComponent implements OnInit {
 
   }  
   getData() {
-    this.http.get('http://localhost:4003/grafica').subscribe((data: any) => {
+    this.http.get(AppComponent.url+'/grafica', AppComponent.header).subscribe((data: any) => {
       this.temperatura = data.temperatura;
       this.sol = data.sol;
       this.humedad = data.humedad;

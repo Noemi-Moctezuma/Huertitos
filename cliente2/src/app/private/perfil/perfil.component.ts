@@ -9,6 +9,7 @@ import 'sweetalert2/src/sweetalert2.scss'
 import { Router } from '@angular/router';
 import { DialogEditarComponent } from '../dialog-editar/dialog-editar.component';
 import { DialogAddCultivoComponent } from '../dialog-add-cultivo/dialog-add-cultivo.component';
+import { AppComponent } from 'src/app/app.component';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -49,7 +50,7 @@ export class PerfilComponent implements OnInit {
       funcion: 'getUser',
       id: localStorage['id'],
     };
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header ).subscribe(response => {
     let data2 = Object.values(response)
     console.log(data2)
     this.nombre=data2[0]['nombre']
@@ -67,7 +68,7 @@ export class PerfilComponent implements OnInit {
       funcion: 'getCultivosUsuario',
       id: localStorage['id'],
     };
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     this.cultivos = Object.values(response)
     console.log(this.cultivos)
     });

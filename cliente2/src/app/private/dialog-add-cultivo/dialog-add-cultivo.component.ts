@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import Swal from 'sweetalert2';
 
 interface Cultivos {
@@ -49,7 +50,7 @@ export class DialogAddCultivoComponent implements OnInit {
       funcion: 'getCultivos'
     };
     
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     let data2 = Object.values(response)
     console.log(data2)
    this.cultivos=data2;
@@ -79,7 +80,7 @@ export class DialogAddCultivoComponent implements OnInit {
     };
    console.log(JSON.stringify(data))
 
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     let data2 = Object.values(response)
     console.log(data2.values)
 

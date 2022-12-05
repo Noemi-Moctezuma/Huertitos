@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AnyObject } from 'chart.js/types/basic';
+import { AppComponent } from 'src/app/app.component';
 interface Cultivos {
   id: string;
   nombre: string;
@@ -51,7 +52,7 @@ export class DialogAddEtapaComponent implements OnInit {
       idCultivo: localStorage['id_huerto'],
     };
     console.log(data)
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     this.etapas = Object.values(response)
     console.log(this.etapas)
       
@@ -76,7 +77,7 @@ let seleccionado = document.getElementById('select') as  HTMLInputElement ;
     };
    console.log(data)
 
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     let data2 = Object.values(response)
     console.log(data2.values)
 

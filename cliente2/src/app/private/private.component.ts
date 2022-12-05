@@ -99,7 +99,7 @@ export class PrivateComponent implements OnInit, OnDestroy {
       id: localStorage['id'],
     };
     console.log(data)
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     this.cultivos = Object.values(response)
     console.log(this.cultivos)
     });

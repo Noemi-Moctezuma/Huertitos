@@ -3,6 +3,7 @@ import { Component, OnInit,  } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import Swal from 'sweetalert2'
 import {PerfilComponent} from '../perfil/perfil.component'
 @Component({
@@ -45,7 +46,7 @@ export class DialogEditarComponent implements OnInit {
       user: this.user.value,
       id: localStorage['id']
     };
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     let data2 = Object.values(response)
     console.log(data2)
     this.user.controls['nombre'].setValue(data2[0]['nombre']);
@@ -65,7 +66,7 @@ export class DialogEditarComponent implements OnInit {
       funcion: 'editarUsuario',
       user: this.user.value,
     };
-    this.http.post('http://localhost:4003/api', data ).subscribe(response => {
+    this.http.post(AppComponent.url+'/api', data, AppComponent.header).subscribe(response => {
     let data2 = Object.values(response)
     console.log(data2.length)
 
